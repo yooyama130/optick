@@ -10,6 +10,35 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class = "bg-success">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <%= link_to root_path, class:"navbar-brand text-dark" do %>
+            <img class="navbar-brand" src="/assets/logo.PNG" alt="logo" style = "height: 55px">
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <div class="d-flex align-items-center mr-5"><b>ようこそ、<%= current_user.name %>さん！</b></div>
+                <li class = "d-flex align-items-center"><%= link_to 'Mypage', user_path(current_user.id), class:"nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
+                <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "logout", destroy_user_session_path, method: :delete, class:"nav-link text-dark font-weight-bold mb-1" %></li>
+              <% else %>
+                <li class = "d-flex align-items-center"><%= link_to 'Home', root_path, class:" nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
+                <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "login", new_user_session_path, method: :post, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "Start Time Management", new_user_registration_path, class:"nav-link btn btn-info text-light font-weight-bold rounded-pill p-3 mb-1" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
