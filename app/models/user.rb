@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :working_tasks, dependent: :destroy
   has_many :events, dependent: :destroy
+  attachment :profile_image
 end
