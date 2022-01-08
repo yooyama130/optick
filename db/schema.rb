@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_01_08_063263) do
 
   create_table "events", force: :cascade do |t|
+    t.integer "user_id"
     t.datetime "start_time"
     t.integer "task_amout"
     t.string "event_name"
