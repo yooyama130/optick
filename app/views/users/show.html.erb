@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class = "container bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2><%= @user.name %> さんのマイページ</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-4">
+      <!--プロフィール-->
+      <div class = "border border-dark my-2 py-1">
+        <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto" %>
+        <table class = "table mb-1">
+          <tr>
+            <th>名前</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>前回ログイン日</th>
+            <td><%= @user.last_sign_in_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-info d-block mx-auto"><i class="fas fa-user-cog"></i>アカウント情報変更</button>
+      </div>
+      <!--タスク登録・タスク編集画面へ-->
+      <div class = "my-2 py-1">
+        <%= link_to user_tasks_path(current_user) do %>
+          <p>タスクを登録する</p>
+        <% end %>
+        <%= link_to new_user_task_path(current_user) do %>
+          <p>登録タスク一覧へ</p>
+        <% end %>
+      </div>
+    <div class = "col-8">
+
+    </div>
+  </div>
+</div>
