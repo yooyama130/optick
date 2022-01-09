@@ -1,3 +1,19 @@
-<div class = "container bg-light">
-  <h1>aaaaa</h1>
+<div class="container bg-light my-3">
+  <div class="row py-4 px-2">
+    <div class="col-5">
+      <img class="d-inline-block" style = "width: 50%;" src="/assets/top_running_woman.png" alt="top_running_woman">
+      <img class="d-inline-block" style = "width: 40%;" src="/assets/top_piano.png" alt="top_piano">
+      <img class="d-inline-block offset-3" style = "width: 50%;" src="/assets/top_working_man.png" alt="top_working_man">
+    </div>
+    <div class="col-7 py-4">
+      <h1 class = "mt-5">Welcome to Optick!</h1>
+      <h2 class = "mt-5">時間を記録して生活を楽しもう！</h2>
+      <%= link_to new_user_session_path do %>
+        <button type="button" class="mt-5 d-block offset-2 btn btn-primary btn-lg">ログインページへ</button>
+      <% end %>
+      <%= link_to new_user_registration_path do %>
+        <button type="button" class="mt-5 d-block offset-2 btn btn-primary btn-lg">新規登録ページへ</button>
+      <% end %>
+    </div>
+  </div>
 </div>
