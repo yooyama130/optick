@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :working_tasks, dependent: :destroy
   has_many :events, dependent: :destroy
   attachment :profile_image
+
+  validates :name, presence: true, length: { minimum: 3 }
 end
