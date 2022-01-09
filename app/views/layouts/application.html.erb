@@ -29,7 +29,7 @@
               <% else %>
                 <li class = "d-flex align-items-center"><%= link_to 'Home', root_path, class:" nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
                 <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
-                <li class = "d-flex align-items-center"><%= link_to "login", new_user_session_path, method: :post, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "login", new_user_session_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
                 <li class = "d-flex align-items-center"><%= link_to "Start Time Management", new_user_registration_path, class:"nav-link btn btn-info text-light font-weight-bold rounded-pill p-3 mb-1" %></li>
               <% end %>
             </ul>

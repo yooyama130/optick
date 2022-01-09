@@ -78,5 +78,7 @@ gem "refile-mini_magick"
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
+# devise等の日本語化
+gem 'rails-i18n'
 # 環境変数化、デプロイ
 gem 'dotenv-rails'

@@ -8,16 +8,22 @@
   <div class = "row">
     <div class = "col-8 px-5">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
         <div class="field mb-2">
           <%= f.label :name, "ユーザー名（3文字以上）" %><br />
           <%= f.text_field :name, autofocus: true, class:"w-100" %>
+          <!--個別エラーメッセージ-->
+          <% if resource.errors.include?(:name) %>
+            <p class = "text-danger"><%= resource.errors.full_messages_for(:name).first %>
+          <% end %>
         </div>
 
         <div class="field mb-2">
           <%= f.label :email, "Eメールアドレス" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-100" %>
+          <!--個別エラーメッセージ-->
+          <% if resource.errors.include?(:email) %>
+            <p class = "text-danger"><%= resource.errors.full_messages_for(:email).first %>
+          <% end %>
         </div>
 
         <div class="field mb-2">
@@ -26,11 +32,19 @@
           <em>(<%= @minimum_password_length %> 文字以上)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class:"w-100" %>
+          <!--個別エラーメッセージ-->
+          <% if resource.errors.include?(:password) %>
+            <p class = "text-danger"><%= resource.errors.full_messages_for(:password).first %>
+          <% end %>
         </div>
 
         <div class="field mb-2">
           <%= f.label :password_confirmation, "パスワード確認" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-100" %>
+          <!--個別エラーメッセージ-->
+          <% if resource.errors.include?(:password_confirmation) %>
+            <p class = "text-danger"><%= resource.errors.full_messages_for(:password_confirmation).first %>
+          <% end %>
         </div>
 
         <div class="actions">

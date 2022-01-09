@@ -8,11 +8,14 @@
   <div class = "row">
     <div class = "col-12 px-5">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field mb-2">
           <p class = "mb-1">登録したEメールを入力してください。パスワード再発行案内が送信されます。</p>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <!--個別エラーメッセージ-->
+          <% if resource.errors.include?(:email) %>
+            <p class = "text-danger"><%= resource.errors.full_messages_for(:email).first %>
+          <% end %>
         </div>
 
         <div class="actions">
