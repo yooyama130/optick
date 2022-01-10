@@ -1,0 +1,6 @@
+  ja:
+    activerecord:
+      attributes:
+        task:
+          content: 内容
+          icon_image: アイコン画像

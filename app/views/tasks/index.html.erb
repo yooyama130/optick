@@ -20,17 +20,25 @@
       <% else %>
         <table class = "table table-bordered table-hover">
           <tr>
-            <th></th>
-            <th>タスク内容</th>
-            <th></th>
-            <th></th>
+            <th style="width: 5%"></th>
+            <th style="width: 85%">タスク内容</th>
+            <th style="width: 5%"></th>
+            <th style="width: 5%"></th>
           </tr>
-          <%= @my_tasks.each do |task| %>
-            <tr>
-              <td><%= attachment_image_tag task, :icon_image, :fill, 50, 50, resize: "50×50" if !(task.icon_image_id == nil) %></td>
+          <% @my_tasks.each do |task| %>
+            <tr style = "height: 75px">
+              <td><%= attachment_image_tag task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(task.icon_image_id == nil) %></td>
               <td><%= task.content %></td>
-              <td>編集</td>
-              <td>削除</td>
+              <td>
+                <%= link_to edit_user_task_path(current_user, task) do %>
+                  <button type="button" class="btn btn-primary"><i class="fas fa-wrench"></i></button>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to user_task_path(current_user,task), method: :delete, data: { confirm: "削除しますか？" } do %>
+                  <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </table>
