@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 2022_01_08_063263) do
     t.integer "event_id"
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.boolean "goal_task?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

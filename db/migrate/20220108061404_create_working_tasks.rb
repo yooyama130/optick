@@ -6,7 +6,6 @@ class CreateWorkingTasks < ActiveRecord::Migration[5.2]
       t.integer :event_id
       t.datetime :started_at
       t.datetime :ended_at
-      t.boolean :goal_task?, default: false
 
       t.timestamps
     end

@@ -17,6 +17,11 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+
+*{
+  font-family: 'Franklin Gothic Medium','Yu Gothic UI',sans-serif;
+}
+
 body{
 	background: rgb(195,255,251);
 	background: linear-gradient(90deg, rgba(195,255,251,1) 0%, rgba(154,242,171,1) 27%, rgba(243,249,159,1) 72%, rgba(254,205,189,1) 100%);
