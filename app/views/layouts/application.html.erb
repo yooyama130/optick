@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <!--ヘッダー-->
     <header class = "bg-success">
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -37,8 +38,35 @@
         </div>
       </nav>
     </header>
+    <!--メイン-->
     <main>
       <%= yield %>
     </main>
+    <!--フッター-->
+    <footer class = "bg-success">
+      <div class = "container pt-3 pb-5" style = "z-index: 1;">
+        <div class = "row">
+          <!--更新履歴表-->
+          <div class = "col-9">
+            <h5 class = "border-bottom border-success font-weight-bold">更新履歴</h5>
+            <div class = "border-start border-dark">
+              <table>
+                <tr>
+                  <td>2022年1月10日</td>
+                  <td>製作中</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!--時計アイコン（透過・回転）-->
+          <div class = "col-3 position-relative">
+            <img class="d-inline-block w-25" style = "position: absolute; bottom:-1.7rem; right: 4rem; opacity: 0.6;"  src="/assets/footer_icon.png" alt="icon">
+          </div>
+        </div>
+      </div>
+      <div class = "row bg-dark" style = "">
+        <p class = "mx-auto text-white">© 2022 oyama</p>
+      </div>
+    </footer>
   </body>
 </html>

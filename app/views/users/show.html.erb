@@ -25,10 +25,10 @@
       <!--タスク登録・タスク編集画面へ-->
       <div class = "my-2 py-1">
         <%= link_to user_tasks_path(current_user) do %>
-          <p>タスクを登録する</p>
+          <p><i class="fas fa-list-alt"></i>登録タスク一覧へ</p>
         <% end %>
         <%= link_to new_user_task_path(current_user) do %>
-          <p>登録タスク一覧へ</p>
+          <p><i class="fas fa-plus-circle"></i>タスクを登録する</p>
         <% end %>
       </div>
     </div>
