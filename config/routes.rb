@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :edit] do
     resources :tasks, except: [:show]
+    delete "tasks/:id/destroy_icon", to: "tasks#destroy_icon", as: "task_destroy_icon"
     # indexのみ、:date（日付の情報）をURLから送るため、別に書いている
     get "working_tasks/:date", to: "working_tasks#index", as: "working_tasks"
     resources :working_tasks, except: [:index,:show]
