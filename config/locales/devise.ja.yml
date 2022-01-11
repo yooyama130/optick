@@ -18,6 +18,7 @@ ja:
         name: ユーザー名
         password: パスワード
         password_confirmation: パスワード（確認用）
+        profile_image: プロフィール画像
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻

@@ -9,7 +9,7 @@
     <div class = "col-4">
       <!--プロフィール-->
       <div class = "border border-dark my-2 py-1">
-        <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto" %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto mb-1" %>
         <table class = "table mb-1">
           <tr>
             <th>名前</th>
@@ -20,7 +20,9 @@
             <td><%= @user.last_sign_in_at.strftime('%Y/%m/%d') %></td>
           </tr>
         </table>
-        <button type="button" class="btn btn-info d-block mx-auto"><i class="fas fa-user-cog"></i>アカウント情報変更</button>
+        <%= link_to edit_user_path(@user) do %>
+          <button type="button" class="btn btn-info d-block mx-auto"><i class="fas fa-user-cog"></i>アカウント情報変更</button>
+        <% end %>
       </div>
       <!--タスク登録・タスク編集画面へ-->
       <div class = "my-2 py-1">
