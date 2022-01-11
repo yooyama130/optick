@@ -15,7 +15,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
           <%= link_to root_path, class:"navbar-brand text-dark" do %>
-            <img class="navbar-brand" src="/assets/logo.PNG" alt="logo" style = "height: 55px">
+            <%= image_tag asset_path("logo.PNG", alt: "logo"), class: "navbar-brand", style: "height: 55px" %>
           <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
           </div>
           <!--時計アイコン（透過・回転）-->
           <div class = "col-3 position-relative">
-            <img class="d-inline-block w-25" style = "position: absolute; bottom:-1.7rem; right: 4rem; opacity: 0.6;"  src="/assets/footer_icon.png" alt="icon">
+            <%= image_tag asset_path("footer_icon.png", alt: "icon"), class: "d-inline-block w-25", style: "position: absolute; bottom:-1.7rem; right: 4rem; opacity: 0.6;" %>
           </div>
         </div>
       </div>

@@ -30,4 +30,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+; Refile.secret_keyはgithubに出さない
+/config/initializers/refile.rb
+
 /.env
