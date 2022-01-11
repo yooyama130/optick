@@ -1,11 +1,17 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
     @my_tasks = Task.where(user_id: current_user.id)
   end
 
   def new
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
     @new_task = Task.new
   end
 
@@ -21,6 +27,8 @@ class TasksController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
     @task = Task.find(params[:id])
   end
 

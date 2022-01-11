@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
   def edit
     @user = User.find(params[:id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
   def update
