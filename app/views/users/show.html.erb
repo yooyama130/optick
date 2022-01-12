@@ -25,7 +25,7 @@
         <% end %>
       </div>
       <!--タスク登録・タスク編集画面へ-->
-      <div class = "my-2 py-1">
+      <div class = "my-2 py-1 text-center">
         <%= link_to user_tasks_path(current_user) do %>
           <p><i class="fas fa-list-alt"></i>登録タスク一覧へ</p>
         <% end %>
@@ -33,14 +33,26 @@
           <p><i class="fas fa-plus-circle"></i>タスクを登録する</p>
         <% end %>
       </div>
+      <!--タスク計測画面へ-->
+      <div class = "my-2 py-1 text-center">
+        <%= link_to new_user_working_task_path(current_user)  do %>
+          <button type="button" class="btn btn-warning btn-lg px-5" style = "border: thick double; border-color: saddlebrown; color: saddlebrown; background-color: #ffcc00">
+            <i class="fas fa-stopwatch" style = "font-size: 2rem;"></i>
+            <p class = "h6">タスク時間を計測する</p>
+            </button>
+        <% end %>
+      </div>
     </div>
     <!--右側-->
     <div class = "col-8">
       <!--時計機能-->
       <div class = "my-2 py-1">
-        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+        <div class = "mx-auto bg-light">
+          <div class = "bg-success">
+            <h2 class = "text-light">現在時刻</h2>
+          </div>
+          <p class = "text-center" style="font-size: 23px;" id="RealtimeClockArea"></p>
+        </div>
       </div>
       <!--今日のタスク-->
       <div class = "my-2 py-1">

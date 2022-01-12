@@ -17,3 +17,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// watch.js読み込み
+require('watch');

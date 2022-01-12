@@ -1,2 +1,35 @@
-<h1>WorkingTasks#new</h1>
-<p>Find me in app/views/working_tasks/new.html.erb</p>
+<div class = "container bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>タスク時間計測</h2>
+    </div>
+  </div>
+  <!--タスク選択欄-->
+  <div class = "task_select">
+    <div class = "row">
+      <div class = "col-11 mx-auto">
+        <h5>①タスクを選択してください</h5>
+      </div>
+    </div>
+    <!--タスク一覧-->
+    <div class = "row">
+      <div class = "col-9 mx-auto d-flex">
+        <% if @my_tasks.blank? %>
+          <p class = "text-secondary text-center">登録しているタスクはありません</p>
+        <% else %>
+          <% @my_tasks.each do |task| %>
+            <div class = "card w-25">
+              <%= attachment_image_tag task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png", style: "width: 50px" if !(task.icon_image_id == nil) %>
+              <%= task.content %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!--時間計測画面-->
+  <div class = "row">
+    <div class = "col-12">
+    </div>
+  </div>
+</div>

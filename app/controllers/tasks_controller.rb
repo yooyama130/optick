@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def create
     @new_task = Task.new(task_params)
     if @new_task.save
-      redirect_to user_tasks_path
+      redirect_back(fallback_location: root_path)
     else
       @user = User.find(params[:user_id])
       render 'new'

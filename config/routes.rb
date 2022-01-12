@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :tasks, except: [:show]
     delete "tasks/:id/destroy_icon", to: "tasks#destroy_icon", as: "task_destroy_icon"
-    # indexのみ、:date（日付の情報）をURLから送るため、別に書いている
-    get "working_tasks/:date", to: "working_tasks#index", as: "working_tasks"
     resources :working_tasks, except: [:index,:show]
+    # indexのみ、:date（日付の情報）をURLから送るため、別に書いている
+    get "working_tasks/:date", to: "working_tasks#index"
     # 検索機能用
     get "working_tasks/search", to: "searches#top", as: "search"
     get "working_tasks/search/result", to: "searches#result", as: "search_result"
