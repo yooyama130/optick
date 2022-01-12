@@ -25,7 +25,19 @@
     <!--選択されたタスク表示-->
     <div class = "row my-3">
       <div class = "col-10 mx-auto">
-        <p class = "text-secondary text-center my-5">タスクを選択してください</p>
+        <% if @selected_task.blank? %>
+          <p class = "text-secondary text-center my-5">タスクを選択してください</p>
+        <% else %>
+          <div class = "row w-75 mx-auto">
+            <div class = "col-6 border border-dark bg-white">
+              <p><%= @selected_task.content %></p>
+            </div>
+            <div class = "col-6">
+              <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 45%; height: 5rem; font-size: 1.2rem;"><i class="fas fa-play"></i> START</button>
+              <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 45%; height: 5rem; font-size: 1.2rem;"><i class="fas fa-stop"></i> STOP</button>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

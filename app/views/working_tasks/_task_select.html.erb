@@ -1,0 +1,24 @@
+<div class = "task_select mb-5">
+    <div class = "row">
+      <div class = "col-11 mx-auto">
+        <h5>①タスクを選択してください</h5>
+      </div>
+    </div>
+    <!--タスク一覧-->
+    <div class = "row">
+      <div class = "col-10 mx-auto d-flex">
+        <% if my_tasks.blank? %>
+          <p class = "text-secondary text-center">登録しているタスクはありません</p>
+        <% else %>
+          <% my_tasks.each do |task| %>
+            <%= link_to user_set_new_working_task_path(user, task), class: "card card-hover mx-2", style: "width: 20%; text-decoration: none;" do %>
+              <p class = "text-center text-dark"><%= task.content %></p>
+              <div class = "icon text-center">
+                <%= attachment_image_tag task, :icon_image, :fill, 80, 80, resize: "80×80", format: "png", style: "width: 80px"  %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>

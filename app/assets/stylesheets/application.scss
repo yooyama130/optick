@@ -31,3 +31,9 @@ body{
 .navbar-dark .navbar-toggler{
   border-color: rgba(212, 108, 228, 1);
 }
+
+//カードマウスオーバー
+.card-hover:hover{
+  opacity: 0.8;
+  border: 0.6mm red solid;
+}
