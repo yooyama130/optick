@@ -20,3 +20,5 @@
 
 // watch.js読み込み
 require('watch');
+// time_measure.js読み込み
+require('time_measure');

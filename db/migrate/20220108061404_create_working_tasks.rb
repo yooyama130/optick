@@ -5,7 +5,9 @@ class CreateWorkingTasks < ActiveRecord::Migration[5.2]
       t.integer :task_id
       t.integer :event_id
       t.datetime :started_at
-      t.datetime :ended_at
+      t.datetime :stopped_at
+      t.time :working_time
+      t.boolean :being_measured?, default: true
 
       t.timestamps
     end

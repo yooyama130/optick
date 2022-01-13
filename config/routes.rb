@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :tasks, except: [:show]
     delete "tasks/:id/destroy_icon", to: "tasks#destroy_icon", as: "task_destroy_icon"
     # ----------working_task------------------------------------
-    resources :working_tasks, except: [:index,:show]
+    resources :working_tasks, except: [:index,:show, :create]
+    post "working_tasks/new/set/:task_id/start", to: "working_tasks#start", as:"working_task_start"
+    post "working_tasks/new/set/:task_id/stop", to: "working_tasks#stop", as:"working_task_stop"
     # タスクを選んでセットするために必要
     get "working_tasks/new/set/:task_id", to: "working_tasks#set", as:"set_new_working_task"
     # indexのみ、:date（日付の情報）をURLから送るため、別に書いている
