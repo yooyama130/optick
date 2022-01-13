@@ -61,25 +61,27 @@
       </div>
       <!--最近実行したタスク-->
       <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">最近のタスク</h4>
+        <h4 class = "border-bottom border-1 border-info">最近のタスク（10件まで表示します）</h4>
           <div class = "row">
             <div class = "col-11 mx-auto">
               <% if @recent_working_tasks.blank? %>
                 <p class = "text-secondary text-center">最近のタスクはありません</p>
               <% else %>
-                <table class = "table table-bordered table-hover">
+                <table class = "table table-bordered table-hover" style = "font-size: 14px">
                   <tr>
                     <th style="width: 5%"></th>
-                    <th>タスク内容</th>
-                    <th style="width: 25%"></th>
-                    <th style="width: 25%"></th>
+                    <th style="width: 20%">タスク内容</th>
+                    <th style="width: 20%">開始時刻</th>
+                    <th style="width: 20%">終了時刻</th>
+                    <th style="width: 20%">経過時間</th>
                   </tr>
                   <% @recent_working_tasks.each do |working_task| %>
                     <tr style = "height: 75px">
                       <td><%= attachment_image_tag working_task.task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
                       <td><%= working_task.task.content %></td>
-                      <td><%= working_task.started_at %></td>
-                      <td><%= working_task.stopped_at %></td>
+                      <td><%= working_task.started_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+                      <td><%= working_task.stopped_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+                      <td><%= working_task.int_to_time(working_task.working_time) %></td>
                     </tr>
                   <% end %>
                 </table>

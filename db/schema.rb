@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2022_01_08_063263) do
     t.integer "event_id"
     t.datetime "started_at"
     t.datetime "stopped_at"
-    t.time "working_time"
+    t.integer "working_time"
     t.boolean "being_measured?", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -37,6 +37,9 @@ class WorkingTasksController < ApplicationController
     # 現在時刻を取得し、終了時間（started_at）に代入し、being_measured?（計測中？）をfalseにする
     now = Time.current
     working_task.update(stopped_at: now, being_measured?: false)
+    # 経過時間を終了時間 - 開始時間 で　出す
+    working_time = working_task.stopped_at - working_task.started_at
+    working_task.update(working_time: working_time)
     redirect_to new_user_working_task_path(user)
   end
 
