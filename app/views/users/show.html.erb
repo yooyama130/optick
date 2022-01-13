@@ -80,8 +80,20 @@
                       <td><%= attachment_image_tag working_task.task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
                       <td><%= working_task.task.content %></td>
                       <td><%= working_task.started_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-                      <td><%= working_task.stopped_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-                      <td><%= working_task.int_to_time(working_task.working_time) %></td>
+                      <td>
+                        <% if working_task.being_measured? == true %>
+                          <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
+                        <% else %>
+                          <%= working_task.stopped_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if working_task.being_measured? == true %>
+                          <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
+                        <% else %>
+                          <%= working_task.int_to_time(working_task.working_time) %>
+                        <% end %>
+                      </td>
                     </tr>
                   <% end %>
                 </table>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     # ユーザーが一致しなければ、自分のマイページに戻る
     redirect_to user_path(current_user) unless @user == current_user
     @todays_working_tasks = WorkingTask.where(user_id: @user.id, stopped_at: Time.now.all_day)
-    @recent_working_tasks = WorkingTask.where(user_id: @user.id).order(stopped_at: :desc).limit(10)
+    @recent_working_tasks = WorkingTask.where(user_id: @user.id).order(started_at: :desc).limit(10)
   end
 
   def edit
