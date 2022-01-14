@@ -4,3 +4,6 @@
         task:
           content: 内容
           icon_image: アイコン画像
+        working_task:
+          started_at: 開始時刻
+          stopped_at: 終了時刻

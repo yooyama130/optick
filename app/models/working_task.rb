@@ -2,6 +2,14 @@ class WorkingTask < ApplicationRecord
   belongs_to :user
   belongs_to :task
 
+  validates :started_at, presence: true, if: :not_being_measured?
+  validates :stopped_at, presence: true, if: :not_being_measured?
+
+  # 「計測中がfalseのとき」の条件式
+  def not_being_measured?
+    being_measured? == false
+  end
+
   def self.get_date_datas(working_tasks)
     # dates配列を新しく定義
     dates = []

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     # ユーザーが一致しなければ、自分のマイページに戻る
     redirect_to user_path(current_user) unless @user == current_user
     # 開始日が今日のタスクを全て取得
-    @todays_working_tasks = @user.working_tasks.where(being_measured?: false, started_at: Time.current.all_day)
+    today = Time.current
+    @todays_working_tasks = @user.working_tasks.where(being_measured?: false, started_at: today.all_day)
     # 今日のタスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     @todays_working_tasks_grouped = @todays_working_tasks.group(:task_id)
     # 計測中のタスクを表示する

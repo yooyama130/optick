@@ -1,2 +1,33 @@
-<h1>WorkingTasks#edit</h1>
-<p>Find me in app/views/working_tasks/edit.html.erb</p>
+<div class = "container w-50 bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>記録済みタスクの編集</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-8">
+      <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
+      <%= form_with model:[@user, @working_task], local: true do |f| %>
+        <!--開始時刻変更-->
+        <div class = "field mb-2">
+          <%= f.label :started_at, "開始時刻" %></br>
+          <%= f.datetime_field :started_at %>
+          <!--個別エラーメッセージ-->
+          <% if @working_task.errors.include?(:started_at) %>
+            <p class = "text-danger"><%= @working_task.errors.full_messages_for(:started_at).first %>
+          <% end %>
+        </div>
+        <!--終了時刻変更-->
+        <div class = "field mb-2">
+          <%= f.label :stopped_at, "終了時刻" %></br>
+          <%= f.datetime_field :stopped_at %>
+          <!--個別エラーメッセージ-->
+          <% if @working_task.errors.include?(:stopped_at) %>
+            <p class = "text-danger"><%= @working_task.errors.full_messages_for(:stopped_at).first %>
+          <% end %>
+        </div>
+        <%= f.submit "保存" %>
+      <% end %>
+    </div>
+  </div>
+</div>

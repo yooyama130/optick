@@ -27,20 +27,12 @@
                   <td><%= working_task.task.content %></td>
                   <td><%= working_task.started_at.strftime('%H:%M:%S') %></td>
                   <td>
-                    <% if working_task.being_measured? == true %>
-                      <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                    <% else %>
-                      <%= working_task.stopped_at.strftime('%H:%M:%S') %>
-                      <!--終了時間が@dateと同じ日付でない日の場合、日付を別途表示-->
-                      <p class = "my-0" style= "font-size: 6px"><%= "（#{working_task.stopped_at.strftime('%Y/%m/%d')}）" if working_task.stopped_at.to_date != @date %></p>
-                    <% end %>
+                    <%= working_task.stopped_at.strftime('%H:%M:%S') %>
+                    <!--終了時間が@dateと同じ日付でない日の場合、日付を別途表示-->
+                    <p class = "my-0" style= "font-size: 6px"><%= "（#{working_task.stopped_at.strftime('%Y/%m/%d')}）" if working_task.stopped_at.to_date != @date %></p>
                   </td>
                   <td>
-                    <% if working_task.being_measured? == true %>
-                      <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                    <% else %>
-                      <%= Time.at(working_task.working_time.floor).strftime('%X') %>
-                    <% end %>
+                    <%= Time.at(working_task.working_time.floor).strftime('%X') %>
                   </td>
                   <td>
                     <%= link_to edit_user_working_task_path(@user, working_task) do %>
