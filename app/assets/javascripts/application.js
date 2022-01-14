@@ -17,6 +17,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require Chart.min
 
 // watch.js読み込み
 require('watch');

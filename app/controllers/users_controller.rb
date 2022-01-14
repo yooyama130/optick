@@ -12,6 +12,14 @@ class UsersController < ApplicationController
     @todays_working_tasks_grouped = @todays_working_tasks.group(:task_id)
     # 計測中のタスクを表示する
     @working_tasks_measuring = @user.working_tasks.where(being_measured?: true)
+
+    # グラフに送信するためのデータ生成
+    gon.data_of_tasks = []
+    gon.data_of_working_time_sums = []
+    @todays_working_tasks_grouped.each do |working_task|
+      gon.data_of_tasks << working_task.task.content
+      gon.data_of_working_time_sums << @todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum
+    end
   end
 
   def edit

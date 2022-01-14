@@ -85,3 +85,6 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+# グラフ描画機能
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'gon', '~> 6.2.0'

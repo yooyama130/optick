@@ -59,19 +59,20 @@
         <h4 class = "border-bottom border-1 border-info">今日のタスク</h4>
         <div class = "row">
           <div class = "col-6">
-
+            <!--グラフ-->
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <script>draw_graph();</script>
           </div>
           <div class = "col-5">
             <% if @todays_working_tasks.blank? %>
-              <p class = "text-secondary text-center" style = "margin: 6rem 0rem">最近のタスクはありません</p>
+              <p class = "text-secondary text-center" style = "margin: 6rem 0rem">今日のタスクはありません</p>
             <% else %>
               <!-- 1. task_idごとにまとめられたタスクを１つずつ表示し、-->
               <% @todays_working_tasks_grouped.each do |working_task| %>
                 <table class = "table table-borderless" style = "font-size: 14px">
-                  <tr style = "height: 75px">
-                    <td style = "width: 5%"><%= attachment_image_tag working_task.task, :icon_image, :fill, 30, 30, resize: "30×30", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
-                    <td><%= working_task.task.content %></td>
-                    <td>
+                  <tr style = "height: 0.3rem">
+                    <td style = "width: 0.2rem"><%= working_task.task.content %></td>
+                    <td style = "width: 0.2rem">
                       <!--2. 4つ目のセルに「タスクごとの経過時間のみを抽出し、合計したもの」をxx:yy:zzという形式で表示-->
                       <%= Time.at(@todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum).strftime('%X') %>
                     </td>
