@@ -26,11 +26,11 @@
       </div>
       <!--タスク登録・タスク編集画面へ-->
       <div class = "my-2 py-1 text-center">
-        <%= link_to user_tasks_path(current_user) do %>
-          <p><i class="fas fa-list-alt"></i>登録タスク一覧へ</p>
-        <% end %>
         <%= link_to new_user_task_path(current_user) do %>
-          <p><i class="fas fa-plus-circle"></i>タスクを登録する</p>
+          <p style = "font-size: 18px"><i class="fas fa-plus-circle"></i>タスクを登録する</p>
+        <% end %>
+        <%= link_to user_tasks_path(current_user) do %>
+          <p style = "font-size: 18px"><i class="fas fa-list-alt"></i>登録タスク一覧へ</p>
         <% end %>
       </div>
       <!--タスク計測画面へ-->
@@ -39,6 +39,15 @@
           <button type="button" class="btn btn-warning btn-lg px-5" style = "border: thick double; border-color: saddlebrown; color: saddlebrown; background-color: #ffcc00">
             <i class="fas fa-stopwatch" style = "font-size: 2rem;"></i>
             <p class = "h6">タスク時間を計測する</p>
+            </button>
+        <% end %>
+      </div>
+      <!--記録済みタスク一覧-->
+      <div class = "my-2 py-1 text-center">
+        <%= link_to user_working_tasks_path(current_user, Date.today)  do %>
+          <button type="button" class="btn btn-success btn-lg px-5" style = "border: thick double; border-color: darkgreen; color: darkgreen; background-color: springgreen">
+            <i class="fas fa-clipboard-list" style = "font-size: 2rem;"></i>
+            <p class = "h6">記録したタスクを見る</p>
             </button>
         <% end %>
       </div>
@@ -73,53 +82,21 @@
           </div>
         </div>
       </div>
-      <!--最後に行ったタスク-->
+      <!--計測中のタスク-->
       <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">最後に行ったタスク（10件まで表示します）</h4>
+        <h4 class = "border-bottom border-1 border-info">計測中のタスク</h4>
           <div class = "row">
-            <div class = "col-11 mx-auto">
-              <% if @recent_working_tasks.blank? %>
-                <p class = "text-secondary text-center my-5">タスクはありません</p>
+            <div class = "col-11 mx-auto my-2">
+              <% if @working_tasks_measuring.blank? %>
+                <p class = "text-secondary text-center">現在計測中のタスクはありません</p>
               <% else %>
-                <% @dates.each do |date| %>
-                  <!-- 日付を表示 -->
-                  <h5><%= date.strftime('%Y/%m/%d') %></h5>
-                  <!-- 日時を条件にしてworking_tasksを取得 -->
-                  <% daily_working_tasks = @recent_working_tasks.where(created_at: date.all_day) %>
-                  <!-- 取得したworking_tasksをeachメソッドで一つずつ表として表示させる -->
-                  <table class = "table table-bordered table-hover" style = "font-size: 14px">
-                    <tr>
-                      <th style="width: 5%"></th>
-                      <th style="width: 20%">タスク内容</th>
-                      <th style="width: 20%">開始時刻</th>
-                      <th style="width: 20%">終了時刻</th>
-                      <th style="width: 20%">経過時間</th>
-                    </tr>
-                    <% daily_working_tasks.each do |working_task| %>
-                      <tr style = "height: 75px">
-                        <td><%= attachment_image_tag working_task.task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
-                        <td><%= working_task.task.content %></td>
-                        <td><%= working_task.started_at.strftime('%H:%M:%S') %></td>
-                        <td>
-                          <% if working_task.being_measured? == true %>
-                            <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                          <% else %>
-                            <%= working_task.stopped_at.strftime('%H:%M:%S') %>
-                            <!--終了時間がdateと同じ日付でない日の場合、日付を別途表示-->
-                            <p class = "my-0" style= "font-size: 6px"><%= "（#{working_task.stopped_at.strftime('%Y/%m/%d')}）" if working_task.stopped_at.to_date != date %></p>
-                          <% end %>
-                        </td>
-                        <td>
-                          <% if working_task.being_measured? == true %>
-                            <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                          <% else %>
-                            <%= Time.at(working_task.working_time.floor).strftime('%X') %>
-                          <% end %>
-                        </td>
-                      </tr>
+                <ul>
+                  <% @working_tasks_measuring.each do |working_task| %>
+                    <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
+                      <li><%= "#{working_task.task.content}　開始時刻: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
                     <% end %>
-                  </table>
-                <% end %>
+                  <% end %>
+                </ul>
               <% end %>
             </div>
           </div>

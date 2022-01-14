@@ -2,6 +2,12 @@ class WorkingTasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る
+    redirect_to user_path(current_user) unless @user == current_user
+    # その日に行ったタスクを取得
+    @date = params[:date].to_date
+    @working_tasks = @user.working_tasks.where(started_at: @date.all_day).order(started_at: :desc)
   end
 
   def new

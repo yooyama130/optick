@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     # タスクを選んでセットするために必要
     get "working_tasks/new/set/:task_id", to: "working_tasks#set", as:"set_new_working_task"
     # indexのみ、:date（日付の情報）をURLから送るため、別に書いている
-    get "working_tasks/:date", to: "working_tasks#index"
+    get "working_tasks/:date", to: "working_tasks#index",as: "working_tasks"
     # ----------search------------------------------------
     # 検索機能用
     get "working_tasks/search", to: "searches#top", as: "search"

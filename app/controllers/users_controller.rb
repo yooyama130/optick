@@ -5,18 +5,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # ユーザーが一致しなければ、自分のマイページに戻る
     redirect_to user_path(current_user) unless @user == current_user
-    # 今日のタスク用----------------------------------------
     # 開始日が今日のタスクを全て取得
-    @todays_working_tasks = @user.working_tasks.where(started_at: Time.current.all_day)
+    @todays_working_tasks = @user.working_tasks.where(being_measured?: false, started_at: Time.current.all_day)
     # 今日のタスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     @todays_working_tasks_grouped = @todays_working_tasks.group(:task_id)
-
-    # 最後に行ったタスク用----------------------------------------
-    # 最後に行ったタスクを10個だけ取得
-    @recent_working_tasks = @user.working_tasks.order(started_at: :desc).limit(10)
-    # 日時を取得（working_task.rbを参照）
-    @dates = WorkingTask.get_date_datas(@recent_working_tasks)
-
+    # 計測中のタスクを表示する
+    @working_tasks_measuring = @user.working_tasks.where(being_measured?: true)
   end
 
   def edit
