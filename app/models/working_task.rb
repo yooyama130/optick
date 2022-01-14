@@ -2,32 +2,15 @@ class WorkingTask < ApplicationRecord
   belongs_to :user
   belongs_to :task
 
-  # 数値を時間化
-  def int_to_time(int)
-    hour = 0
-    min = 0
-    sec = 0
-    while int >= 3600 do
-      # 1時間 = 3600秒 ---> 3600を引いた回数を時間hourとして出す
-      int  -= 3600
-      hour += 1
+  def self.get_date_datas(working_tasks)
+    # dates配列を新しく定義
+    dates = []
+    # インスタンス(self)に保存されているデータの日時を一つずつdates配列に追加していく
+    working_tasks.each do |working_task|
+      # .to_dateを使って、例えば「11/24/11:00」という情報を「11/24」の日付だけの情報にする。
+      dates << working_task.started_at.to_date
     end
-    while int >= 60 do
-      # 1分 = 60秒 ---> 60を引いた回数を分minとして出す
-      int  -= 60
-      min += 1
-    end
-    # 残った時間を秒secとして出す
-    sec = int
-    # 最後に文字化
-    "#{zero_for_digits(hour)}:#{zero_for_digits(min)}:#{zero_for_digits(sec)}"
-  end
-
-  # 1桁を2桁にする（stringとして扱う)
-  def zero_for_digits(int)
-    if int < 10
-      return "0"+ int.to_s
-    end
-    int.to_s
+    # 重複したものを消す。戻り値として返す
+    return dates.uniq
   end
 end

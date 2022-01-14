@@ -1,4 +1,4 @@
-<div class = "container bg-light my-2 py-3" style = "height:800px">
+<div class = "container bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-12">
       <h2><%= @user.name %> さんのマイページ</h2>
@@ -10,7 +10,7 @@
       <!--プロフィール-->
       <div class = "border border-dark my-2 py-1">
         <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto mb-1" %>
-        <table class = "table mb-1">
+        <table class = "table mb-1" style = "font-size: 14px">
           <tr>
             <th>名前</th>
             <td><%= @user.name %></td>
@@ -45,58 +45,81 @@
     </div>
     <!--右側-->
     <div class = "col-8">
-      <!--時計機能-->
-      <div class = "my-2 py-1">
-        <div class = "mx-auto bg-light">
-          <div class = "bg-success">
-            <h2 class = "text-light">現在時刻</h2>
-          </div>
-          <p class = "text-center" style="font-size: 23px;" id="RealtimeClockArea"></p>
-        </div>
-      </div>
       <!--今日のタスク-->
       <div class = "my-2 py-1">
         <h4 class = "border-bottom border-1 border-info">今日のタスク</h4>
+        <div class = "row">
+          <div class = "col-6">
 
+          </div>
+          <div class = "col-5">
+            <% if @todays_working_tasks.blank? %>
+              <p class = "text-secondary text-center" style = "margin: 6rem 0rem">最近のタスクはありません</p>
+            <% else %>
+              <!-- 1. task_idごとにまとめられたタスクを１つずつ表示し、-->
+              <% @todays_working_tasks_grouped.each do |working_task| %>
+                <table class = "table table-borderless" style = "font-size: 14px">
+                  <tr style = "height: 75px">
+                    <td style = "width: 5%"><%= attachment_image_tag working_task.task, :icon_image, :fill, 30, 30, resize: "30×30", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
+                    <td><%= working_task.task.content %></td>
+                    <td>
+                      <!--2. 4つ目のセルに「タスクごとの経過時間のみを抽出し、合計したもの」をxx:yy:zzという形式で表示-->
+                      <%= Time.at(@todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum).strftime('%X') %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <!--最近実行したタスク-->
+      <!--最後に行ったタスク-->
       <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">最近のタスク（10件まで表示します）</h4>
+        <h4 class = "border-bottom border-1 border-info">最後に行ったタスク（10件まで表示します）</h4>
           <div class = "row">
             <div class = "col-11 mx-auto">
               <% if @recent_working_tasks.blank? %>
-                <p class = "text-secondary text-center">最近のタスクはありません</p>
+                <p class = "text-secondary text-center my-5">タスクはありません</p>
               <% else %>
-                <table class = "table table-bordered table-hover" style = "font-size: 14px">
-                  <tr>
-                    <th style="width: 5%"></th>
-                    <th style="width: 20%">タスク内容</th>
-                    <th style="width: 20%">開始時刻</th>
-                    <th style="width: 20%">終了時刻</th>
-                    <th style="width: 20%">経過時間</th>
-                  </tr>
-                  <% @recent_working_tasks.each do |working_task| %>
-                    <tr style = "height: 75px">
-                      <td><%= attachment_image_tag working_task.task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
-                      <td><%= working_task.task.content %></td>
-                      <td><%= working_task.started_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-                      <td>
-                        <% if working_task.being_measured? == true %>
-                          <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                        <% else %>
-                          <%= working_task.stopped_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                        <% end %>
-                      </td>
-                      <td>
-                        <% if working_task.being_measured? == true %>
-                          <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
-                        <% else %>
-                          <%= working_task.int_to_time(working_task.working_time) %>
-                        <% end %>
-                      </td>
+                <% @dates.each do |date| %>
+                  <!-- 日付を表示 -->
+                  <h5><%= date.strftime('%Y/%m/%d') %></h5>
+                  <!-- 日時を条件にしてworking_tasksを取得 -->
+                  <% daily_working_tasks = @recent_working_tasks.where(created_at: date.all_day) %>
+                  <!-- 取得したworking_tasksをeachメソッドで一つずつ表として表示させる -->
+                  <table class = "table table-bordered table-hover" style = "font-size: 14px">
+                    <tr>
+                      <th style="width: 5%"></th>
+                      <th style="width: 20%">タスク内容</th>
+                      <th style="width: 20%">開始時刻</th>
+                      <th style="width: 20%">終了時刻</th>
+                      <th style="width: 20%">経過時間</th>
                     </tr>
-                  <% end %>
-                </table>
+                    <% daily_working_tasks.each do |working_task| %>
+                      <tr style = "height: 75px">
+                        <td><%= attachment_image_tag working_task.task, :icon_image, :fill, 50, 50, resize: "50×50", format: "png" if !(working_task.task.icon_image_id == nil) %></td>
+                        <td><%= working_task.task.content %></td>
+                        <td><%= working_task.started_at.strftime('%H:%M:%S') %></td>
+                        <td>
+                          <% if working_task.being_measured? == true %>
+                            <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
+                          <% else %>
+                            <%= working_task.stopped_at.strftime('%H:%M:%S') %>
+                            <!--終了時間がdateと同じ日付でない日の場合、日付を別途表示-->
+                            <p class = "my-0" style= "font-size: 6px"><%= "（#{working_task.stopped_at.strftime('%Y/%m/%d')}）" if working_task.stopped_at.to_date != date %></p>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if working_task.being_measured? == true %>
+                            <%= link_to "計測中…", user_set_new_working_task_path(@user, working_task.task), class: "text-danger" %>
+                          <% else %>
+                            <%= Time.at(working_task.working_time.floor).strftime('%X') %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </table>
+                <% end %>
               <% end %>
             </div>
           </div>
