@@ -6,6 +6,15 @@
   </div>
   <div class = "row">
     <div class = "col-11 mx-auto">
+      <p class = "d-inline-block">登録タグ: </p>
+      <% if @events.present? %>
+        <!--タグの名前だけ取り出し、1つずつ表示-->
+        <% @events.pluck(:name).each do |name| %>
+          <p class = "d-inline-block mx-2"><i class="fas fa-tag"></i><%="#{name}"%></p>
+        <% end %>
+      <% else %>
+        <p class = "d-inline-block mx-4">なし</p>
+      <% end %>
       <div class = "row">
         <div class = "col-11 mx-auto">
           <% if @working_tasks.blank? %>

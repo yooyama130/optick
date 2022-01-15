@@ -8,6 +8,9 @@ class WorkingTasksController < ApplicationController
     # その日に行ったタスクを取得
     @date = params[:date].to_date
     @working_tasks = @user.working_tasks.where(being_measured?: false, started_at: @date.all_day).order(started_at: :desc)
+    # その日に「つけられているタグ」を取得
+    # 取得されている@dateが start_date以上かつend_date以下（start_dateとend_dateの間）にあるものだけ取得
+    @events = @user.events.where('start_date <= ? and  ? <= end_date', @date, @date)
   end
 
   def new
