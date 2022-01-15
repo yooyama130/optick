@@ -42,20 +42,14 @@
             </button>
         <% end %>
       </div>
-      <!--記録済みタスク一覧-->
-      <div class = "my-2 py-1 text-center">
-        <%= link_to user_working_tasks_path(current_user, Date.today)  do %>
-          <button type="button" class="btn btn-success btn-lg px-5" style = "border: thick double; border-color: darkgreen; color: darkgreen; background-color: springgreen">
-            <i class="fas fa-clipboard-list" style = "font-size: 2rem;"></i>
-            <p class = "h6">記録したタスクを見る</p>
-            </button>
-        <% end %>
-      </div>
       <!--カレンダー-->
       <div class = "my-2 py-1 text-center">
         <p class = "mb-1" style = "font-size: 13px">▼日付をクリックするとその日のタスク一覧に飛べます</p>
         <%= link_to user_working_tasks_path(@user, Time.current) do %>
           <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i>今日のタスク一覧を見る</p>
+        <% end %>
+        <%= link_to new_user_event_path(@user) do %>
+          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i>カレンダーにタグ付けをする</p>
         <% end %>
         <%= month_calendar do |date| %>
           <%= link_to user_working_tasks_path(@user, date), class: "text-dark", style: "text-decoration: none;" do %>
