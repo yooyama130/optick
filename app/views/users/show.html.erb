@@ -51,6 +51,51 @@
             </button>
         <% end %>
       </div>
+      <!--カレンダー-->
+      <div class = "my-2 py-1 text-center">
+        <p class = "mb-1" style = "font-size: 13px">▼日付をクリックするとその日のタスク一覧に飛べます</p>
+        <%= link_to user_working_tasks_path(@user, Time.current) do %>
+          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i>今日のタスク一覧を見る</p>
+        <% end %>
+        <%= month_calendar do |date| %>
+          <%= link_to user_working_tasks_path(@user, date), class: "text-dark", style: "text-decoration: none;" do %>
+            <!--その日のタスクの合計時間に応じて背景色を変える-->
+            <% case @working_tasks_all.where(being_measured?: false, started_at: date.all_day).pluck(:working_time).sum %>
+              <% when 0...300 %>
+                <!--5分未満-->
+                <p class = "task_amount_0"><%= date.day %></p>
+              <% when 300...3600 %>
+                <!--5分～1時間-->
+                <p class = "task_amount_1"><%= date.day %></p>
+              <% when 3600...7200 %>
+                <!--1時間～2時間-->
+                <p class = "task_amount_2"><%= date.day %></p>
+              <% when 7200...10800 %>
+                <!--2時間～3時間-->
+                <p class = "task_amount_3"><%= date.day %></p>
+              <% when 10800...14400 %>
+                <!--3時間～4時間-->
+                <p class = "task_amount_4"><%= date.day %></p>
+              <% when 14400...nil %>
+                <!--4時間以上-->
+                <p class = "task_amount_5"><%= date.day %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+        <!--カレンダーについているアイコン等の説明-->
+        <div class = "calendar-explanation my-1">
+          <p class = "d-inline" style = "font-size: 16px">little</p>
+          <div class = "d-inline">
+            <div class = "d-inline-block task_amount_0" style = "width: 7%; height: 20px;"></div>
+            <div class = "d-inline-block task_amount_1" style = "width: 7%; height: 20px;"></div>
+            <div class = "d-inline-block task_amount_2" style = "width: 7%; height: 20px;"></div>
+            <div class = "d-inline-block task_amount_3" style = "width: 7%; height: 20px;"></div>
+            <div class = "d-inline-block task_amount_4" style = "width: 7%; height: 20px;"></div>
+            <div class = "d-inline-block task_amount_5" style = "width: 7%; height: 20px;"></div>
+          </div>
+          <p class = "d-inline" style = "font-size: 16px">much</p>
+        </div>
+      </div>
     </div>
     <!--右側-->
     <div class = "col-8">

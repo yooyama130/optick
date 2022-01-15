@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     @todays_working_tasks_grouped = @todays_working_tasks.group(:task_id)
     # 計測中のタスクを表示する
     @working_tasks_measuring = @user.working_tasks.where(being_measured?: true)
+    # カレンダー用
+    @working_tasks_all = @user.working_tasks.all
 
     # グラフに送信するためのデータ生成
     gon.data_of_tasks = []
