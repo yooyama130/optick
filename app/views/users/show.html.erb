@@ -53,46 +53,80 @@
         <% end %>
         <%= month_calendar do |date| %>
           <%= link_to user_working_tasks_path(@user, date), class: "text-dark", style: "text-decoration: none;" do %>
-            <!--その日のタスクの合計時間に応じて背景色を変える-->
-            <% case @working_tasks_all.where(being_measured?: false, started_at: date.all_day).pluck(:working_time).sum %>
-              <% when 0...300 %>
-                <!--5分未満-->
-                <p class = "task_amount_0"><%= date.day %></p>
-              <% when 300...3600 %>
-                <!--5分～1時間-->
-                <p class = "task_amount_1"><%= date.day %></p>
-              <% when 3600...7200 %>
-                <!--1時間～2時間-->
-                <p class = "task_amount_2"><%= date.day %></p>
-              <% when 7200...10800 %>
-                <!--2時間～3時間-->
-                <p class = "task_amount_3"><%= date.day %></p>
-              <% when 10800...14400 %>
-                <!--3時間～4時間-->
-                <p class = "task_amount_4"><%= date.day %></p>
-              <% when 14400...nil %>
-                <!--4時間以上-->
-                <p class = "task_amount_5"><%= date.day %></p>
-            <% end %>
+            <div class = "position-relative calendar">
+              <!--その日のタスクの合計時間に応じて背景色を変える-->
+              <% case @my_working_tasks.where(being_measured?: false, started_at: date.all_day).pluck(:working_time).sum %>
+                <% when 0...300 %>
+                  <!--5分未満-->
+                  <p class = "task_amount_0"><%= date.day %></p>
+                <% when 300...3600 %>
+                  <!--5分～1時間-->
+                  <p class = "task_amount_1"><%= date.day %></p>
+                <% when 3600...7200 %>
+                  <!--1時間～2時間-->
+                  <p class = "task_amount_2"><%= date.day %></p>
+                <% when 7200...10800 %>
+                  <!--2時間～3時間-->
+                  <p class = "task_amount_3"><%= date.day %></p>
+                <% when 10800...14400 %>
+                  <!--3時間～4時間-->
+                  <p class = "task_amount_4"><%= date.day %></p>
+                <% when 14400...nil %>
+                  <!--4時間以上-->
+                  <p class = "task_amount_5"><%= date.day %></p>
+              <% end %>
+              <!--その日に何かタグがついていればマークを表示させる-->
+              <% @my_events.each do |event| %>
+                <!--登録しているタグを１つ１つ見ていき、その日が登録タグの日付範囲内にあれば、処理を止め、マークを表示-->
+                <% if date.between?(event.start_date, event.end_date) %>
+                  <div class = "tag_present_mark position-absolute top-0 start-0"></div>
+                  <% break %>
+                <% end %>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
         <!--カレンダーについているアイコン等の説明-->
         <div class = "calendar-explanation my-1">
-          <p class = "d-inline" style = "font-size: 16px">little</p>
-          <div class = "d-inline">
-            <div class = "d-inline-block task_amount_0" style = "width: 7%; height: 20px;"></div>
-            <div class = "d-inline-block task_amount_1" style = "width: 7%; height: 20px;"></div>
-            <div class = "d-inline-block task_amount_2" style = "width: 7%; height: 20px;"></div>
-            <div class = "d-inline-block task_amount_3" style = "width: 7%; height: 20px;"></div>
-            <div class = "d-inline-block task_amount_4" style = "width: 7%; height: 20px;"></div>
-            <div class = "d-inline-block task_amount_5" style = "width: 7%; height: 20px;"></div>
+          <div class = "explanation">
+            <p class = "d-inline" style = "font-size: 16px">little</p>
+            <div class = "d-inline">
+              <div class = "d-inline-block task_amount_0" style = "width: 7%; height: 20px;"></div>
+              <div class = "d-inline-block task_amount_1" style = "width: 7%; height: 20px;"></div>
+              <div class = "d-inline-block task_amount_2" style = "width: 7%; height: 20px;"></div>
+              <div class = "d-inline-block task_amount_3" style = "width: 7%; height: 20px;"></div>
+              <div class = "d-inline-block task_amount_4" style = "width: 7%; height: 20px;"></div>
+              <div class = "d-inline-block task_amount_5" style = "width: 7%; height: 20px;"></div>
+            </div>
+            <p class = "d-inline" style = "font-size: 16px">much</p>
           </div>
-          <p class = "d-inline" style = "font-size: 16px">much</p>
+          <div class = "explanation">
+            <p class = "d-inline" style = "font-size: 16px"><div class = "tag_present_mark"></div>・・・タグ付けあり</p>
+          </div>
         </div>
       </div>
     </div>
     <!--右側-->
     <div class = "col-8">
+      <!--計測中のタスク-->
+      <div class = "my-2 py-1">
+        <h4 class = "border-bottom border-1 border-info">計測中のタスク</h4>
+          <div class = "row">
+            <div class = "col-11 mx-auto my-2">
+              <% if @working_tasks_measuring.blank? %>
+                <p class = "text-secondary text-center">現在計測中のタスクはありません</p>
+              <% else %>
+                <ul>
+                  <% @working_tasks_measuring.each do |working_task| %>
+                    <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
+                      <li><%= "#{working_task.task.content}　開始時刻: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+      </div>
       <!--今日のタスク-->
       <div class = "my-2 py-1">
         <h4 class = "border-bottom border-1 border-info">今日のタスク</h4>
@@ -125,25 +159,6 @@
             <% end %>
           </div>
         </div>
-      </div>
-      <!--計測中のタスク-->
-      <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">計測中のタスク</h4>
-          <div class = "row">
-            <div class = "col-11 mx-auto my-2">
-              <% if @working_tasks_measuring.blank? %>
-                <p class = "text-secondary text-center">現在計測中のタスクはありません</p>
-              <% else %>
-                <ul>
-                  <% @working_tasks_measuring.each do |working_task| %>
-                    <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
-                      <li><%= "#{working_task.task.content}　開始時刻: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          </div>
       </div>
     </div>
   </div>

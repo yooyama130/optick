@@ -64,3 +64,15 @@ body{
   border-radius: 40px;
 }
 
+// カレンダー用 タグありマーク用
+.tag_present_mark{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: thick double;
+  border-radius: 40px;
+  border-color: darkgreen;
+  color: darkgreen;
+  background-color: springgreen;
+}
+
