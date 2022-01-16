@@ -82,6 +82,7 @@
             <% if @todays_working_tasks.blank? %>
               <%= image_tag asset_path("no_doughnut_table.png", alt: "gray-doughnut"), class: "d-inline-block", style: "width: 100%;" %>
             <% else %>
+              <p class = "text-center mb-0" style = "font-size: 14px">＜注意＞単位は『分』です</p>
               <canvas id="myDoughnutChart" width="400" height="400"></canvas>
               <script>draw_graph();</script>
             <% end %>

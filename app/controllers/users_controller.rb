@@ -22,10 +22,7 @@ class UsersController < ApplicationController
     # グラフに送信するためのデータ生成 ここから--------------------------------------------
     gon.data_of_tasks = []
     gon.data_of_working_time_sums = []
-    @todays_working_tasks_grouped.each do |working_task|
-      gon.data_of_tasks << working_task.task.content
-      gon.data_of_working_time_sums << @todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum
-    end
+    WorkingTask.data_for_doughnut_graph(@todays_working_tasks, gon.data_of_tasks, gon.data_of_working_time_sums)
     # グラフに送信するためのデータ生成 ここまで--------------------------------------------
   end
 

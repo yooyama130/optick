@@ -1,12 +1,12 @@
-window.draw_graph = ->
+window.draw_graph_bar = ->
     ctx = document.getElementById("myBarChart").getContext('2d')
     myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: gon.data_of_tasks,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'タスク集計',
+                data: gon.data_of_working_time,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

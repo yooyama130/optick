@@ -4,21 +4,34 @@
       <h2>検索結果</h2>
     </div>
   </div>
-  <!--登録ボタン-->
+  <!--検索結果-->
   <div class = "row">
     <div class = "col-11 mx-auto">
-      <% if @searched_working_tasks.exists? %>
-        <canvas id="myBarChart" width="700" height="400"></canvas>
-        <script>draw_graph();</script>
-      <% else %>
-        <p>条件に合うものは見つかりませんでした</p>
-      <% end %>
+      <p>日付: <%= "#{@date_range_start} から #{@date_range_end}まで" %></p>
+      <p>タグ指定: <%= @events.present? ? ("#{@events.pluck(:name).uniq}") : ("なし") %></p>
+      <p>タスク指定: <%= @task. present? ? ("#{@task.content}") : ("なし")%></p>
     </div>
   </div>
   <!--タスク一覧表-->
   <div class = "row">
     <div class = "col-11 mx-auto">
-
+      <div class = "col-11 mx-auto">
+        <% if @searched_working_tasks.exists? %>
+          <p class = "text-center mb-0" style = "font-size: 14px">＜注意＞単位は『分』です</p>
+            <% if @search_type == "合計時間を見る" %>
+              <canvas id="myBarChart" width="700" height="400"></canvas>
+              <script>draw_graph_bar();</script>
+            <% elsif @search_type == "平均時間を見る" %>
+              <canvas id="myBarChart" width="700" height="400"></canvas>
+              <script>draw_graph_bar();</script>
+            <% elsif @search_type == "流れを見る" %>
+              <canvas id="myBarChart" width="700" height="400"></canvas>
+              <script>draw_graph_bar();</script>
+            <% end %>
+        <% else %>
+          <p>条件に合うものは見つかりませんでした</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

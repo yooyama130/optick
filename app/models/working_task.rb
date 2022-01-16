@@ -38,4 +38,58 @@ class WorkingTask < ApplicationRecord
     # 重複したものを消す。戻り値として返す
     return dates.uniq
   end
+
+
+  # ----------------------------------------グラフデータ送信用-------------------------------------------------------------------------------------------
+  # 棒グラフ（合計値）
+  def self.data_for_bar_graph_SUM(working_tasks, horizontal_axis, vertical_axis)
+    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+    working_tasks_grouped = working_tasks.group(:task_id)
+    working_tasks_grouped.each do |grouped|
+      # タスクの種類だけ処理を繰り返す。
+      # 横軸にはタスクの名前を入れる
+      horizontal_axis << grouped.task.content
+      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる（60で割って、分単位にする）
+      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+    end
+  end
+
+  # 棒グラフ（平均値）
+  def self.data_for_bar_graph_AVG(working_tasks, horizontal_axis, vertical_axis)
+    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+    working_tasks_grouped = working_tasks.group(:task_id)
+    working_tasks_grouped.each do |grouped|
+      # タスクの種類だけ処理を繰り返す。
+      # 横軸にはタスクの名前を入れる
+      horizontal_axis << grouped.task.content
+      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる（3600で割って、時間(hour)単位にする
+      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length / 60
+    end
+  end
+
+  # 円グラフ
+  def self.data_for_doughnut_graph(working_tasks, horizontal_axis, vertical_axis)
+    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+    working_tasks_grouped = working_tasks.group(:task_id)
+    working_tasks_grouped.each do |grouped|
+      # タスクの種類だけ処理を繰り返す。
+      # 横軸にはタスクの名前を入れる
+      horizontal_axis << grouped.task.content
+      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（60で割って、分単位にする）
+      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+    end
+  end
+
+  # 折れ線
+  def self.data_for_line_graph(working_tasks, horizontal_axis, vertical_axis)
+    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+    working_tasks_grouped = working_tasks.group(:task_id)
+    working_tasks_grouped.each do |grouped|
+      # タスクの種類だけ処理を繰り返す。
+      # 横軸にはタスクの名前を入れる
+      horizontal_axis << grouped.task.content
+      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（60で割って、分単位にする）
+      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+    end
+  end
 end
