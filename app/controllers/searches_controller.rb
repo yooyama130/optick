@@ -36,7 +36,7 @@ class SearchesController < ApplicationController
     elsif @search_type == "流れを見る"
       gon.data_of_tasks = []
       gon.data_of_working_time = []
-      WorkingTask.data_for_bar_graph(@searched_working_tasks, gon.data_of_tasks, gon.data_of_working_time, sum)
+      WorkingTask.data_for_bar_graph(@searched_working_tasks, gon.data_of_tasks, gon.data_of_working_time)
     end
     # グラフに送信するためのデータ生成 ここまで--------------------------------------------
   end

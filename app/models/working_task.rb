@@ -9,13 +9,19 @@ class WorkingTask < ApplicationRecord
   def self.search(container, date_range_start, date_range_end, events, task)
     # 1.最初にstarted_atが検索フォームから送られてきた日付範囲に入っているかを検索
     container = container.where(started_at: date_range_start.beginning_of_day .. date_range_end.end_of_day)
-    # # 2.タグ指定があれば、started_atがフォームから送られてきたタグの日付範囲に入っているものだけを取得
-    # if events.exists?
-    #   events.each do |event|
-    #     container = container.or(container.where(started_at: event.start_date.beginning_of_day .. event.end_date.end_of_day))
-    #   end
-    # end
-    # 3.タスク指定があれば、1で取得したものからさらに、フォームから送られてきたタスクのidのものだけ取得
+    # 2.タグ指定があれば、started_atがフォームから送られてきたタグの日付範囲に入っているものだけを取得
+    if events.exists?
+      # 下のeachメソッドで使う配列を定義
+      date_array = []
+      events.each do |event|
+        # タグの日付範囲内の日付を配列に入れていく
+        (event.start_date..event.end_date).each do |date|
+          date_array << date.all_day
+        end
+      end
+      container = container.where(started_at: date_array)
+    end
+    # 3.タスク指定があれば、1、2で取得したものからさらに、フォームから送られてきたタスクのidのものだけ取得
     if task.present?
       container = container.where(task_id: task.id)
     end
