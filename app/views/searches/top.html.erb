@@ -1,2 +1,51 @@
-<h1>Searches#top</h1>
-<p>Find me in app/views/searches/top.html.erb</p>
+<div class = "container bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>記録済みタスクを調べる</h2>
+    </div>
+  </div>
+  <!--検索フォーム-->
+  <div class = "row">
+    <div class = "col-11 mx-auto">
+      <%= form_with url: user_search_result_path(@user), method: :get, local: true do |f| %>
+        <div class = "field mb-2">
+          <%= f.label:date_range, "日付を指定:　" %>
+          <%= (f.date_field :date_range_start, value: Date.current.beginning_of_month) + " ～ " %>
+          <%= f.date_field :date_range_end, value: Date.current.end_of_month %>
+          <!--個別エラーメッセージ-->
+          <!--<#% if @new_task.errors.include?(:content) %>-->
+          <!--  <p class = "text-danger"><%#= @new_task.errors.full_messages_for(:content).first %>-->
+          <!--<#% end %>-->
+        </div>
+        <div class = "field mb-2">
+          <%= f.label:event_name, "タグを指定:　" %>
+          <%= f.select :event_name, @my_events.pluck(:name).uniq, include_blank: "（指定なし）" %>
+        </div>
+        <div class = "field mb-2">
+          <%= f.label:task_content, "調べるタスクを指定:　" %>
+          <%= f.select :task_content, @my_tasks.pluck(:content), include_blank: "（全て）" %>
+        </div>
+        <div class = "field mb-2">
+          <%= f.label:search_type, "検索形式を選択して下さい:　" %></br>
+          <div class = "d-inline mr-4">
+            <!--一覧にする-->
+            <%= f.radio_button :search_type, "一覧にする" %>
+            <%= f.label :search_type, "一覧にする" %>
+          </div>
+          <div class = "d-inline mr-4">
+            <!--平均を取る-->
+            <%= f.radio_button :search_type, "平均を取る" %>
+            <%= f.label :search_type, "平均を取る" %>
+          </div>
+        </div>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
+  </div>
+  <!--タスク一覧表-->
+  <div class = "row">
+    <div class = "col-11 mx-auto">
+
+    </div>
+  </div>
+</div>

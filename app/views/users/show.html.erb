@@ -44,7 +44,7 @@
       </div>
       <!--記録済みタスクを調べる画面へ-->
       <div class = "my-2 py-1 text-center">
-        <%= link_to user_working_tasks_path(current_user, Date.today)  do %>
+        <%= link_to user_search_path(current_user)  do %>
           <button type="button" class="btn btn-success btn-lg px-5" style = "border: thick double; border-color: darkgreen; color: darkgreen; background-color: springgreen">
             <i class="far fa-chart-bar" style = "font-size: 2rem;"></i>
             <p class = "h6">記録済みタスクを調べる</p>
@@ -82,7 +82,7 @@
             <% if @todays_working_tasks.blank? %>
               <%= image_tag asset_path("no_doughnut_table.png", alt: "gray-doughnut"), class: "d-inline-block", style: "width: 100%;" %>
             <% else %>
-              <canvas id="myChart" width="400" height="400"></canvas>
+              <canvas id="myDoughnutChart" width="400" height="400"></canvas>
               <script>draw_graph();</script>
             <% end %>
           </div>

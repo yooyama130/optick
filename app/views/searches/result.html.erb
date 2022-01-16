@@ -1,2 +1,25 @@
-<h1>Searches#result</h1>
-<p>Find me in app/views/searches/result.html.erb</p>
+<div class = "container bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>検索結果</h2>
+    </div>
+  </div>
+  <!--登録ボタン-->
+  <div class = "row">
+    <div class = "col-11 mx-auto">
+      <% if @searched_working_tasks.exists? %>
+        <canvas id="myBarChart" width="700" height="400"></canvas>
+        <script>draw_graph();</script>
+      <% else %>
+        <p>条件に合うものは見つかりませんでした</p>
+      <% end %>
+    </div>
+  </div>
+  <!--タスク一覧表-->
+  <div class = "row">
+    <div class = "col-11 mx-auto">
+
+    </div>
+  </div>
+</div>
+

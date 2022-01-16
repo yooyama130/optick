@@ -1,6 +1,6 @@
 window.draw_graph = ->
-    ctx = document.getElementById("myDoughnutChart").getContext('2d')
-    myDoughnutChart = new Chart(ctx, {
+    ctx = document.getElementById("myDoughnut2Chart").getContext('2d')
+    myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
           labels: gon.data_of_tasks,
