@@ -7,8 +7,7 @@ window.draw_graph_line = ->
             labels: gon.labels,
             # datasetsには、label=タスク名、data=実働時間合計（＝縦軸になる）を表示。
             # datasets: [{label: gon.data_of_tasks, data: gon.data_of_working_time} ]
-            datasets: gon.datas
-            borderWidth: 1
+            datasets: gon.datasets
         },
         options: {
             scales: {

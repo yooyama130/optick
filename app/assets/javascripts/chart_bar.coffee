@@ -3,10 +3,10 @@ window.draw_graph_bar = ->
     myBarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: gon.data_of_tasks,
+            labels: gon.labels,
             datasets: [{
                 label: 'タスク集計',
-                data: gon.data_of_working_time,
+                data: gon.data,
                 borderWidth: 1
             }]
         },

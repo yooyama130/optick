@@ -26,21 +26,22 @@ class SearchesController < ApplicationController
 
     # グラフに送信するためのデータ生成 ここから--------------------------------------------
     if @search_type == "合計時間を見る"
-      gon.data_of_tasks = []
-      gon.data_of_working_time = []
-      WorkingTask.data_for_bar_graph_SUM(@searched_working_tasks, gon.data_of_tasks, gon.data_of_working_time)
+      gon.labels = []
+      gon.data = []
+      WorkingTask.data_for_bar_graph_SUM(@searched_working_tasks, gon.labels, gon.data)
     elsif @search_type == "平均時間を見る"
-      gon.data_of_tasks = []
-      gon.data_of_working_time = []
-      WorkingTask.data_for_bar_graph_AVG(@searched_working_tasks, gon.data_of_tasks, gon.data_of_working_time)
+      gon.labels = []
+      gon.data = []
+      WorkingTask.data_for_bar_graph_AVG(@searched_working_tasks, gon.labels, gon.data)
     elsif @search_type == "流れを見る"
-      # labels（横軸用）に日付データを入れて、日付(range型)の始めだけを取る（横軸の見た目をすっきりさせるため）
+      gon.labels = []
+      # gon.labels（横軸）に日付データを入れて、日付(range型)の始めだけを取る（横軸の見た目をすっきりさせるため）
       gon.labels = WorkingTask.get_date_array(@date_range_start, @date_range_end, @events)
       (gon.labels.size).times do |i|
-        gon.labels[i-1] = gon.labels[i-1].begin.to_date
+        gon.labels[i-1] = gon.labels[i-1].begin.to_date # "i"は1から始まるため、[0]から始めようとすれば -1 をする
       end
-      gon.datas = []
-      WorkingTask.data_for_line_graph(@searched_working_tasks, gon.labels, gon.datas)
+      gon.datasets = []
+      WorkingTask.data_for_line_graph(@searched_working_tasks, gon.labels, gon.datasets)
     end
     # グラフに送信するためのデータ生成 ここまで--------------------------------------------
   end

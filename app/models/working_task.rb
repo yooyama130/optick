@@ -67,57 +67,57 @@ class WorkingTask < ApplicationRecord
 
   # ----------------------------------------グラフデータ送信用-------------------------------------------------------------------------------------------
   # 棒グラフ（合計値）
-  def self.data_for_bar_graph_SUM(working_tasks, horizontal_axis, vertical_axis)
+  def self.data_for_bar_graph_SUM(working_tasks, labels, data)
     # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     working_tasks_grouped = working_tasks.group(:task_id)
     working_tasks_grouped.each do |grouped|
       # タスクの種類だけ処理を繰り返す。
-      # 横軸にはタスクの名前を入れる
-      horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる（60で割って、分単位にする）
-      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+      # labels（横軸）は、タスクの名前。data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる。（60で割って、分単位にする）
+      labels << grouped.task.content
+      data << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
     end
   end
 
   # 棒グラフ（平均値）
-  def self.data_for_bar_graph_AVG(working_tasks, horizontal_axis, vertical_axis)
+  def self.data_for_bar_graph_AVG(working_tasks, labels, data)
     # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     working_tasks_grouped = working_tasks.group(:task_id)
     working_tasks_grouped.each do |grouped|
       # タスクの種類だけ処理を繰り返す。
-      # 横軸にはタスクの名前を入れる
-      horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる（60で割って、分単位にする）
-      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length / 60
+      # labels（横軸）は、タスクの名前。
+      # data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる。（60で割って、分単位にする）
+      labels << grouped.task.content
+      data << (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum) / (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length)   / 60
     end
   end
 
   # 円グラフ
-  def self.data_for_doughnut_graph(working_tasks, horizontal_axis, vertical_axis)
+  def self.data_for_doughnut_graph(working_tasks, labels, data)
     # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     working_tasks_grouped = working_tasks.group(:task_id)
     working_tasks_grouped.each do |grouped|
       # タスクの種類だけ処理を繰り返す。
-      # 横軸にはタスクの名前を入れる
-      horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（秒単位のまま）
-      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum
+      # labels（データの名前）にはタスクの名前を入れる。data（データの量・割合）にはタスクの種類ごとのworking_timeの『合計』を入れる（秒単位のまま）
+      labels << grouped.task.content
+      data << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum
     end
   end
 
   # 折れ線
-  def self.data_for_line_graph(working_tasks, labels, datas)
-    # labelにタスク名を入れる
-    # まず、タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+  def self.data_for_line_graph(working_tasks, labels, datasets)
+    # labels（横軸）はあらかじめ代入して使っている。
+    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     working_tasks_grouped = working_tasks.group(:task_id)
     working_tasks_grouped.each do |grouped|
+      # タスクの種類だけ処理を繰り返す
+      # まず、working_timesを定義・初期化する
       working_times = []
-      # 日付がある分だけ、「１日の実働時間の合計」を取り出していく
       labels.each do |date|
-        # 縦軸にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる（60で割って、分単位にする）
+        # 日付がある分だけ、「その日のタスクの実働時間の合計」を取り出していく
         working_times << working_tasks.where(task_id: grouped.task_id, started_at: date.all_day).pluck(:working_time).sum / 60
       end
-      datas << {label: grouped.task.content, data: working_times}
+      # それが終わったら、labelにタスク名を入れる。data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる（60で割って、分単位にする）
+      datasets << {label: grouped.task.content, data: working_times}
     end
   end
 end

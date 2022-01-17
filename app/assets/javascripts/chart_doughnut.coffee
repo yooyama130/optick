@@ -3,11 +3,11 @@ window.draw_graph_doughnut = ->
     myDoughnutChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-          labels: gon.data_of_tasks,
+          labels: gon.labels,
         datasets: [
           {
             label: '1日のタスク量',
-            data: gon.data_of_working_time_sums,
+            data: gon.data,
           }
         ]
       },

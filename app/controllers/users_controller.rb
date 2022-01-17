@@ -20,9 +20,9 @@ class UsersController < ApplicationController
     # カレンダー用 ここまで----------------------------------------------------------------
 
     # グラフに送信するためのデータ生成 ここから--------------------------------------------
-    gon.data_of_tasks = []
-    gon.data_of_working_time_sums = []
-    WorkingTask.data_for_doughnut_graph(@todays_working_tasks, gon.data_of_tasks, gon.data_of_working_time_sums)
+    gon.labels = []
+    gon.data = []
+    WorkingTask.data_for_doughnut_graph(@todays_working_tasks, gon.labels, gon.data)
     # グラフに送信するためのデータ生成 ここまで--------------------------------------------
   end
 
