@@ -1,4 +1,4 @@
-window.draw_graph = ->
+window.draw_graph_doughnut = ->
     ctx = document.getElementById("myDoughnutChart").getContext('2d')
     myDoughnutChart = new Chart(ctx, {
       type: 'doughnut',

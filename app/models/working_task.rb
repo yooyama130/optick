@@ -5,44 +5,63 @@ class WorkingTask < ApplicationRecord
   validates :started_at, presence: true, if: :not_being_measured?
   validates :stopped_at, presence: true, if: :not_being_measured?
 
-  # 『記録済みタスクを調べる』機能に使う
-  def self.search(container, date_range_start, date_range_end, events, task)
-    # 1.最初にstarted_atが検索フォームから送られてきた日付範囲に入っているかを検索
-    container = container.where(started_at: date_range_start.beginning_of_day .. date_range_end.end_of_day)
-    # 2.タグ指定があれば、started_atがフォームから送られてきたタグの日付範囲に入っているものだけを取得
-    if events.exists?
-      # 下のeachメソッドで使う配列を定義
-      date_array = []
-      events.each do |event|
-        # タグの日付範囲内の日付を配列に入れていく
-        (event.start_date..event.end_date).each do |date|
-          date_array << date.all_day
-        end
-      end
-      container = container.where(started_at: date_array)
-    end
-    # 3.タスク指定があれば、1、2で取得したものからさらに、フォームから送られてきたタスクのidのものだけ取得
-    if task.present?
-      container = container.where(task_id: task.id)
-    end
-    container
-  end
 
   # 「計測中がfalseのとき」の条件式
   def not_being_measured?
     being_measured? == false
   end
 
-  def self.get_date_datas(working_tasks)
-    # dates配列を新しく定義
-    dates = []
-    # インスタンス(self)に保存されているデータの日時を一つずつdates配列に追加していく
-    working_tasks.each do |working_task|
-      # .to_dateを使って、例えば「11/24/11:00」という情報を「11/24」の日付だけの情報にする。
-      dates << working_task.started_at.to_date
+
+  # 『記録済みタスクを調べる』機能に使う
+  def self.search(container, date_range_start, date_range_end, events, task)
+    # 1.最初にstarted_atが検索フォームから送られてきた日付範囲に入っているかを検索。
+    #   タグ指定があれば、started_atがフォームから送られてきたタグの日付範囲に入っているものだけを取得
+    container = container.where(started_at: WorkingTask.get_date_array(date_range_start, date_range_end, events))
+    # 2.タスク指定があれば、1、2で取得したものからさらに、フォームから送られてきたタスクのidのものだけ取得
+    if task.present?
+      container = container.where(task_id: task.id)
     end
-    # 重複したものを消す。戻り値として返す
-    return dates.uniq
+    container
+  end
+
+  # 2つの日付範囲内の日付を配列に入れる。タグがあればタグの日付範囲内の日付を配列に入れる
+  def self.get_date_array(date_range_start, date_range_end, events)
+    # 下のeachメソッドで使う配列を定義
+    date_array = []
+    if events.exists?
+      # タグの日付範囲内の日付を配列に入れていく
+      events.each do |event|
+        (event.start_date..event.end_date).each do |date|
+          date_array << date.all_day
+        end
+      end
+    else
+      # 日付範囲内の日付を配列に入れていく
+      (date_range_start..date_range_end).each do |date|
+        date_array << date.all_day
+      end
+    end
+    date_array
+  end
+
+  # 2つの日付範囲内の日付を配列に入れる。タグがあればタグの日付範囲内の日付を配列に入れる
+  def self.get_date_array(date_range_start, date_range_end, events)
+    # 下のeachメソッドで使う配列を定義
+    date_array = []
+    if events.exists?
+      # タグの日付範囲内の日付を配列に入れていく
+      events.each do |event|
+        (event.start_date..event.end_date).each do |date|
+          date_array << date.all_day
+        end
+      end
+    else
+      # 日付範囲内の日付を配列に入れていく
+      (date_range_start..date_range_end).each do |date|
+        date_array << date.all_day
+      end
+    end
+    date_array
   end
 
 
@@ -68,7 +87,7 @@ class WorkingTask < ApplicationRecord
       # タスクの種類だけ処理を繰り返す。
       # 横軸にはタスクの名前を入れる
       horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる（3600で割って、時間(hour)単位にする
+      # 縦軸にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる（60で割って、分単位にする）
       vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length / 60
     end
   end
@@ -81,21 +100,24 @@ class WorkingTask < ApplicationRecord
       # タスクの種類だけ処理を繰り返す。
       # 横軸にはタスクの名前を入れる
       horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（60で割って、分単位にする）
-      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（秒単位のまま）
+      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum
     end
   end
 
   # 折れ線
-  def self.data_for_line_graph(working_tasks, horizontal_axis, vertical_axis)
-    # タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
+  def self.data_for_line_graph(working_tasks, labels, datas)
+    # labelにタスク名を入れる
+    # まず、タスクを、task_idごとに、データをまとめる(3種類あれば3つにする、5種類あれば5つにする)
     working_tasks_grouped = working_tasks.group(:task_id)
     working_tasks_grouped.each do |grouped|
-      # タスクの種類だけ処理を繰り返す。
-      # 横軸にはタスクの名前を入れる
-      horizontal_axis << grouped.task.content
-      # 縦軸にはタスクの種類ごとのworking_timeの『合計』を入れる（60で割って、分単位にする）
-      vertical_axis << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60
+      working_times = []
+      # 日付がある分だけ、「１日の実働時間の合計」を取り出していく
+      labels.each do |date|
+        # 縦軸にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる（60で割って、分単位にする）
+        working_times << working_tasks.where(task_id: grouped.task_id, started_at: date.all_day).pluck(:working_time).sum / 60
+      end
+      datas << {label: grouped.task.content, data: working_times}
     end
   end
 end
