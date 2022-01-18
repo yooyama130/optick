@@ -19,7 +19,9 @@
 日課などが終わった後に記録する時
 
 ## 設計書
-<...>
+- [詳細設計書](https://docs.google.com/spreadsheets/d/1apUwHY0U3a6YudH-ksbLZiQLOi4FiANKzbqsw4x1_nQ/edit#gid=2133469642)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1osc0N2CGbUpCgIx_aGSo5HK7r-zfgyjj5eWgPHxXZVk/edit#gid=1373217982)
+- [ER図](https://github.com/yooyama130/optick/files/7885551/ER.pdf)
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1vDBxctatBoi1940uWxn2eg923j0alcWx_CS28K4CicI/edit#gid=1802105987>
