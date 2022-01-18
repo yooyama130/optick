@@ -10,5 +10,4 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
     get searches_result_url
     assert_response :success
   end
-
 end

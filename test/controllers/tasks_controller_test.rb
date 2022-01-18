@@ -15,5 +15,4 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     get tasks_edit_url
     assert_response :success
   end
-
 end

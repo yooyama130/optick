@@ -56,6 +56,7 @@ class TasksController < ApplicationController
   end
 
   private
+
   def task_params
     params.require(:task).permit(:user_id, :icon_image, :content)
   end

@@ -21,12 +21,12 @@ class WorkingTasksController < ApplicationController
   end
 
   def set
-    # ----------------------------------------------ここから--------------------------------------------------------
+    # ----------------------------------------------ここから----------------------------------------
     @user = User.find(params[:user_id])
     # ユーザーが一致しなければ、自分のマイページに戻る
     redirect_to user_path(current_user) unless @user == current_user
     @my_tasks = Task.where(user_id: current_user.id)
-    # ----------------------------------------------ここまでは上のnewと一緒--------------------------------------------------------
+    # ----------------------------------------------ここまでは上のnewと一緒-------------------------
     @selected_task = Task.find(params[:task_id])
   end
 
@@ -75,11 +75,12 @@ class WorkingTasksController < ApplicationController
     user = User.find(params[:user_id])
     working_task = WorkingTask.find(params[:id])
     working_task.destroy
-     # 削除したタスクのある日付で一覧を表示させる
+    # 削除したタスクのある日付で一覧を表示させる
     redirect_to user_working_tasks_path(user, working_task.started_at.to_date)
   end
 
   private
+
   def working_task_params
     params.require(:working_task).permit(:started_at, :stopped_at)
   end

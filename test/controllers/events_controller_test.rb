@@ -5,5 +5,4 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     get events_edit_url
     assert_response :success
   end
-
 end

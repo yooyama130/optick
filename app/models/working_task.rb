@@ -5,12 +5,10 @@ class WorkingTask < ApplicationRecord
   validates :started_at, presence: true, if: :not_being_measured?
   validates :stopped_at, presence: true, if: :not_being_measured?
 
-
   # 「計測中がfalseのとき」の条件式
   def not_being_measured?
     being_measured? == false
   end
-
 
   # 『記録済みタスクを調べる』機能に使う
   def self.search(container, date_range_start, date_range_end, events, task)
@@ -64,7 +62,6 @@ class WorkingTask < ApplicationRecord
     date_array
   end
 
-
   # ----------------------------------------グラフデータ送信用-------------------------------------------------------------------------------------------
   # 棒グラフ（合計値）
   def self.data_for_bar_graph_SUM(working_tasks, labels, data)
@@ -87,7 +84,7 @@ class WorkingTask < ApplicationRecord
       # labels（横軸）は、タスクの名前。
       # data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる。（60で割って、分単位にする。秒も見たいので小数化）
       labels << grouped.task.content
-      data << ((working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum) / (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length) / 60.to_f).round(2)
+      data << (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length / 60.to_f).round(2)
     end
   end
 
@@ -117,7 +114,7 @@ class WorkingTask < ApplicationRecord
         working_times << (working_tasks.where(task_id: grouped.task_id, started_at: date.all_day).pluck(:working_time).sum / 60.to_f).round(2)
       end
       # それが終わったら、labelにタスク名を入れる。data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる
-      datasets << {label: grouped.task.content, data: working_times}
+      datasets << { label: grouped.task.content, data: working_times }
     end
   end
 end
