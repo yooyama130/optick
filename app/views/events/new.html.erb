@@ -7,10 +7,8 @@
   </div>
   <div class = "row">
     <div class = "col-8">
-      <!--範囲指定のエラーメッセージ-->
-      <p class = "text-danger mb-0"><%= flash[:range_error] %></p>
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
-      <%= form_with model:[@user, @event] do |f| %>
+      <%= form_with model:[@user, @event], local: true do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <div class = "field mb-2">
           <%= f.label :name, "名前" %></br>
@@ -36,6 +34,8 @@
             <p class = "text-danger"><%= @event.errors.full_messages_for(:end_date).first %>
           <% end %>
         </div>
+        <!--範囲指定のエラーメッセージ-->
+        <p class = "text-danger mb-0"><%= flash[:range_error] %></p>
         <%= f.submit "登録" %>
       <% end %>
     </div>
