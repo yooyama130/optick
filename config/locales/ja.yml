@@ -7,3 +7,7 @@
         working_task:
           started_at: 開始時刻
           stopped_at: 終了時刻
+        event:
+          name: タグ名
+          start_date: 開始日
+          end_date: 終了日

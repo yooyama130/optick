@@ -8,7 +8,7 @@
   <div class = "row">
     <div class = "col-11 mx-auto">
       <p>日付: <%= "#{@date_range_start} から #{@date_range_end}まで" %></p>
-      <p>タグ指定: <%= @events.present? ? ("#{@events.pluck(:name).uniq}") : ("なし") %></p>
+      <p>タグ指定: <%= @events.present? ? ("#{@events.pluck(:name).first}") : ("なし") %></p>
       <p>タスク指定: <%= @task. present? ? ("#{@task.content}") : ("なし")%></p>
     </div>
   </div>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get "/search/result", to: "searches#result", as: "search_result"
     # ----------events------------------------------------
     # カレンダータグ付け
-    resources :events, only: [:new, :create, :destroy]
+    resources :events, only: [:new, :create, :edit, :update, :destroy]
   end
   delete "users/:id/destroy_icon", to: "users#destroy_image", as: "user_destroy_image"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

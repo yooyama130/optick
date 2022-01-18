@@ -7,6 +7,8 @@
   </div>
   <div class = "row">
     <div class = "col-8">
+      <!--範囲指定のエラーメッセージ-->
+      <p class = "text-danger mb-0"><%= flash[:range_error] %></p>
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
       <%= form_with model:[@user, @event] do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -46,7 +48,7 @@
       <% else %>
         <table class = "table table-bordered table-hover">
           <tr>
-            <th style="width: 35%">タスク内容</th>
+            <th style="width: 35%">タグ名前</th>
             <th style="width: 30%">開始日</th>
             <th style="width: 30%">終了日</th>
             <th style="width: 5%"></th>
@@ -56,6 +58,11 @@
               <td><%= event.name %></td>
               <td><%= event.start_date.strftime('%Y/%m/%d') %></td>
               <td><%= event.end_date.strftime('%Y/%m/%d') %></td>
+              <td>
+                <%= link_to edit_user_event_path(@user, event) do %>
+                  <button type="button" class="btn btn-primary"><i class="fas fa-wrench"></i></button>
+                <% end %>
+              </td>
               <td>
                 <%= link_to user_event_path(@user,event), method: :delete, data: { confirm: "削除しますか？" } do %>
                   <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

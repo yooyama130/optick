@@ -5,7 +5,7 @@ class WorkingTask < ApplicationRecord
   validates :started_at, presence: true, if: :not_being_measured?
   validates :stopped_at, presence: true, if: :not_being_measured?
 
-  # 「計測中がfalseのとき」の条件式
+  # 「計測中がfalseのとき」の条件式（上のバリデーションで使う）
   def not_being_measured?
     being_measured? == false
   end
@@ -39,27 +39,7 @@ class WorkingTask < ApplicationRecord
         date_array << date.all_day
       end
     end
-    date_array
-  end
-
-  # 2つの日付範囲内の日付を配列に入れる。タグがあればタグの日付範囲内の日付を配列に入れる
-  def self.get_date_array(date_range_start, date_range_end, events)
-    # 下のeachメソッドで使う配列を定義
-    date_array = []
-    if events.exists?
-      # タグの日付範囲内の日付を配列に入れていく
-      events.each do |event|
-        (event.start_date..event.end_date).each do |date|
-          date_array << date.all_day
-        end
-      end
-    else
-      # 日付範囲内の日付を配列に入れていく
-      (date_range_start..date_range_end).each do |date|
-        date_array << date.all_day
-      end
-    end
-    date_array
+    date_array.uniq
   end
 
   # ----------------------------------------グラフデータ送信用-------------------------------------------------------------------------------------------

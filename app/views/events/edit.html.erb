@@ -1,2 +1,43 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<div class = "container w-50 bg-light my-2 py-3">
+  <div class = "row">
+    <div class = "col-12">
+      <h2>カレンダータグ編集</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-8">
+      <!--範囲指定のエラーメッセージ-->
+      <p class = "text-danger mb-0"><%= flash[:range_error] %></p>
+      <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
+      <%= form_with model:[@user, @event] do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class = "field mb-2">
+          <%= f.label :name, "名前" %></br>
+          <%= f.text_field :name %>
+          <!--個別エラーメッセージ-->
+          <% if @event.errors.include?(:name) %>
+            <p class = "text-danger"><%= @event.errors.full_messages_for(:name).first %>
+          <% end %>
+        </div>
+        <div class = "field mb-2">
+          <%= f.label :start_date, "開始日" %></br>
+          <%= f.date_field :start_date %>
+          <!--個別エラーメッセージ-->
+          <% if @event.errors.include?(:start_date) %>
+            <p class = "text-danger"><%= @event.errors.full_messages_for(:start_date).first %>
+          <% end %>
+        </div>
+        <div class = "field mb-2">
+          <%= f.label :end_date, "終了日" %></br>
+          <%= f.date_field :end_date %>
+          <!--個別エラーメッセージ-->
+          <% if @event.errors.include?(:end_date) %>
+            <p class = "text-danger"><%= @event.errors.full_messages_for(:end_date).first %>
+          <% end %>
+        </div>
+        <%= f.submit "保存" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
