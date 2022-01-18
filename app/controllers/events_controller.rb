@@ -17,12 +17,14 @@ class EventsController < ApplicationController
     @end_date = event_params[:end_date].to_date
     if start_end_wrong?
       flash[:range_error] = "日付範囲が正しく指定されていません"
+      @my_events = @user.events.all
       render 'new'
       return
     end
     if @event.save
       redirect_to new_user_event_path(@user)
     else
+      @my_events = @user.events.all
       render 'new'
     end
   end
