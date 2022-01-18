@@ -17,13 +17,13 @@
     <div class = "col-11 mx-auto">
       <% if @searched_working_tasks.exists? %>
         <p class = "text-center mb-0" style = "font-size: 14px">＜注意＞単位は『分』です</p>
-          <% if @search_type == "合計時間を見る" %>
+          <% if @search_type == 1 %>
             <canvas id="myBarChart" width="700" height="400"></canvas>
             <script>draw_graph_bar();</script>
-          <% elsif @search_type == "平均時間を見る" %>
+          <% elsif @search_type == 2 %>
             <canvas id="myBarChart" width="700" height="400"></canvas>
             <script>draw_graph_bar();</script>
-          <% elsif @search_type == "流れを見る" %>
+          <% elsif @search_type == 3 %>
             <canvas id="mylineChart" width="700" height="400"></canvas>
             <script>draw_graph_line();</script>
           <% end %>

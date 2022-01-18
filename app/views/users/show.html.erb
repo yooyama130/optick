@@ -121,11 +121,11 @@
             <div class = "position-relative calendar">
               <!--その日のタスクの合計時間に応じて背景色を変える-->
               <% case @my_working_tasks.where(being_measured?: false, started_at: date.all_day).pluck(:working_time).sum %>
-                <% when 0...300 %>
-                  <!--5分未満-->
+                <% when 0 %>
+                  <!--0分-->
                   <p class = "task_amount_0"><%= date.day %></p>
-                <% when 300...3600 %>
-                  <!--5分～1時間-->
+                <% when 1...3600 %>
+                  <!--0分～1時間-->
                   <p class = "task_amount_1"><%= date.day %></p>
                 <% when 3600...7200 %>
                   <!--1時間～2時間-->

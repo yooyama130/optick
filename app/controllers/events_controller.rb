@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @user = User.find(params[:user_id])
     # ユーザーが一致しなければ、自分のマイページに戻る

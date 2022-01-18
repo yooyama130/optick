@@ -7,15 +7,14 @@
   <!--検索フォーム-->
   <div class = "row">
     <div class = "col-11 mx-auto">
+      <p><strong>＜注意＞処理の都合、日付範囲指定は <u>80日間</u> までとしています。</strong></p>
+      <!--エラーメッセージ-->
+      <p class = "text-danger"><%= flash[:search_error] %></p>
       <%= form_with url: user_search_result_path(@user), method: :get, local: true do |f| %>
         <div class = "field mb-2">
           <%= f.label:date_range, "日付を指定:　" %>
-          <%= (f.date_field :date_range_start, value: Date.current.beginning_of_month) + " ～ " %>
-          <%= f.date_field :date_range_end, value: Date.current.end_of_month %>
-          <!--個別エラーメッセージ-->
-          <!--<#% if @new_task.errors.include?(:content) %>-->
-          <!--  <p class = "text-danger"><%#= @new_task.errors.full_messages_for(:content).first %>-->
-          <!--<#% end %>-->
+          <%= (f.date_field :date_range_start) + " ～ " %>
+          <%= f.date_field :date_range_end %>
         </div>
         <div class = "field mb-2">
           <%= f.label:event_name, "タグを指定:　" %>
@@ -29,28 +28,22 @@
           <%= f.label:search_type, "検索形式を選択して下さい:　" %></br>
           <div class = "d-inline mr-4">
             <!--合計を見る-->
-            <%= f.radio_button :search_type, "合計時間を見る", checked: true  %>
+            <%= f.radio_button :search_type, 1, checked: true  %>
             <%= f.label :search_type, "合計時間を見る（棒グラフ）" %>
           </div>
           <div class = "d-inline mr-4">
             <!--平均を取る-->
-            <%= f.radio_button :search_type, "平均時間を見る" %>
+            <%= f.radio_button :search_type, 2 %>
             <%= f.label :search_type, "平均時間を見る（棒グラフ）" %>
           </div>
           <div class = "d-inline mr-4">
             <!--流れを見る-->
-            <%= f.radio_button :search_type, "流れを見る" %>
+            <%= f.radio_button :search_type, 3 %>
             <%= f.label :search_type, "流れを見る（折れ線グラフ）" %>
           </div>
         </div>
         <%= f.submit "検索" %>
       <% end %>
-    </div>
-  </div>
-  <!--タスク一覧表-->
-  <div class = "row">
-    <div class = "col-11 mx-auto">
-
     </div>
   </div>
 </div>

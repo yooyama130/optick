@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "working_tasks/:date", to: "working_tasks#index",as: "working_tasks"
     # ----------search------------------------------------
     # 検索機能用
-    get "/search", to: "searches#top", as: "search"
+    get "/search", to: "searches#search", as: "search"
     get "/search/result", to: "searches#result", as: "search_result"
     # ----------events------------------------------------
     # カレンダータグ付け
