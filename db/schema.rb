@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_01_08_062729) do
   create_table "working_tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "task_id"
-    t.integer "event_id"
     t.datetime "started_at"
     t.datetime "stopped_at"
     t.integer "working_time"
