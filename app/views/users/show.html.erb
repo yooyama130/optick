@@ -116,41 +116,10 @@
         <%= link_to new_user_event_path(@user) do %>
           <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i>カレンダーにタグ付けをする</p>
         <% end %>
-        <%= month_calendar do |date| %>
-          <%= link_to user_working_tasks_path(@user, date), class: "text-dark", style: "text-decoration: none;" do %>
-            <div class = "position-relative calendar">
-              <!--その日のタスクの合計時間に応じて背景色を変える-->
-              <% case @my_working_tasks.where(being_measured?: false, started_at: date.all_day).pluck(:working_time).sum %>
-                <% when 0 %>
-                  <!--0分-->
-                  <p class = "task_amount_0"><%= date.day %></p>
-                <% when 1...3600 %>
-                  <!--0分～1時間-->
-                  <p class = "task_amount_1"><%= date.day %></p>
-                <% when 3600...7200 %>
-                  <!--1時間～2時間-->
-                  <p class = "task_amount_2"><%= date.day %></p>
-                <% when 7200...10800 %>
-                  <!--2時間～3時間-->
-                  <p class = "task_amount_3"><%= date.day %></p>
-                <% when 10800...14400 %>
-                  <!--3時間～4時間-->
-                  <p class = "task_amount_4"><%= date.day %></p>
-                <% when 14400...nil %>
-                  <!--4時間以上-->
-                  <p class = "task_amount_5"><%= date.day %></p>
-              <% end %>
-              <!--その日に何かタグがついていればマークを表示させる-->
-              <% @my_events.each do |event| %>
-                <!--登録しているタグを１つ１つ見ていき、その日が登録タグの日付範囲内にあれば、処理を止め、マークを表示-->
-                <% if date.between?(event.start_date, event.end_date) %>
-                  <div class = "tag_present_mark position-absolute" style = "top: 150%; right: 50%;"></div>
-                  <% break %>
-                <% end %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
+        <!--カレンダー本体-->
+        <div class = "calendar">
+          <%= render 'users/calendar', {user: @user, my_working_tasks: @my_working_tasks, my_events: @my_events} %>
+        </div>
         <!--カレンダーについているアイコン等の説明-->
         <div class = "calendar-explanation my-1">
           <div class = "explanation">
