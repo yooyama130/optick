@@ -1,0 +1,14 @@
+<!--計測中（being_measured）がtrueの物が見つかれば終了ボタンを表示、そうでなければ開始ボタンを表示-->
+<% if WorkingTask.find_by(user_id: user.id, task_id: selected_task.id, being_measured?: true) %>
+  <%= link_to user_working_task_stop_path, method: :post, style: "text-decoration: none;", remote: true do %>
+    <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
+      <i class="fas fa-stop"></i> STOP
+    </button>
+  <% end %>
+<% else %>
+  <%= link_to user_working_task_start_path, method: :post, style: "text-decoration: none;", remote: true do %>
+    <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
+      <i class="fas fa-play"></i> START
+    </button>
+  <% end %>
+<% end %>

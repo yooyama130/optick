@@ -31,25 +31,23 @@ class WorkingTasksController < ApplicationController
   end
 
   def start
-    user = User.find(params[:user_id])
-    selected_task = Task.find(params[:task_id])
+    @user = User.find(params[:user_id])
+    @selected_task = Task.find(params[:task_id])
     # 現在時刻を取得し、開始時間（started_at）に代入
     now = Time.current
-    WorkingTask.create(user_id: user.id, task_id: selected_task.id, started_at: now)
-    redirect_to user_set_new_working_task_path(user, selected_task)
+    WorkingTask.create(user_id: @user.id, task_id: @selected_task.id, started_at: now)
   end
 
   def stop
-    user = User.find(params[:user_id])
-    selected_task = Task.find(params[:task_id])
-    working_task = WorkingTask.find_by(user_id: user.id, task_id: selected_task.id, being_measured?: true)
+    @user = User.find(params[:user_id])
+    @selected_task = Task.find(params[:task_id])
+    working_task = WorkingTask.find_by(user_id: @user.id, task_id: @selected_task.id, being_measured?: true)
     # 現在時刻を取得し、終了時間（started_at）に代入し、being_measured?（計測中？）をfalseにする
     now = Time.current
     working_task.update(stopped_at: now, being_measured?: false)
     # 経過時間を終了時間 - 開始時間 で　出す
     working_time = working_task.stopped_at - working_task.started_at
     working_task.update(working_time: working_time)
-    redirect_to new_user_working_task_path(user)
   end
 
   def edit
