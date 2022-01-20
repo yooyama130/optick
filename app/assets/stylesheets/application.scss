@@ -76,3 +76,25 @@ body{
   background-color: springgreen;
 }
 
+  // レスポンシブ時には表示しない。通常時には表示する
+  .none_for_resp{
+    display: block;
+  }
+
+  // レスポンシブ時のみ表示。通常時には表示しない。
+  .only_for_resp{
+    display: none;
+  }
+
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width:426px) {
+  // レスポンシブ時には表示しない。通常時には表示する
+  .none_for_resp{
+    display: none;
+  }
+
+  // レスポンシブ時のみ表示。通常時には表示しない。
+  .only_for_resp{
+    display: block;
+  }
+}

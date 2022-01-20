@@ -4,6 +4,8 @@
     <title>Optick</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!--ビューポート読み込み-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,7 +17,7 @@
 
   <body>
     <!--ヘッダー-->
-    <header class = "bg-success">
+    <header class = "bg-success w-100">
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
           <%= link_to root_path, class:"navbar-brand text-dark" do %>
@@ -47,7 +49,7 @@
       <%= yield %>
     </main>
     <!--フッター-->
-    <footer class = "bg-success">
+    <footer class = "bg-success w-100">
       <div class = "container pt-3 pb-5" style = "z-index: 1;">
         <div class = "row">
           <!--更新履歴表-->
@@ -68,8 +70,8 @@
           </div>
         </div>
       </div>
-      <div class = "row bg-dark" style = "">
-        <p class = "mx-auto text-white">© 2022 oyama</p>
+      <div class = "bg-dark">
+        <p class = "py-1 mb-0 text-center text-white">© 2022 oyama</p>
       </div>
     </footer>
   </body>

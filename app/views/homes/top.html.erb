@@ -1,23 +1,29 @@
 <div class="container bg-light my-3">
   <div class="row py-5 px-2">
-    <div class="col-5 py-3">
+    <!--通常時=>表示、レスポンシブ時=>非表示　none_for_resp-->
+    <div class="none_for_resp col-md-5 py-3">
       <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "d-inline-block", style: "width: 50%;" %>
       <%= image_tag asset_path("top_piano.png", alt: "top_piano"), class: "d-inline-block", style: "width: 40%;" %>
       <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block offset-3", style: "width: 50%;" %>
     </div>
-    <div class="col-7 py-3">
+    <!--通常時=>非表示、レスポンシブ時=>表示　only_for_resp-->
+    <div class="only_for_resp col-md-5 py-3">
+      <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "mx-auto d-inline-block", style: "width: 45%;" %>
+      <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block", style: "width: 45%;" %>
+    </div>
+    <div class="col-md-7 py-3">
       <h1 class = "mt-5">Welcome to Optick!</h1>
       <p style ="line-height:2rem;">
-        このサイトは日々の日課、学習などのタスク費やす時間を記録し、</br>
-        あなたの生活の見直しやタスクへのモチベーションアップに<br>
+        このサイトは日々の日課、学習などのタスクに費やす時間を記録し、<br class = "none_for_resp">
+        あなたの生活の見直しやタスクへのモチベーションアップに<br class = "none_for_resp">
         繋げるためのタイムトラッキングサイトです！
       </p>
       <h2 class = "mt-5">時間を記録して生活を楽しもう！</h2>
       <%= link_to new_user_session_path do %>
-        <button type="button" class="mt-5 d-block offset-2 btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i>ログインページへ</button>
+        <button type="button" class="mt-5 d-block w-75 mx-auto btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i>ログインページへ</button>
       <% end %>
       <%= link_to new_user_registration_path do %>
-        <button type="button" class="mt-5 d-block offset-2 btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i>新規登録ページへ</button>
+        <button type="button" class="mt-5 d-block w-75 mx-auto btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i>新規登録ページへ</button>
       <% end %>
     </div>
   </div>
