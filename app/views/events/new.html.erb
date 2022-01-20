@@ -1,4 +1,4 @@
-<div class = "container w-50 bg-light my-2 py-3">
+<div class = "container container_for_forms bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-12">
       <h2>カレンダータグ登録</h2>
@@ -46,7 +46,8 @@
       <% if @my_events.blank? %>
         <p class = "text-secondary text-center">登録しているタグはありません</p>
       <% else %>
-        <table class = "table table-bordered table-hover">
+        <p class = "only_for_responsive mb-2" style = "font-size: 14px">※スクロールできます</p>
+        <table class = "table table-bordered table-responsive table-hover">
           <tr>
             <th style="width: 35%">タグ名前</th>
             <th style="width: 30%">開始日</th>

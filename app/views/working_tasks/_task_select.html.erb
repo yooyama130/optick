@@ -11,10 +11,18 @@
           <p class = "text-secondary text-center">登録しているタスクはありません</p>
         <% else %>
           <% my_tasks.each do |task| %>
-            <%= link_to user_set_new_working_task_path(user, task), class: "card card-hover m-2 py-2", style: "width: 18.25%; text-decoration: none;" do %>
+            <!--通常時=>表示、レスポンシブ時=>非表示　none_for_responsive-->
+            <%= link_to user_set_new_working_task_path(user, task), class: "card card-hover none_for_responsive m-2 py-2", style: "width: 18.25%; text-decoration: none;" do %>
               <p class = "text-center text-dark mb-2 text-truncate"><%= task.content %></p>
               <div class = "icon text-center">
-                <%= attachment_image_tag task, :icon_image, :fill, 80, 80, resize: "80×80", format: "png", style: "width: 80px", fallback: "no_icon.png"  %>
+                <%= attachment_image_tag task, :icon_image, :fill, 80, 80, resize: "80×80", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
+              </div>
+            <% end %>
+            <!--通常時=>非表示、レスポンシブ時=>表示　only_for_responsive-->
+            <%= link_to user_set_new_working_task_path(user, task), class: "card card-hover only_for_responsive m-2 py-2", style: "width: 25.25%; text-decoration: none;" do %>
+              <p class = "text-center text-dark mb-2 text-truncate"><%= task.content %></p>
+              <div class = "icon text-center">
+                <%= attachment_image_tag task, :icon_image, :fill, 80, 80, resize: "80×80", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
               </div>
             <% end %>
           <% end %>

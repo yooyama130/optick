@@ -91,6 +91,15 @@ body{
   width: 50%;
 }
 
+table{
+  // 文字の長さで自動で変わっていくので、画面幅いっぱい以上に伸びるのをmax-widthで防ぐ
+  max-width: 100%;
+}
+
+select{
+  // 文字の長さで自動で変わっていくので、画面幅いっぱい以上に伸びるのをmax-widthで防ぐ
+  max-width: 40%;
+}
 
 /* スマートフォンサイズ（425px）以下の際に適用される設定 */
 @media screen and (max-width:426px) {
@@ -106,5 +115,11 @@ body{
 
   .container_for_forms{
     width: 100%;
+  }
+
+  // 表をスクロール可能に
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
   }
 }

@@ -6,7 +6,7 @@
   </div>
   <!--登録ボタン-->
   <div class = "row">
-    <div class = "col-3 mx-auto">
+    <div class = "col-md-6 mx-auto">
       <%= link_to new_user_task_path(current_user) do %>
         <p class = "font-monospace h5 text-center"><i class="fas fa-plus-circle"></i>タスクを登録する</p>
       <% end %>
@@ -14,12 +14,12 @@
   </div>
   <!--タスク一覧表-->
   <div class = "row">
-    <div class = "col-11 mx-auto">
+    <div class = "col-md-11 mx-auto">
       <p><strong>＜注意＞登録したタスクを削除すると、そのタスクを計測したデータも一緒に削除されます。</strong></p>
       <% if @my_tasks.blank? %>
         <p class = "text-secondary text-center">登録しているタスクはありません</p>
       <% else %>
-        <table class = "table table-bordered table-hover">
+        <table class = "table table-bordered table-responsive table-hover">
           <tr>
             <th style="width: 5%"></th>
             <th style="width: 85%">タスク内容</th>

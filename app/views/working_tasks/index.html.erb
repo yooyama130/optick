@@ -1,11 +1,11 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
-    <div class = "col-12">
+    <div class = "col-md-12">
       <h2><%= @date %>の記録済みタスク一覧</h2>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-11 mx-auto">
+    <div class = "col-md-11 mx-auto">
       <p class = "d-inline-block">登録タグ: </p>
       <% if @events.present? %>
         <!--タグの名前だけ取り出し、1つずつ表示（名前が重複しているものは削除-->
@@ -16,11 +16,12 @@
         <p class = "d-inline-block mx-4">なし</p>
       <% end %>
       <div class = "row">
-        <div class = "col-11 mx-auto">
+        <div class = "col-md-11 mx-auto">
           <% if @working_tasks.blank? %>
             <p class = "text-secondary text-center my-5">タスクはありません</p>
           <% else %>
-            <table class = "table table-bordered table-hover" style = "font-size: 14px">
+            <p class = "only_for_responsive mb-2" style = "font-size: 14px">※スクロールできます</p>
+            <table class = "table table-bordered table-responsive table-hover" style = "font-size: 14px">
               <tr>
                 <th style="width: 5%"></th>
                 <th style="width: 25%">タスク内容</th>

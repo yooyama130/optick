@@ -26,17 +26,17 @@
         </div>
         <div class = "field mb-2">
           <%= f.label:search_type, "検索形式を選択して下さい:　" %></br>
-          <div class = "d-inline mr-4">
+          <div class = "d-block pl-3 mb-1">
             <!--合計を見る-->
             <%= f.radio_button :search_type, 1, checked: true  %>
             <%= f.label :search_type, "合計時間を見る（棒グラフ）" %>
           </div>
-          <div class = "d-inline mr-4">
+          <div class = "d-block pl-3 mb-1">
             <!--平均を取る-->
             <%= f.radio_button :search_type, 2 %>
             <%= f.label :search_type, "平均時間を見る（棒グラフ）" %>
           </div>
-          <div class = "d-inline mr-4">
+          <div class = "d-block pl-3 mb-1">
             <!--流れを見る-->
             <%= f.radio_button :search_type, 3 %>
             <%= f.label :search_type, "流れを見る（折れ線グラフ）" %>
