@@ -76,25 +76,35 @@ body{
   background-color: springgreen;
 }
 
-  // レスポンシブ時には表示しない。通常時には表示する
-  .none_for_resp{
-    display: block;
-  }
+// ===================レスポンシブ対応用=====================
+// レスポンシブ時には表示しない。通常時には表示する
+.none_for_responsive{
+  display: block;
+}
 
-  // レスポンシブ時のみ表示。通常時には表示しない。
-  .only_for_resp{
-    display: none;
-  }
+ // レスポンシブ時のみ表示。通常時には表示しない。
+.only_for_responsive{
+  display: none;
+}
+
+.container_for_forms{
+  width: 50%;
+}
+
 
 /* スマートフォンサイズ（425px）以下の際に適用される設定 */
 @media screen and (max-width:426px) {
   // レスポンシブ時には表示しない。通常時には表示する
-  .none_for_resp{
+  .none_for_responsive{
     display: none;
   }
 
   // レスポンシブ時のみ表示。通常時には表示しない。
-  .only_for_resp{
+  .only_for_responsive{
     display: block;
+  }
+
+  .container_for_forms{
+    width: 100%;
   }
 }

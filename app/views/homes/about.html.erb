@@ -3,7 +3,7 @@
     <h2 class = "d-inline-block text-center w-75 mx-auto border-bottom border-dark">Optickの3つの特徴</h2>
   </div>
   <!--1つ目-->
-  <div class = "row px-5 mb-3">
+  <div class = "row px-3 mb-3">
     <div class = "col-md-5 mb-3">
       <%= image_tag asset_path("about_calendar.png", alt: "calendar"), class: "d-block mx-auto w-50" %>
     </div>
@@ -16,9 +16,9 @@
     </div>
   </div>
   <!--2つ目-->
-  <div class = "row px-5 mb-3">
+  <div class = "row px-3 mb-3">
     <!--通常時=>非表示、レスポンシブ時=>表示　only_for_resp-->
-    <div class = "only_for_resp col-md-5 mb-3">
+    <div class = "only_for_responsive col-md-5 mb-3">
       <%= image_tag asset_path("about_graphs.png", alt: "graphs"), class: "d-block mx-auto w-50" %>
     </div>
     <div class = "col-md-7 mb-3">
@@ -28,13 +28,13 @@
         月間の平均なども取れるので、ぜひ活用してみましょう！</br>
       </p>
     </div>
-    <!--通常時=>表示、レスポンシブ時=>非表示　none_for_resp-->
-    <div class = "none_for_resp col-md-5 mb-3">
+    <!--通常時=>表示、レスポンシブ時=>非表示　none_for_responsive-->
+    <div class = "none_for_responsive col-md-5 mb-3">
       <%= image_tag asset_path("about_graphs.png", alt: "graphs"), class: "d-block mx-auto w-50" %>
     </div>
   </div>
   <!--3つ目-->
-  <div class = "row px-5 mb-3">
+  <div class = "row px-3 mb-3">
     <div class = "col-md-5 mb-3">
       <%= image_tag asset_path("about_variety.png", alt: "variety"), class: "d-block mx-auto w-50" %>
     </div>
