@@ -1,12 +1,12 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
-    <div class = "col-12">
+    <div class = "col-md-12">
       <h2><%= @user.name %> さんのマイページ</h2>
     </div>
   </div>
   <div class = "row">
     <!--左側-->
-    <div class = "col-4">
+    <div class = "col-md-4">
       <!--プロフィール-->
       <div class = "border border-dark my-2 py-1">
         <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto mb-1" %>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <!--右側-->
-    <div class = "col-8">
+    <div class = "col-md-8">
       <!--計測中のタスク-->
       <div class = "my-2 py-1">
         <h4 class = "border-bottom border-1 border-info">計測中のタスク</h4>
@@ -77,7 +77,7 @@
       <div class = "my-2 py-1">
         <h4 class = "border-bottom border-1 border-info">今日のタスク</h4>
         <div class = "row">
-          <div class = "col-6">
+          <div class = "col-md-6">
             <!--グラフ-->
             <% if @todays_working_tasks.blank? %>
               <%= image_tag asset_path("no_doughnut_table.png", alt: "gray-doughnut"), class: "d-inline-block", style: "width: 100%;" %>
@@ -87,7 +87,7 @@
               <script>draw_graph_doughnut();</script>
             <% end %>
           </div>
-          <div class = "col-5">
+          <div class = "col-md-5">
             <% if @todays_working_tasks.blank? %>
               <p class = "text-secondary text-center" style = "margin: 3rem 0rem">今日のタスクはありません</p>
             <% else %>

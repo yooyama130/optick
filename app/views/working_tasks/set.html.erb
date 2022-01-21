@@ -25,21 +25,8 @@
     <!--選択されたタスク表示-->
     <div class = "row my-3">
       <div class = "col-md-10 mx-auto">
-        <div class = "row w-75 mx-auto">
-          <!--左側（選択中タスク表示）-->
-          <div class = "col-md-6 d-flex align-items-center">
-            <div class= "card mr-4 py-2 w-50", style= "text-decoration: none;" >
-              <p class = "text-center text-dark mb-2 text-truncate"><%= @selected_task.content %></p>
-              <div class = "icon text-center">
-                <%= attachment_image_tag @selected_task, :icon_image, :fill, 80, 80, resize: "60×60", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
-              </div>
-            </div>
-            <p class = "d-inline-block text-center" style = "font-size: 1.2rem;"><%= "選択中…" %></p>
-          </div>
-          <!--右側（計測ボタン）-->
-          <div class = "col-md-6 measure-button">
-            <%= render 'working_tasks/measure-button', {user: @user, selected_task: @selected_task} %>
-          </div>
+        <div class = "row w-75 mx-auto measure-button">
+          <%= render 'working_tasks/measure-button', {user: @user, selected_task: @selected_task} %>
         </div>
       </div>
     </div>

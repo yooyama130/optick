@@ -1,14 +1,42 @@
-<!--計測中（being_measured）がtrueの物が見つかれば終了ボタンを表示、そうでなければ開始ボタンを表示-->
+<!--計測中（being_measured）がtrueの物が見つかれば、「計測中」と終了ボタンを表示-->
 <% if WorkingTask.find_by(user_id: user.id, task_id: selected_task.id, being_measured?: true) %>
-  <%= link_to user_working_task_stop_path, method: :post, style: "text-decoration: none;", remote: true do %>
-    <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
-      <i class="fas fa-stop"></i> STOP
-    </button>
-  <% end %>
+  <!--左側（選択中タスク表示「『計測中』表示」）-->
+  <div class = "col-md-6 d-flex align-items-center">
+    <div class= "card mr-4 py-2 w-50", style= "text-decoration: none;" >
+      <p class = "text-center text-dark mb-2 text-truncate"><%= @selected_task.content %></p>
+      <div class = "icon text-center">
+        <%= attachment_image_tag @selected_task, :icon_image, :fill, 80, 80, resize: "60×60", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
+      </div>
+    </div>
+    <p class = "d-inline-block text-center text-danger" style = "font-size: 1.2rem;"><%= "計測中…" %></p>
+  </div>
+  <!--右側（計測ボタン）-->
+  <div class = "col-md-6">
+    <%= link_to user_working_task_stop_path, method: :post, style: "text-decoration: none;", remote: true do %>
+      <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
+        <i class="fas fa-stop"></i> STOP
+      </button>
+    <% end %>
+  </div>
+
+<!--計測中（being_measured）がtrueの物が見つからなければ、「選択中」と開始ボタンを表示-->
 <% else %>
-  <%= link_to user_working_task_start_path, method: :post, style: "text-decoration: none;", remote: true do %>
-    <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
-      <i class="fas fa-play"></i> START
-    </button>
-  <% end %>
+  <!--左側（選択中タスク表示）-->
+  <div class = "col-md-6 d-flex align-items-center">
+    <div class= "card mr-4 py-2 w-50", style= "text-decoration: none;" >
+      <p class = "text-center text-dark mb-2 text-truncate"><%= @selected_task.content %></p>
+      <div class = "icon text-center">
+        <%= attachment_image_tag @selected_task, :icon_image, :fill, 80, 80, resize: "60×60", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
+      </div>
+    </div>
+    <p class = "d-inline-block text-center" style = "font-size: 1.2rem;"><%= "選択中…" %></p>
+  </div>
+  <!--右側（計測ボタン）-->
+  <div class = "col-md-6">
+    <%= link_to user_working_task_start_path, method: :post, style: "text-decoration: none;", remote: true do %>
+      <button type="button" class="btn btn-outline-dark m-1 d-inline-block" style = "width: 100%; height: 7rem; font-size: 1.2rem;">
+        <i class="fas fa-play"></i> START
+      </button>
+    <% end %>
+  </div>
 <% end %>
