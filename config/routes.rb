@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "homes#top"
   get "/about", to: "homes#about"
+  get "/how_to_use", to: "homes#how_to_use"
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
     # ----------task------------------------------------

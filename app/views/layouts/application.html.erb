@@ -32,10 +32,12 @@
                 <div class="d-flex align-items-center mr-5"><b>ようこそ、<%= current_user.name %>さん！</b></div>
                 <li class = "d-flex align-items-center"><%= link_to 'Mypage', user_path(current_user.id), class:"nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
                 <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "HowToUse", how_to_use_path, class: "nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
                 <li class = "d-flex align-items-center"><%= link_to "logout", destroy_user_session_path, method: :delete, class:"nav-link text-dark font-weight-bold mb-1" %></li>
               <% else %>
                 <li class = "d-flex align-items-center"><%= link_to 'Home', root_path, class:" nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
                 <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
+                <li class = "d-flex align-items-center"><%= link_to "HowToUse", how_to_use_path, class: "nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
                 <li class = "d-flex align-items-center"><%= link_to "login", new_user_session_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
                 <li class = "d-flex align-items-center"><%= link_to "Start Time Management", new_user_registration_path, class:"nav-link btn btn-info text-light font-weight-bold rounded-pill p-3 mb-1" %></li>
               <% end %>

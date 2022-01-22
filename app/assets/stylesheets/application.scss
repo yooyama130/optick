@@ -32,6 +32,16 @@ body{
   border-color: rgba(212, 108, 228, 1);
 }
 
+// 目次用
+.contents-box{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #474747;
+    background: #FFFFFF;/*背景色*/
+    border-left: double 7px #4ec4d3;/*左線*/
+    border-right: double 7px #4ec4d3;/*右線*/
+}
+
 //カードマウスオーバー
 .card-hover:hover{
   opacity: 0.8;
