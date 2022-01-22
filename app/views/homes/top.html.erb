@@ -2,16 +2,16 @@
   <div class="row py-5 px-2">
     <!--通常時=>表示、レスポンシブ時=>非表示　none_for_responsive-->
     <div class="none_for_responsive col-md-5 py-3">
-      <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "d-inline-block", style: "width: 50%;" %>
-      <%= image_tag asset_path("top_piano.png", alt: "top_piano"), class: "d-inline-block", style: "width: 40%;" %>
-      <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block offset-3", style: "width: 50%;" %>
+      <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "d-inline-block box fadeUp", style: "width: 50%;" %>
+      <%= image_tag asset_path("top_piano.png", alt: "top_piano"), class: "d-inline-block box fadeUp delay-time02", style: "width: 40%;" %>
+      <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block offset-3 box fadeUp delay-time04", style: "width: 50%;" %>
     </div>
     <!--通常時=>非表示、レスポンシブ時=>表示　only_for_responsive-->
     <div class="only_for_responsive col-md-5 py-3">
-      <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "mx-auto d-inline-block", style: "width: 45%;" %>
-      <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block", style: "width: 45%;" %>
+      <%= image_tag asset_path("top_running_woman.png", alt: "top_running_woman"), class: "mx-auto d-inline-block box fadeUp", style: "width: 45%;" %>
+      <%= image_tag asset_path("top_working_man.png", alt: "top_working_man"), class: "d-inline-block box fadeUp delay-time02", style: "width: 45%;" %>
     </div>
-    <div class="col-md-7 py-3">
+    <div class="col-md-7 py-3 box fadeUp delay-time06">
       <h1 class = "mt-5">Welcome to Optick!</h1>
       <p style ="line-height:2rem;">
         このサイトは日々の日課、学習などのタスクに費やす時間を記録し、<br class = "none_for_resp">

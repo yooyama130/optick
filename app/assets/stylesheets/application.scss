@@ -86,6 +86,53 @@ body{
   background-color: springgreen;
 }
 
+// ===================トップページアニメーション用==================
+// スタート時は要素自体を透過0にするためのopacity:0;を指定する
+.box{
+  opacity: 0;
+}
+
+// ふわっ
+.fadeUp {
+animation-name:fadeUpAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+/* アニメーションスタートの遅延時間を決めるCSS*/
+.delay-time02{
+animation-delay: 0.2s;
+}
+
+.delay-time04{
+animation-delay: 0.4s;
+}
+
+.delay-time06{
+animation-delay: 0.6s;
+}
+
+.delay-time08{
+animation-delay: 0.8s;
+}
+
+.delay-time10{
+animation-delay: 1.0s;
+}
+
+
 // ===================レスポンシブ対応用=====================
 // レスポンシブ時には表示しない。通常時には表示する
 .none_for_responsive{
