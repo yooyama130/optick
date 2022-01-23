@@ -1,39 +1,39 @@
 <div class = "container bg-light my-3 py-5">
   <div class = "row mb-4">
-    <h2 class = "d-inline-block text-center w-75 mx-auto border-bottom border-dark">Optickの使い方</h2>
+    <h2 class = "d-inline-block text-center w-75 mx-auto border-bottom border-dark"><%= t("homes.how_to_use.heading") %></h2>
   </div>
   <!--ページ内ジャンプ-->
   <div class = "row mb-4 contents-box">
     <div class = "col-md-4">
-      <h5 class = "text-center m-2"><a href = "#step1"><i class="fas fa-pencil-alt"></i>記録をする</a></h5>
+      <h5 class = "text-center m-2"><a href = "#step1"><i class="fas fa-pencil-alt"></i><%= t("homes.how_to_use.use1-heading") %></a></h5>
     </div>
     <div class = "col-md-4">
-      <h5 class = "text-center m-2"><a href = "#step2"><i class="far fa-calendar"></i>カレンダーを使う</a></h5>
+      <h5 class = "text-center m-2"><a href = "#step2"><i class="far fa-calendar"></i><%= t("homes.how_to_use.use2-heading") %></a></h5>
     </div>
     <div class = "col-md-4">
-      <h5 class = "text-center m-2"><a href = "#step3"><i class="far fa-chart-bar"></i>グラフで集計する</a></h5>
+      <h5 class = "text-center m-2"><a href = "#step3"><i class="far fa-chart-bar"></i><%= t("homes.how_to_use.use3-heading") %></a></h5>
     </div>
   </div>
   <!--１つ目（記録をする）-->
   <div id = "step1" class = "row my-2">
     <div class = "col-md-12">
-      <h3 class = "text-center">記録をする</h3>
+      <h3 class = "text-center"><%= t("homes.how_to_use.use1-heading") %></h3>
     </div>
     <div class = "col-md-12 d-flex justify-content-center flex-wrap mb-5">
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>①マイページに移動後、「タスクを登録する」ボタンをクリック。</p>
+        <p><%= t("homes.how_to_use.use1-1") %></p>
         <%= image_tag asset_path("step1-1.jpg", alt: "step1-1"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>②タスク情報を入力し、登録。</p>
+        <p><%= t("homes.how_to_use.use1-2") %></p>
         <%= image_tag asset_path("step1-2.jpg", alt: "step1-2"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>③登録し終わったら、黄色い「タスク時間を計測する」ボタンをクリック。</p>
+        <p><%= t("homes.how_to_use.use1-3") %></p>
         <%= image_tag asset_path("step1-3.jpg", alt: "step1-3"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>④登録したタスクの中から選択すれば、計測を開始できます。計測中もマイページにて、計測中のタスクが表示されているのでクリックしてすぐに計測を止めにいくことも出来ます。</p>
+        <p><%= t("homes.how_to_use.use1-4") %></p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step1-4.jpg", alt: "step1-4"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
           <%= image_tag asset_path("step1-5.jpg", alt: "step1-5"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
@@ -45,34 +45,34 @@
   <!--２つ目（カレンダーを使う）-->
   <div id = "step2" class = "row my-2">
     <div class = "col-md-12">
-      <h3 class = "text-center">カレンダーを使う</h3>
+      <h3 class = "text-center"><%= t("homes.how_to_use.use2-heading") %></h3>
     </div>
     <div class = "col-md-12 d-flex justify-content-center flex-wrap mb-5">
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>①日々の記録の中で、カレンダーをクリックすると、その日のタスクの一覧・編集をすることが出来ます。</p>
+        <p><%= t("homes.how_to_use.use2-1") %>。</p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step2-1.jpg", alt: "step2-1"), class: "d-block my-1 border border-dark mx-2", style: "width: 300px; height: 250px; max-width: 100%;" %>
           <%= image_tag asset_path("step2-2.jpg", alt: "step2-2"), class: "d-block my-1 border border-dark mx-2", style: "width: 400px; height: 250px; max-width: 100%;" %>
         </div>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>②また「カレンダーにタグをつける」ことで、カレンダーに予定を登録することに使えたり、<a href = "#step3">「記録済みタスクを調べる」</a>で使用したり出来ます。</p>
+        <p><%= t("homes.how_to_use.use2-2") % {use3: t("homes.how_to_use.use3-heading") } %> </p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step2-3.jpg", alt: "step2-3"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
           <%= image_tag asset_path("step2-4.jpg", alt: "step2-4"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
         </div>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>③カレンダーには、タスクを行った時間ごとに、色が付きます。色と時間の対応は以下の通りです。</p>
+        <p><%= t("homes.how_to_use.use2-3") %></p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step2-5.jpg", alt: "step2-5"), class: "d-block my-1 border border-dark mx-auto", style: "width: 400px; height: 250px; max-width: 100%;" %>
           <div class = "ml-5"  style = "width: 300px">
-            <p><div class = "d-inline-block task_amount_0" style = "width: 10%; height: 12px;"></div>・・・0分</p>
-            <p><div class = "d-inline-block task_amount_1" style = "width: 10%; height: 12px;"></div>・・・0分～1時間未満</p>
-            <p><div class = "d-inline-block task_amount_2" style = "width: 10%; height: 12px;"></div>・・・1時間～2時間未満</p>
-            <p><div class = "d-inline-block task_amount_3" style = "width: 10%; height: 12px;"></div>・・・2時間～3時間未満</p>
-            <p><div class = "d-inline-block task_amount_4" style = "width: 10%; height: 12px;"></div>・・・3時間～4時間未満</p>
-            <p><div class = "d-inline-block task_amount_5" style = "width: 10%; height: 12px;"></div>・・・4時間以上</p>
+            <p><div class = "d-inline-block task_amount_0" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time0") %></p>
+            <p><div class = "d-inline-block task_amount_1" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time1") %></p>
+            <p><div class = "d-inline-block task_amount_2" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time2") %></p>
+            <p><div class = "d-inline-block task_amount_3" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time3") %></p>
+            <p><div class = "d-inline-block task_amount_4" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time4") %></p>
+            <p><div class = "d-inline-block task_amount_5" style = "width: 10%; height: 12px;"></div>・・・<%= t("homes.how_to_use.time5") %></p>
           </div>
         </div>
       </div>
@@ -81,23 +81,23 @@
   <!--３つ目（グラフ）-->
   <div id = "step3" class = "row my-2">
     <div class = "col-md-12">
-      <h3 class = "text-center">グラフで集計する</h3>
+      <h3 class = "text-center"><%= t("homes.how_to_use.use3-heading") %></h3>
     </div>
     <div class = "col-md-12 d-flex justify-content-center flex-wrap mb-5">
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>①「記録済みタスクを調べる」をクリックすることで、今まで行ったタスクの合計時間や<br class = "none_for_responsive">平均時間、日ごとのタスク時間の変化を見ることが出来ます。</p>
+        <p><%= t("homes.how_to_use.use3-1") %></p>
         <%= image_tag asset_path("step3-1.jpg", alt: "step3-1"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>②画面では、集計する日付範囲を指定し、必要ならばタグやタスクの指定をし、計測できます。</p>
+        <p><%= t("homes.how_to_use.use3-2") %></p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step3-2.jpg", alt: "step3-2"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
           <%= image_tag asset_path("step3-3.jpg", alt: "step3-3"), class: "d-block my-1 border border-dark mx-auto", style: "width: 300px; height: 250px; max-width: 100%;" %>
         </div>
       </div>
       <div class = "step d-inline-block m-2" style = "font-size: 14px">
-        <p>③タグの指定をすると、指定した範囲の中でさらに、タグの範囲だけを指定することができます。</p>
-        <p style = "font-size: 13.8px">＜例＞1月1日～1月31日を指定し、その中でタグ「繁忙期」（1月12日～14日、1月19日～21日）を指定すると、「繁忙期」期間のみ集計を行うことが出来ます。</p>
+        <p><%= t("homes.how_to_use.use3-3") %></p>
+        <p style = "font-size: 13.8px"><%= t("homes.how_to_use.use3-4") %></p>
         <div class = "d-flex justify-content-center flex-wrap">
           <%= image_tag asset_path("step3-4.jpg", alt: "step3-4"), class: "d-block my-1 border border-dark mx-2", style: "width: 300px; height: 250px; max-width: 100%;" %>
           <%= image_tag asset_path("step3-5.jpg", alt: "step3-5"), class: "d-block my-1 border border-dark mx-2", style: "width: 300px; height: 250px; max-width: 100%;" %>

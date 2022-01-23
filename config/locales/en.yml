@@ -30,6 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+    # 日付・時間で使う
+    date:
+      formats:
+        default: "%B, %d, %Y"
+
     #ビューで使う言葉
     layouts:
       application:
@@ -52,6 +57,40 @@ en:
         sub-heading2: "Available from your smartphone or computer!"
         to_login: "Go to Log In"
         to_register: "Go to Register"
+      about:
+        heading: "3 Features of 'Optick'"
+        feature1-heading: "① You can check the amount of tasks in the calendar."
+        feature1-1: "You can see how you tried daily tasks through the calendar."
+        feature1-2: "You can also look back at amount of your tasks per month easily by using a wide range of date searches."
+        feature2-heading: "② You can check your daily routines through variety of graphs."
+        feature2-1: "Displayed daily tasks in doughnut graph, and display the task time so far in a line graph. "
+        feature2-2: "Let's try other graphs, like taking averages!"
+        feature3-heading: "③ Optick is not for daily life work, but also for your study and office work."
+        feature3-1: "It can be used to manage your time for study and work, as well as to prevent overuse of time for entertainment and other activities."
+        feature3-2: "You can upload icons for tasks freely. Enjoy creating your original task management service! "
+      how_to_use:
+        heading: "How To Use 'Optick'"
+        use1-heading: "Record the task"
+        use1-1: "① Click 'Create a task', after moving to 'Mypage'."
+        use1-2: "② Enter information of the task, and create the task."
+        use1-3: "③ After you create tasks, click 'Measure task time'."
+        use1-4: "④ Select one of the tasks you have registered and start measuring. While you are taking measurements, the task being measured will be displayed in My Page. You can click on it to stop the measurement "
+        use2-heading: "Use calendar"
+        use2-1: "① Click on the calendar to view and edit the tasks for the day."
+        use2-2: "② You can also 'tag the calendar' to use it to add appointments to the calendar, or use it with %{use3}."
+        use2-3: "③ The calendar will have a color for each time you perform a task. The correspondence between the color and the time is as follows"
+        time0: "Do nothing"
+        time1: "less than 1 hour"
+        time2: "1 hour to less than 2 hours"
+        time3: "2 hour to less than 3 hours"
+        time4: "3 hour to less than 4 hours"
+        time5: "more than 4 hours"
+        use3-heading: "Aggregate with graphs"
+        use3-1: "① Click on 'Explore Recorded Tasks' to see the total time and average time of your tasks so far, as well as the change in task time from day to day."
+        use3-2: "② You specify the date range to be aggregated, and if necessary, specify tags and tasks to be aggregated."
+        use3-3: "③ If a tag is specified, only the area within the specified tag can be aggregated."
+        use3-4: "<e.g.> If you specify the period from January 1 to January 31, and then specify the tag 'busy period' (January 12-14, January 19-21), you will be able to aggregate only for the 'busy period'."
+
     #モデルで使う言葉
     activerecord:
       attributes:

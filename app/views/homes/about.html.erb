@@ -1,6 +1,6 @@
 <div class = "container bg-light my-3 py-5">
   <div class = "row mb-4">
-    <h2 class = "d-inline-block text-center w-75 mx-auto border-bottom border-dark">Optickの3つの特徴</h2>
+    <h2 class = "d-inline-block text-center w-75 mx-auto border-bottom border-dark"><%= t("homes.about.heading") %></h2>
   </div>
   <!--1つ目-->
   <div class = "row px-3 mb-3">
@@ -8,10 +8,10 @@
       <%= image_tag asset_path("about_calendar.png", alt: "calendar"), class: "d-block mx-auto w-50" %>
     </div>
     <div class = "col-md-7 mb-3">
-      <h4 class = "font-weight-bold">①カレンダーでタスク量を確認できる</h4>
+      <h4 class = "font-weight-bold"><%= t("homes.about.feature1-heading") %></h4>
       <p style ="line-height:2rem;">
-        カレンダーから自分がこの日どれくらい頑張ったかを確認できます。</br>
-        広い範囲での日付検索もできるので、この期間ってどのくらい頑張っていたんだろうというのが見返しやすくなっています。</br>
+        <%= t("homes.about.feature1-1") %></br>
+        <%= t("homes.about.feature1-2") %></br>
       </p>
     </div>
   </div>
@@ -22,10 +22,10 @@
       <%= image_tag asset_path("about_graphs.png", alt: "graphs"), class: "d-block mx-auto w-50" %>
     </div>
     <div class = "col-md-7 mb-3">
-      <h4 class = "font-weight-bold">②毎日の日課時間を分かりやすく記録できる</h4>
+      <h4 class = "font-weight-bold"><%= t("homes.about.feature2-heading") %></h4>
       <p style ="line-height:2rem;">
-        1日に行ったタスクを円グラフで表示、これまでのタスク時間を折れ線グラフで表示など日々の記録を彩ってくれます。</br>
-        月間の平均なども取れるので、ぜひ活用してみましょう！</br>
+        <%= t("homes.about.feature2-1") %></br>
+        <%= t("homes.about.feature2-2") %></br>
       </p>
     </div>
     <!--通常時=>表示、レスポンシブ時=>非表示　none_for_responsive-->
@@ -39,10 +39,10 @@
       <%= image_tag asset_path("about_variety.png", alt: "variety"), class: "d-block mx-auto w-50" %>
     </div>
     <div class = "col-md-7 mb-3">
-      <h4 class = "font-weight-bold">③日常生活だけでなく、学習や仕事にも</h4>
+      <h4 class = "font-weight-bold"><%= t("homes.about.feature3-heading") %></h4>
       <p style ="line-height:2rem;">
-        日々の生活の日課だけでなく、勉強や仕事の時間管理、娯楽への時間使いすぎ防止など、様々な用途で使えます。</br>
-        タスクアイコンは自由にアップロードして使う事ができるので、自分だけのタスク管理サービスにしてお楽しみください！</br>
+        <%= t("homes.about.feature3-1") %></br>
+        <%= t("homes.about.feature3-2") %></br>
       </p>
     </div>
   </div>
