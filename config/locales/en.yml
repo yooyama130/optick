@@ -31,6 +31,18 @@
 
 en:
     #ビューで使う言葉
+    layouts:
+      application:
+        update_log: "Update Log"
+    devise:
+      click_here: "click here"
+      sessions:
+        log_in: "Log in"
+        not_yet_register: "If you haven't yet register,"
+      registrations:
+        registration: "Registration"
+        more_than: "more than %{count} characters"
+        already_register: "If you have already register,"
     homes:
       top:
         explanation1: "This site allows you to track the time you spend on daily routines, learning and other tasks,"

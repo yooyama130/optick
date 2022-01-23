@@ -27,12 +27,12 @@
           <!--日英切り替え-->
           <div class = "locale-select mx-3">
             <% if session[:locale] == "en" || session[:locale].blank? %>
-              <%= link_to "/change_language/ja" do %>
-               日本語へ
+              <%= link_to "/change_language/ja", class: "text-dark text-decoration-none" do %>
+               日本語<%= image_tag asset_path("flag_ja.png", alt: "flag_ja"), class: "d-inline-block mx-1", style: "width: 30px;" %>
               <% end %>
             <% elsif session[:locale] == "ja" %>
-              <%= link_to "/change_language/en" do %>
-               To English
+              <%= link_to "/change_language/en", class: "text-dark text-decoration-none" do %>
+               English<%= image_tag asset_path("flag_en.png", alt: "flag_en"), class: "d-inline-block mx-1", style: "width: 30px;" %>
               <% end %>
             <% end %>
           </div>
@@ -70,7 +70,7 @@
         <div class = "row">
           <!--更新履歴表-->
           <div class = "col-9">
-            <h5 class = "border-bottom border-success font-weight-bold">更新履歴</h5>
+            <h5 class = "border-bottom border-success font-weight-bold"><%= t("layouts.application.update_log") %></h5>
             <div class = "border-start border-dark">
               <table>
                 <tr>

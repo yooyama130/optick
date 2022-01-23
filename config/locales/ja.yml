@@ -1,5 +1,17 @@
   ja:
     #ビューで使う言葉
+    layouts:
+      application:
+        update_log: "更新履歴"
+    devise:
+      click_here: "こちら"
+      sessions:
+        log_in: "ログイン画面"
+        not_yet_register: "新規登録がお済みでない方は"
+      registrations:
+        registration: "新規登録画面"
+        more_than: "%{count}文字以上"
+        already_register: "登録済みの方は"
     homes:
       top:
         explanation1: "このサイトは日々の日課、学習などのタスクに費やす時間を記録し"
