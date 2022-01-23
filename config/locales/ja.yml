@@ -1,4 +1,15 @@
   ja:
+    #ビューで使う言葉
+    homes:
+      top:
+        explanation1: "このサイトは日々の日課、学習などのタスクに費やす時間を記録し"
+        explanation2: "あなたの生活の見直しやタスクへのモチベーションアップに"
+        explanation3: "繋げるためのタイムトラッキングサイトです！"
+        sub-heading1: "時間を記録して生活を楽しもう！"
+        sub-heading2: "スマホからでも、PCからでも利用できます！"
+        to_login: "ログインページへ"
+        to_register: "新規登録ページへ"
+    #モデルで使う言葉
     activerecord:
       attributes:
         task:

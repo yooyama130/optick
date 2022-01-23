@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/about", to: "homes#about"
   get "/how_to_use", to: "homes#how_to_use"
+  get "/change_language/:language", to: "homes#change_language"
   devise_for :users, skip: [:passwords]
   resources :users, only: [:show, :edit, :update] do
     # ----------task------------------------------------

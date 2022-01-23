@@ -30,4 +30,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    #ビューで使う言葉
+    homes:
+      top:
+        explanation1: "This site allows you to track the time you spend on daily routines, learning and other tasks,"
+        explanation2: "to help you reevaluate your life and motivate yourself to complete tasks."
+        explanation3: ""
+        sub-heading1: "Track your time and enjoy your life!"
+        sub-heading2: "Available from your smartphone or computer!"
+        to_login: "Go to Log In"
+        to_register: "Go to Register"
+    #モデルで使う言葉
+    activerecord:
+      attributes:
+        task:
+          content: content
+          icon_image: icon_image
+        working_task:
+          started_at: started_at
+          stopped_at: stopped_at
+        event:
+          name: name
+          start_date: start_date
+          end_date: end_date
