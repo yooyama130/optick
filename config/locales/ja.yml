@@ -5,8 +5,10 @@
         default: "%Y/%m/%d"
     # 削除確認
     confirm:
-        delete: "削除しますか。"
-
+        delete: "削除しますか？"
+    # レスポンシブ
+    responsive:
+        scrollable: "※スクロールできます"
     #ビューで使う言葉
     layouts:
       application:
@@ -101,11 +103,41 @@
       edit:
         heading: "タスクの編集"
         initialize: "設定されている画像を削除する"
-
-
+    working_tasks:
+      new:
+        heading: "タスク時間計測"
+        sub-heading1: "①タスクを選択してください"
+        sub-heading2: "②計測を開始してください"
+        no_selected_task: "タスクを選択してください"
+      set:
+        being_measured: "計測中…"
+        not_being_measured: "選択中…"
+      index:
+        heading: "%{date}の記録済みタスク一覧"
+        tag: "タグ"
+        no_tag: "なし"
+        no_working_tasks: "タスクはありません"
+        content: "タスク内容"
+        started_at: "開始時刻"
+        ended_at: "終了時刻"
+        working_time: "経過時間"
+      edit:
+        heading: "記録済みタスクの編集"
+    events:
+      new:
+        heading: "カレンダータグ登録"
+        note: "開始日と終了日を同じにすることでその日だけにタグを付けられます"
+        no_tag: "登録しているタグはありません"
+        name: "タグ名前"
+        start_date: "開始日"
+        end_date: "終了日"
+      new:
+        heading: "カレンダータグ"      
 
     #モデルで使う言葉
     activerecord:
+      models:
+        event: タグ
       attributes:
         user:
           name: ユーザー名
@@ -117,6 +149,7 @@
           started_at: 開始時刻
           stopped_at: 終了時刻
         event:
+          event: タグ
           name: タグ名
           start_date: 開始日
           end_date: 終了日

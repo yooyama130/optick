@@ -8,7 +8,7 @@
         <%= attachment_image_tag @selected_task, :icon_image, :fill, 80, 80, resize: "60×60", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
       </div>
     </div>
-    <p class = "d-inline-block text-center text-danger" style = "font-size: 1.2rem;"><%= "計測中…" %></p>
+    <p class = "d-inline-block text-center text-danger" style = "font-size: 1.2rem;"><%= t("working_tasks.set.being_measured") %></p>
   </div>
   <!--右側（計測ボタン）-->
   <div class = "col-md-6">
@@ -29,7 +29,7 @@
         <%= attachment_image_tag @selected_task, :icon_image, :fill, 80, 80, resize: "60×60", format: "png", style: "width: 50%", fallback: "no_icon.png"  %>
       </div>
     </div>
-    <p class = "d-inline-block text-center" style = "font-size: 1.2rem;"><%= "選択中…" %></p>
+    <p class = "d-inline-block text-center" style = "font-size: 1.2rem;"><%= t("working_tasks.set.not_being_measured") %></p>
   </div>
   <!--右側（計測ボタン）-->
   <div class = "col-md-6">

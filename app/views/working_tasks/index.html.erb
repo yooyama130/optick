@@ -1,33 +1,33 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-md-12">
-      <h2><%= @date %>の記録済みタスク一覧</h2>
+      <h2><%= t("working_tasks.index.heading") % {date: l(@date) } %></h2>
     </div>
   </div>
   <div class = "row">
     <div class = "col-md-11 mx-auto">
-      <p class = "d-inline-block">登録タグ: </p>
+      <p class = "d-inline-block"><%= t("working_tasks.index.tag") %>: </p>
       <% if @events.present? %>
         <!--タグの名前だけ取り出し、1つずつ表示（名前が重複しているものは削除-->
         <% @events.pluck(:name).uniq.each do |name| %>
           <p class = "d-inline-block mx-2"><i class="fas fa-tag"></i><%="#{name}"%></p>
         <% end %>
       <% else %>
-        <p class = "d-inline-block mx-4">なし</p>
+        <p class = "d-inline-block mx-4"><%= t("working_tasks.index.no_tag") %></p>
       <% end %>
       <div class = "row">
         <div class = "col-md-11 mx-auto">
           <% if @working_tasks.blank? %>
-            <p class = "text-secondary text-center my-5">タスクはありません</p>
+            <p class = "text-secondary text-center my-5"><%= t("working_tasks.index.no_working_tasks") %></p>
           <% else %>
-            <p class = "only_for_responsive mb-2" style = "font-size: 14px">※スクロールできます</p>
+            <p class = "only_for_responsive mb-2" style = "font-size: 14px"><%= t("responsive.scrollable") %></p>
             <table class = "table table-bordered table-responsive table-hover" style = "font-size: 14px">
               <tr>
                 <th style="width: 5%"></th>
-                <th style="width: 25%">タスク内容</th>
-                <th style="width: 20%">開始時刻</th>
-                <th style="width: 20%">終了時刻</th>
-                <th style="width: 20%">経過時間</th>
+                <th style="width: 25%"><%= t("working_tasks.index.content") %></th>
+                <th style="width: 20%"><%= t("working_tasks.index.started_at") %></th>
+                <th style="width: 20%"><%= t("working_tasks.index.ended_at") %></th>
+                <th style="width: 20%"><%= t("working_tasks.index.working_time") %></th>
                 <th style="width: 5%"></th>
                 <th style="width: 5%"></th>
               </tr>
@@ -50,7 +50,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= link_to user_working_task_path(@user,working_task), method: :delete, data: { confirm: "削除しますか？" } do %>
+                    <%= link_to user_working_task_path(@user,working_task), method: :delete, data: { confirm: t("confirm.delete") } do %>
                       <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     <% end %>
                   </td>

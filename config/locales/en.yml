@@ -37,6 +37,9 @@ en:
     # 削除確認
     confirm:
         delete: "Do you want to delete it?"
+    # レスポンシブ
+    responsive:
+        scrollable: "Note: You can scroll the table."
 
     #ビューで使う言葉
     layouts:
@@ -130,12 +133,44 @@ en:
         no_tasks: "No tasks are added."
         content: "Task Content"
       edit:
-        heading: "Edit task"
+        heading: "Edit the task"
         initialize: "Initialize the icon image"
+    working_tasks:
+      new:
+        heading: "Measure the task time"
+        sub-heading1: "① Select one task."
+        sub-heading2: "② Start the measurement."
+        no_selected_task: "No task is selected"
+      set:
+        being_measured: "Taking measurements now..."
+        not_being_measured: "Being selected now..."
+      index:
+        heading: "List of tasks for %{date}"
+        tag: "Tag"
+        no_tag: "nothing"
+        no_working_tasks: "No tasks are performed"
+        content: "Task Content"
+        started_at: "Start Time"
+        ended_at: "End Time"
+        working_time: "Elapsed Time"
+      edit:
+        heading: "Edit the task"
+    events:
+      new:
+        heading: "Tag the calendar"
+        note: "By setting the start and end dates to be the same, you can tag only the one day."
+        name: "Tag Name"
+        no_tag: "Tags are not added"
+        start_date: "Start Date"
+        end_date: "End Date"
+      edit:
+        heading: "Edit the tag"
 
 
     #モデルで使う言葉
     activerecord:
+      models:
+        event: Tag
       attributes:
         user:
           name: Name
@@ -144,9 +179,9 @@ en:
           content: content
           icon_image: icon image
         working_task:
-          started_at: started_at
-          stopped_at: stopped_at
+          started_at: start time
+          stopped_at: end time
         event:
           name: name
-          start_date: start_date
-          end_date: end_date
+          start_date: start date
+          end_date: end date

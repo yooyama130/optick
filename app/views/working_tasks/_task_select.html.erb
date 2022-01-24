@@ -1,14 +1,14 @@
 <div class = "task_select mb-5">
     <div class = "row">
       <div class = "col-11 mx-auto">
-        <h5>①タスクを選択してください</h5>
+        <h5><%= t("working_tasks.new.sub-heading1") %></h5>
       </div>
     </div>
     <!--タスク一覧-->
     <div class = "row">
       <div class = "col-10 mx-auto d-flex flex-wrap">
         <% if my_tasks.blank? %>
-          <p class = "text-secondary text-center">登録しているタスクはありません</p>
+          <p class = "text-secondary text-center"><%= t("working_tasks.new.no_selected_task") %></p>
         <% else %>
           <% my_tasks.each do |task| %>
             <!--通常時=>表示、レスポンシブ時=>非表示　none_for_responsive-->
