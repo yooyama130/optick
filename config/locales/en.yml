@@ -40,6 +40,10 @@ en:
     # レスポンシブ
     responsive:
         scrollable: "Note: You can scroll the table."
+    # フラッシュメッセージ
+    flash:
+        search_error: "The date range is incorrect, or the date range is longer than 80 days."
+        range_error: "The date range is incorrect."
 
     #ビューで使う言葉
     layouts:
@@ -165,6 +169,29 @@ en:
         end_date: "End Date"
       edit:
         heading: "Edit the tag"
+    searches:
+      search:
+        heading: "Aggerate measured tasks"
+        note: "Note: For processing reasons, the date range is limited to 80 days."
+        date_range: "Specify the date range:　"
+        event_name: "Specify the tag:　"
+        event_blank: "（Not specified）"
+        task_content: "Specify the task:　"
+        task_blank: "（All）"
+        search_type: "Select seach type:　"
+        search_type1: "View the total time (to a bar graph)"
+        search_type2: "View the average time (to a bar graph)"
+        search_type3: "View the transition of task time (to a line graph)"
+        search_button: "search"
+      result:
+        heading: "Search Result"
+        no_result: "No task datas were found that match your search criteria."
+        date_range: "Date range specified:　"
+        event_name: "Tag specified:　"
+        task_content: "Task specified:　"
+        nothing: "nothing"
+        note_for_graph: "Note: The unit is 'minutes'."
+
 
 
     #モデルで使う言葉

@@ -9,6 +9,11 @@
     # レスポンシブ
     responsive:
         scrollable: "※スクロールできます"
+    # フラッシュメッセージ
+    flash:
+        search_error: "日付範囲が正しく指定されていないか、日付範囲が80日間を超えています"
+        range_error: "日付範囲が正しく指定されていません"
+        
     #ビューで使う言葉
     layouts:
       application:
@@ -131,8 +136,31 @@
         name: "タグ名前"
         start_date: "開始日"
         end_date: "終了日"
-      new:
-        heading: "カレンダータグ"      
+      edit:
+        heading: "カレンダータグ編集"
+    searches:
+      search:
+        heading: "記録済みタスクを調べる"
+        note: "＜注意＞処理の都合、日付範囲指定は 80日間 までとしています。"
+        date_range: "日付を指定:　"
+        event_name: "タグを指定:　"
+        event_blank: "（指定なし）"
+        task_content: "調べるタスクを指定:　"
+        task_blank: "（全て）"
+        search_type: "検索形式を選択して下さい:　"
+        search_type1: "合計時間を見る（棒グラフ）"
+        search_type2: "平均時間を見る（棒グラフ）"
+        search_type3: "時間の推移を見る（折れ線グラフ）"
+        search_button: "検索"
+      result:
+        heading: "検索結果"
+        no_result: "条件に合うものは見つかりませんでした"
+        date_range: "日付:　"
+        event_name: "タグ指定:　"
+        task_content: "タスク指定:　"
+        nothing: "なし"
+        note_for_graph: "＜注意＞単位は『分』です"
+
 
     #モデルで使う言葉
     activerecord:

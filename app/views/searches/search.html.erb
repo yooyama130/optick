@@ -1,48 +1,48 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-12">
-      <h2>記録済みタスクを調べる</h2>
+      <h2><%= t("searches.search.heading") %></h2>
     </div>
   </div>
   <!--検索フォーム-->
   <div class = "row">
     <div class = "col-11 mx-auto">
-      <p><strong>＜注意＞処理の都合、日付範囲指定は <u>80日間</u> までとしています。</strong></p>
+      <p><strong><%= t("searches.search.note") %> </strong></p>
       <!--エラーメッセージ-->
       <p class = "text-danger"><%= flash[:search_error] %></p>
       <%= form_with url: user_search_result_path(@user), method: :get, local: true do |f| %>
-        <div class = "field mb-2">
-          <%= f.label:date_range, "日付を指定:　" %>
+        <div class = "field mb-3">
+          <p class = "d-inline"><%= t("searches.search.date_range") %></p>
           <%= (f.date_field :date_range_start) + " ～ " %>
           <%= f.date_field :date_range_end %>
         </div>
-        <div class = "field mb-2">
-          <%= f.label:event_name, "タグを指定:　" %>
-          <%= f.select :event_name, @my_events.pluck(:name).uniq, include_blank: "（指定なし）" %>
+        <div class = "field mb-3">
+          <p class = "d-inline"><%= t("searches.search.event_name") %></p>
+          <%= f.select :event_name, @my_events.pluck(:name).uniq, include_blank: t("searches.search.event_blank") %>
         </div>
-        <div class = "field mb-2">
-          <%= f.label:task_content, "調べるタスクを指定:　" %>
-          <%= f.select :task_content, @my_tasks.pluck(:content), include_blank: "（全て）" %>
+        <div class = "field mb-3">
+          <p class = "d-inline"><%= t("searches.search.task_content") %></p>
+          <%= f.select :task_content, @my_tasks.pluck(:content), include_blank: t("searches.search.task_blank")  %>
         </div>
-        <div class = "field mb-2">
-          <%= f.label:search_type, "検索形式を選択して下さい:　" %></br>
-          <div class = "d-block pl-3 mb-1">
+        <div class = "field mb-3">
+          <p class = "mb-3"><%= t("searches.search.search_type") %></p>
+          <div class = "d-block pl-3 mb-3">
             <!--合計を見る-->
             <%= f.radio_button :search_type, 1, checked: true  %>
-            <%= f.label :search_type, "合計時間を見る（棒グラフ）" %>
+            <p class = "d-inline"><%= t("searches.search.search_type1") %></p>
           </div>
-          <div class = "d-block pl-3 mb-1">
+          <div class = "d-block pl-3 mb-3">
             <!--平均を取る-->
             <%= f.radio_button :search_type, 2 %>
-            <%= f.label :search_type, "平均時間を見る（棒グラフ）" %>
+            <p class = "d-inline"><%= t("searches.search.search_type2") %></p>
           </div>
-          <div class = "d-block pl-3 mb-1">
+          <div class = "d-block pl-3 mb-3">
             <!--流れを見る-->
             <%= f.radio_button :search_type, 3 %>
-            <%= f.label :search_type, "流れを見る（折れ線グラフ）" %>
+            <p class = "d-inline"><%= t("searches.search.search_type3") %></p>
           </div>
         </div>
-        <%= f.submit "検索" %>
+        <%= f.submit t("searches.search.search_button") %>
       <% end %>
     </div>
   </div>

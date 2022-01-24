@@ -7,16 +7,16 @@
   <!--検索結果-->
   <div class = "row">
     <div class = "col-11 mx-auto">
-      <p>日付: <%= "#{@date_range_start} から #{@date_range_end}まで" %></p>
-      <p>タグ指定: <%= @events.present? ? ("#{@events.pluck(:name).first}") : ("なし") %></p>
-      <p>タスク指定: <%= @task. present? ? ("#{@task.content}") : ("なし")%></p>
+      <p><%= t("searches.result.date_range") %><%= "#{l(@date_range_start)} ～ #{l(@date_range_end)}" %></p>
+      <p><%= t("searches.result.event_name") %><%= @events.present? ? ("#{@events.pluck(:name).first}") : (t("searches.result.nothing")) %></p>
+      <p><%= t("searches.result.task_content") %><%= @task. present? ? ("#{@task.content}") : (t("searches.result.nothing"))%></p>
     </div>
   </div>
   <!--タスク一覧表-->
   <div class = "row">
     <div class = "col-11 mx-auto">
       <% if @searched_working_tasks.exists? %>
-        <p class = "text-center mb-0" style = "font-size: 14px">＜注意＞単位は『分』です</p>
+        <p class = "text-center mb-0" style = "font-size: 14px"><%= t("searches.result.note_for_graph") %></p>
           <% if @search_type == 1 %>
             <canvas id="myBarChart" width="700" height="550"></canvas>
             <script>draw_graph_bar();</script>
@@ -28,7 +28,7 @@
             <script>draw_graph_line();</script>
           <% end %>
       <% else %>
-        <p>条件に合うものは見つかりませんでした</p>
+        <p class = "text-secondary"><%= t("searches.result.no_result") %></p>
       <% end %>
     </div>
   </div>
