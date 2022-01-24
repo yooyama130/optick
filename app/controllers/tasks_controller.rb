@@ -49,10 +49,11 @@ class TasksController < ApplicationController
   end
 
   def destroy_icon
+    user = User.find(params[:user_id])
     task = Task.find(params[:id])
     # 画像削除の方法は、画像idに nil を代入する
     task.update(icon_image_id: nil)
-    redirect_to edit_user_task_path(task)
+    redirect_to edit_user_task_path(user, task)
   end
 
   private

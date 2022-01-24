@@ -1,7 +1,7 @@
 <div class = "container container_for_forms bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-12">
-      <h2>ユーザープロフィール編集</h2>
+      <h2><%= t("users.edit.heading") %></h2>
     </div>
   </div>
   <div class = "row">
@@ -9,14 +9,14 @@
       <%= form_with model: @user, local: true do |f| %>
         <!--画像変更・削除-->
         <div class = "field mb-2">
-          <%= f.label :profile_image, "プロフィール画像" %></br>
+          <%= f.label :profile_image %></br>
           <%= f.attachment_field :profile_image %>
           <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class: "m-1" %>
-          <p class = mb-1><%= link_to "設定されている画像を削除する", user_destroy_image_path(@user), method: :delete  if !(@user.profile_image_id == nil) %></p>
+          <p class = mb-1><%= link_to t("users.edit.initialize"), user_destroy_image_path(@user), method: :delete  if !(@user.profile_image_id == nil) %></p>
         </div>
         <!--Eメールアドレス変更-->
         <div class = "field mb-2">
-          <%= f.label :email, "Eメール" %></br>
+          <%= f.label :email %></br>
           <%= f.text_field :email %>
           <!--個別エラーメッセージ-->
           <% if @user.errors.include?(:email) %>
@@ -25,14 +25,14 @@
         </div>
         <!--名前変更-->
         <div class = "field mb-2">
-          <%= f.label :name, "ユーザー名" %></br>
+          <%= f.label :name %></br>
           <%= f.text_field :name %>
           <!--個別エラーメッセージ-->
           <% if @user.errors.include?(:name) %>
             <p class = "text-danger"><%= @user.errors.full_messages_for(:name).first %>
           <% end %>
         </div>
-        <%= f.submit "保存" %>
+        <%= f.submit %>
       <% end %>
     </div>
   </div>

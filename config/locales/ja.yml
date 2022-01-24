@@ -3,6 +3,9 @@
     date:
       formats:
         default: "%Y/%m/%d"
+    # 削除確認
+    confirm:
+        delete: "削除しますか。"
 
     #ビューで使う言葉
     layouts:
@@ -65,7 +68,7 @@
         heading: "%{name}さんのマイページ"
         name: "名前"
         last_log_in: "前回ログイン日"
-        update_account_info: "アカウント情報変更"
+        edit_my_profile: "プロフィール情報変更"
         add_tasks: "タスクを登録する"
         view_tasks: "登録タスク一覧へ"
         measure_tasks: "タスク時間を計測する"
@@ -83,10 +86,30 @@
         little_tasks: "タスク少"
         much_tasks: "タスク多"
         tag_mark: "タグ付けあり"
+      edit:
+        heading: "ユーザープロフィール編集"
+        initialize: "設定されている画像を削除する"
+    tasks:
+      new:
+        heading: "タスク登録"
+        note: "＜注意＞同じ名前のタスクは登録できません。"
+      index:
+        heading: "%{name}さんの登録タスク一覧"
+        note: "＜注意＞登録したタスクを削除すると、そのタスクを計測したデータも一緒に削除されます。"
+        no_tasks: "登録しているタスクはありません。"
+        content: "タスク内容"
+      edit:
+        heading: "タスクの編集"
+        initialize: "設定されている画像を削除する"
+
+
 
     #モデルで使う言葉
     activerecord:
       attributes:
+        user:
+          name: ユーザー名
+          profile_image: プロフィール画像
         task:
           content: 内容
           icon_image: アイコン画像

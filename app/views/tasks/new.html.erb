@@ -1,28 +1,28 @@
 <div class = "container container_for_forms bg-light my-2 py-4">
   <div class = "row">
     <div class = "col-md-12">
-      <h2>タスク登録</h2>
+      <h2><%= t("tasks.new.heading") %></h2>
     </div>
   </div>
   <div class = "row">
     <div class = "col-md-8">
-      <p><strong>＜注意＞同じ名前のタスクは登録できません。</strong></p>
+      <p><strong><%= t("tasks.new.note") %></strong></p>
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
       <%= form_with model:[@user, @new_task], local: true do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <div class = "field mb-2">
-          <%= f.label :icon_image, "アイコン画像" %></br>
+          <%= f.label :icon_image %></br>
           <%= f.attachment_field :icon_image %>
         </div>
         <div class = "field mb-2">
-          <%= f.label :content, "内容" %></br>
+          <%= f.label :content %></br>
           <%= f.text_field :content %>
           <!--個別エラーメッセージ-->
           <% if @new_task.errors.include?(:content) %>
             <p class = "text-danger"><%= @new_task.errors.full_messages_for(:content).first %>
           <% end %>
         </div>
-        <%= f.submit "登録" %>
+        <%= f.submit %>
       <% end %>
     </div>
   </div>

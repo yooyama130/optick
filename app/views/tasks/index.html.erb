@@ -1,28 +1,28 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-12">
-      <h2><%= @user.name %> さんの登録タスク一覧</h2>
+      <h2><%= t("tasks.index.heading") % {name: @user.name} %></h2>
     </div>
   </div>
   <!--登録ボタン-->
   <div class = "row">
     <div class = "col-md-6 mx-auto">
       <%= link_to new_user_task_path(current_user) do %>
-        <p class = "font-monospace h5 text-center"><i class="fas fa-plus-circle"></i>タスクを登録する</p>
+        <p class = "font-monospace h5 text-center"><i class="fas fa-plus-circle"></i><%= t("users.show.add_tasks") %></p>
       <% end %>
     </div>
   </div>
   <!--タスク一覧表-->
   <div class = "row">
     <div class = "col-md-11 mx-auto">
-      <p><strong>＜注意＞登録したタスクを削除すると、そのタスクを計測したデータも一緒に削除されます。</strong></p>
+      <p><strong><%= t("tasks.index.note") %></strong></p>
       <% if @my_tasks.blank? %>
-        <p class = "text-secondary text-center">登録しているタスクはありません</p>
+        <p class = "text-secondary text-center"><%= t("tasks.index.no_tasks") %></p>
       <% else %>
         <table class = "table table-bordered table-responsive table-hover">
           <tr>
             <th style="width: 5%"></th>
-            <th style="width: 85%">タスク内容</th>
+            <th style="width: 85%"><%= t("tasks.index.content") %></th>
             <th style="width: 5%"></th>
             <th style="width: 5%"></th>
           </tr>
@@ -36,7 +36,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to user_task_path(current_user,task), method: :delete, data: { confirm: "削除しますか？" } do %>
+                <%= link_to user_task_path(current_user,task), method: :delete, data: { confirm: t("confirm.delete") } do %>
                   <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                 <% end %>
               </td>

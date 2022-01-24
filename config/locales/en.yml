@@ -34,11 +34,14 @@ en:
     date:
       formats:
         default: "%B %d, %Y"
+    # 削除確認
+    confirm:
+        delete: "Do you want to delete it?"
 
     #ビューで使う言葉
     layouts:
       application:
-        hello: "hello, %{name}"
+        hello: "Hello! %{name}!"
         update_log: "Update Log"
     devise:
       click_here: "click here"
@@ -72,7 +75,7 @@ en:
       how_to_use:
         heading: "How To Use 'Optick'"
         use1-heading: "Measure the task time"
-        use1-1: "① Click 'Add your tasks', after moving to your page."
+        use1-1: "① Click 'Add my tasks', after moving to your page."
         use1-2: "② Enter information of the task, and add the task."
         use1-3: "③ After you add some tasks, click 'Measure the task time'."
         use1-4: "④ Select one of the tasks you have added and start measuring. While you are taking measurements, the task being measured will be displayed in My Page. You can click on it to stop the measurement "
@@ -96,9 +99,9 @@ en:
         heading: "%{name}'s page"
         name: "Name"
         last_log_in: "Last login date"
-        update_account_info: "Update your information"
-        add_tasks: "Add your tasks"
-        view_tasks: "View the list of your tasks"
+        edit_my_profile: "Edit my profile"
+        add_tasks: "Add my tasks"
+        view_tasks: "View the list of my tasks"
         measure_tasks: "Measure the task time"
         aggerate_tasks: "Aggerate measured tasks"
         tasks_being_measured: "Tasks being measured"
@@ -114,14 +117,32 @@ en:
         little_tasks: "little"
         much_tasks: "much"
         tag_mark: "Tagged date"
+      edit:
+        heading: "My Profile Edit"
+        initialize: "Initialize the profile image"
+    tasks:
+      new:
+        heading: "Add my tasks"
+        note: "Note: Tasks with the same name cannot be added."
+      index:
+        heading: "%{name}'s task list"
+        note: "Note: When you delete a task, the data that measured the task will be deleted as well."
+        no_tasks: "No tasks are added."
+        content: "Task Content"
+      edit:
+        heading: "Edit task"
+        initialize: "Initialize the icon image"
 
 
     #モデルで使う言葉
     activerecord:
       attributes:
+        user:
+          name: Name
+          profile_image: Profile image
         task:
           content: content
-          icon_image: icon_image
+          icon_image: icon image
         working_task:
           started_at: started_at
           stopped_at: stopped_at
