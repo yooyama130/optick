@@ -43,7 +43,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <div class="d-flex align-items-center mr-5"><b>ようこそ、<%= current_user.name %>さん！</b></div>
+                <div class="d-flex align-items-center mr-5"><b><%= t("layouts.application.hello") % {name: current_user.name } %></b></div>
                 <li class = "d-flex align-items-center"><%= link_to 'Mypage', user_path(current_user.id), class:"nav-link text-dark font-weight-bold mr-3 mb-1"%></li>
                 <li class = "d-flex align-items-center"><%= link_to "About", about_path, class:"nav-link text-dark font-weight-bold mr-3 mb-1" %></li>
                 <li class = "d-flex align-items-center"><%= link_to "HowToUse", how_to_use_path, class: "nav-link text-dark font-weight-bold mr-3 mb-1" %></li>

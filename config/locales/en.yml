@@ -33,21 +33,22 @@ en:
     # 日付・時間で使う
     date:
       formats:
-        default: "%B, %d, %Y"
+        default: "%B %d, %Y"
 
     #ビューで使う言葉
     layouts:
       application:
+        hello: "hello, %{name}"
         update_log: "Update Log"
     devise:
       click_here: "click here"
       sessions:
         log_in: "Log in"
-        not_yet_register: "If you haven't yet register,"
+        not_yet_signed_up: "If you haven't yet signed up,"
       registrations:
-        registration: "Registration"
+        sign_up: "Sign up"
         more_than: "more than %{count} characters"
-        already_register: "If you have already register,"
+        already_signed_up: "If you have already signed up,"
     homes:
       top:
         explanation1: "This site allows you to track the time you spend on daily routines, learning and other tasks,"
@@ -56,28 +57,28 @@ en:
         sub-heading1: "Track your time and enjoy your life!"
         sub-heading2: "Available from your smartphone or computer!"
         to_login: "Go to Log In"
-        to_register: "Go to Register"
+        to_register: "Go to Sign Up"
       about:
         heading: "3 Features of 'Optick'"
         feature1-heading: "① You can check the amount of tasks in the calendar."
         feature1-1: "You can see how you tried daily tasks through the calendar."
-        feature1-2: "You can also look back at amount of your tasks per month easily by using a wide range of date searches."
-        feature2-heading: "② You can check your daily routines through variety of graphs."
-        feature2-1: "Displayed daily tasks in doughnut graph, and display the task time so far in a line graph. "
+        feature1-2: "You can also look back at the amount of your tasks per month easily by using a wide range of date searches."
+        feature2-heading: "② You can check your daily routines through a variety of graphs."
+        feature2-1: "'Optick' displays daily tasks in a doughnut graph, and displays the task time so far in a line graph. "
         feature2-2: "Let's try other graphs, like taking averages!"
-        feature3-heading: "③ Optick is not for daily life work, but also for your study and office work."
+        feature3-heading: "③ Optick is not for a life work, but also for your study and office work."
         feature3-1: "It can be used to manage your time for study and work, as well as to prevent overuse of time for entertainment and other activities."
         feature3-2: "You can upload icons for tasks freely. Enjoy creating your original task management service! "
       how_to_use:
         heading: "How To Use 'Optick'"
-        use1-heading: "Record the task"
-        use1-1: "① Click 'Create a task', after moving to 'Mypage'."
-        use1-2: "② Enter information of the task, and create the task."
-        use1-3: "③ After you create tasks, click 'Measure task time'."
-        use1-4: "④ Select one of the tasks you have registered and start measuring. While you are taking measurements, the task being measured will be displayed in My Page. You can click on it to stop the measurement "
-        use2-heading: "Use calendar"
+        use1-heading: "Measure the task time"
+        use1-1: "① Click 'Add your tasks', after moving to your page."
+        use1-2: "② Enter information of the task, and add the task."
+        use1-3: "③ After you add some tasks, click 'Measure the task time'."
+        use1-4: "④ Select one of the tasks you have added and start measuring. While you are taking measurements, the task being measured will be displayed in My Page. You can click on it to stop the measurement "
+        use2-heading: "Use the calendar"
         use2-1: "① Click on the calendar to view and edit the tasks for the day."
-        use2-2: "② You can also 'tag the calendar' to use it to add appointments to the calendar, or use it with %{use3}."
+        use2-2: "② You can also 'Tag the calendar' to use it to add appointments to the calendar, or use it with %{use3}."
         use2-3: "③ The calendar will have a color for each time you perform a task. The correspondence between the color and the time is as follows"
         time0: "Do nothing"
         time1: "less than 1 hour"
@@ -86,10 +87,34 @@ en:
         time4: "3 hour to less than 4 hours"
         time5: "more than 4 hours"
         use3-heading: "Aggregate with graphs"
-        use3-1: "① Click on 'Explore Recorded Tasks' to see the total time and average time of your tasks so far, as well as the change in task time from day to day."
+        use3-1: "① Click on 'Aggerate measured tasks' to see the total time and average time of your tasks so far, as well as the change in task time from day to day."
         use3-2: "② You specify the date range to be aggregated, and if necessary, specify tags and tasks to be aggregated."
         use3-3: "③ If a tag is specified, only the area within the specified tag can be aggregated."
         use3-4: "<e.g.> If you specify the period from January 1 to January 31, and then specify the tag 'busy period' (January 12-14, January 19-21), you will be able to aggregate only for the 'busy period'."
+    users:
+      show:
+        heading: "%{name}'s page"
+        name: "Name"
+        last_log_in: "Last login date"
+        update_account_info: "Update your information"
+        add_tasks: "Add your tasks"
+        view_tasks: "View the list of your tasks"
+        measure_tasks: "Measure the task time"
+        aggerate_tasks: "Aggerate measured tasks"
+        tasks_being_measured: "Tasks being measured"
+        no_tasks_being_measured: "There are no tasks currently being measured."
+        started_at: "started_at"
+        todays_tasks: "Today's tasks"
+        note_for_graph_red: "If the graph doesn't display properly, please reload the page."
+        note_for_graph: "Note: The unit is 'seconds'."
+        no_todays_tasks: "No tasks are performed today"
+        note_for_calendar: "Click on a date to jump to the task list for that day"
+        view_todays_tasks: "View today's tasks"
+        tag_the_calendar: "Tag the calendar"
+        little_tasks: "little"
+        much_tasks: "much"
+        tag_mark: "Tagged date"
+
 
     #モデルで使う言葉
     activerecord:

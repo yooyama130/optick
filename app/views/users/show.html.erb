@@ -1,7 +1,7 @@
 <div class = "container bg-light my-2 py-3">
   <div class = "row">
     <div class = "col-md-12">
-      <h2><%= @user.name %> さんのマイページ</h2>
+      <h2><%= t("users.show.heading") % {name: @user.name} %></h2>
     </div>
   </div>
   <div class = "row">
@@ -12,25 +12,25 @@
         <%= attachment_image_tag @user, :profile_image, :fill, 120, 120, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class:"d-block mx-auto mb-1" %>
         <table class = "table mb-1" style = "font-size: 14px">
           <tr>
-            <th>名前</th>
+            <th><%= t("users.show.name") %></th>
             <td><%= @user.name %></td>
           </tr>
           <tr>
-            <th>前回ログイン日</th>
-            <td><%= @user.last_sign_in_at.strftime('%Y/%m/%d') %></td>
+            <th><%= t("users.show.last_log_in") %></th>
+            <td><%= l(@user.last_sign_in_at.to_date) %></td>
           </tr>
         </table>
         <%= link_to edit_user_path(@user) do %>
-          <button type="button" class="btn btn-info d-block mx-auto"><i class="fas fa-user-cog"></i>アカウント情報変更</button>
+          <button type="button" class="btn btn-info d-block mx-auto"><i class="fas fa-user-cog"></i><%= t("users.show.update_account_info") %></button>
         <% end %>
       </div>
       <!--タスク登録・タスク編集画面へ-->
       <div class = "my-2 py-1 text-center">
         <%= link_to new_user_task_path(current_user) do %>
-          <p style = "font-size: 18px"><i class="fas fa-plus-circle"></i>タスクを登録する</p>
+          <p style = "font-size: 18px"><i class="fas fa-plus-circle"></i><%= t("users.show.add_tasks") %></p>
         <% end %>
         <%= link_to user_tasks_path(current_user) do %>
-          <p style = "font-size: 18px"><i class="fas fa-list-alt"></i>登録タスク一覧へ</p>
+          <p style = "font-size: 18px"><i class="fas fa-list-alt"></i><%= t("users.show.view_tasks") %></p>
         <% end %>
       </div>
       <!--タスク計測画面へ-->
@@ -38,7 +38,7 @@
         <%= link_to new_user_working_task_path(current_user)  do %>
           <button type="button" class="btn btn-warning btn-lg px-5" style = "border: thick double; border-color: saddlebrown; color: saddlebrown; background-color: #ffcc00">
             <i class="fas fa-stopwatch" style = "font-size: 2rem;"></i>
-            <p class = "h6">タスク時間を計測する</p>
+            <p class = "h6"><%= t("users.show.measure_tasks") %></p>
             </button>
         <% end %>
       </div>
@@ -47,7 +47,7 @@
         <%= link_to user_search_path(current_user)  do %>
           <button type="button" class="btn btn-success btn-lg px-5" style = "border: thick double; border-color: darkgreen; color: darkgreen; background-color: springgreen">
             <i class="far fa-chart-bar" style = "font-size: 2rem;"></i>
-            <p class = "h6">記録済みタスクを調べる</p>
+            <p class = "h6"><%= t("users.show.aggerate_tasks") %></p>
             </button>
         <% end %>
       </div>
@@ -56,16 +56,16 @@
     <div class = "col-md-8">
       <!--計測中のタスク-->
       <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">計測中のタスク</h4>
+        <h4 class = "border-bottom border-1 border-info"><%= t("users.show.tasks_being_measured") %></h4>
           <div class = "row">
             <div class = "col-11 mx-auto my-2">
               <% if @working_tasks_measuring.blank? %>
-                <p class = "text-secondary text-center">現在計測中のタスクはありません</p>
+                <p class = "text-secondary text-center"><%= t("users.show.no_tasks_being_measured") %></p>
               <% else %>
                 <ul>
                   <% @working_tasks_measuring.each do |working_task| %>
                     <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
-                      <li><%= "#{working_task.task.content}　開始時刻: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
+                      <li><%= "#{working_task.task.content}　#{t("users.show.started_at")}: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
                     <% end %>
                   <% end %>
                 </ul>
@@ -75,24 +75,24 @@
       </div>
       <!--今日のタスク-->
       <div class = "my-2 py-1">
-        <h4 class = "border-bottom border-1 border-info">今日のタスク</h4>
+        <h4 class = "border-bottom border-1 border-info"><%= t("users.show.todays_tasks") %></h4>
         <div class = "row">
           <div class = "col-md-12">
-            <p class = "text-center my-1 text-danger" style = "font-size: 13px">グラフが上手く表示されない場合は一度ページを再読み込みしてみて下さい</p>
+            <p class = "text-center my-1 text-danger" style = "font-size: 13px"><%= t("users.show.note_for_graph_red") %></p>
           </div>
           <div class = "col-md-6">
             <!--グラフ-->
             <% if @todays_working_tasks.blank? %>
               <%= image_tag asset_path("no_doughnut_table.png", alt: "gray-doughnut"), class: "d-inline-block", style: "width: 100%;" %>
             <% else %>
-              <p class = "text-center mb-0" style = "font-size: 14px">＜注意＞単位は『秒』です</p>
+              <p class = "text-center mb-0" style = "font-size: 14px"><%= t("users.show.note_for_graph") %></p>
               <canvas id="myDoughnutChart" width="400" height="400"></canvas>
               <script>draw_graph_doughnut();</script>
             <% end %>
           </div>
           <div class = "col-md-5">
             <% if @todays_working_tasks.blank? %>
-              <p class = "text-secondary text-center" style = "margin: 3rem 0rem">今日のタスクはありません</p>
+              <p class = "text-secondary text-center" style = "margin: 3rem 0rem"><%= t("users.show.no_todays_tasks") %></p>
             <% else %>
               <!-- 1. task_idごとにまとめられたタスクを１つずつ表示し、-->
               <% @todays_working_tasks_grouped.each do |working_task| %>
@@ -112,12 +112,12 @@
       </div>
       <!--カレンダー-->
       <div class = "my-2 py-1">
-        <p class = "mb-1" style = "font-size: 13px">▼日付をクリックするとその日のタスク一覧に飛べます</p>
+        <p class = "mb-1" style = "font-size: 13px">▼<%= t("users.show.note_for_calendar") %></p>
         <%= link_to user_working_tasks_path(@user, Time.current) do %>
-          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i>今日のタスク一覧を見る</p>
+          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i><%= t("users.show.view_todays_tasks") %></p>
         <% end %>
         <%= link_to new_user_event_path(@user) do %>
-          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i>カレンダーにタグ付けをする</p>
+          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i><%= t("users.show.tag_the_calendar") %></p>
         <% end %>
         <!--カレンダー本体-->
         <div class = "calendar">
@@ -126,7 +126,7 @@
         <!--カレンダーについているアイコン等の説明-->
         <div class = "calendar-explanation my-1">
           <div class = "explanation">
-            <p class = "d-inline" style = "font-size: 16px">タスク少</p>
+            <p class = "d-inline" style = "font-size: 16px"><%= t("users.show.little_tasks") %></p>
             <div class = "d-inline">
               <div class = "d-inline-block task_amount_0" style = "width: 7%; height: 20px;"></div>
               <div class = "d-inline-block task_amount_1" style = "width: 7%; height: 20px;"></div>
@@ -135,10 +135,10 @@
               <div class = "d-inline-block task_amount_4" style = "width: 7%; height: 20px;"></div>
               <div class = "d-inline-block task_amount_5" style = "width: 7%; height: 20px;"></div>
             </div>
-            <p class = "d-inline" style = "font-size: 16px">タスク多</p>
+            <p class = "d-inline" style = "font-size: 16px"><%= t("users.show.much_tasks") %></p>
           </div>
           <div class = "explanation">
-            <p class = "d-inline" style = "font-size: 16px"><div class = "tag_present_mark"></div>・・・タグ付けあり</p>
+            <p class = "d-inline" style = "font-size: 16px"><div class = "tag_present_mark"></div>・・・<%= t("users.show.tag_mark") %></p>
           </div>
         </div>
       </div>

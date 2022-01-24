@@ -7,16 +7,17 @@
     #ビューで使う言葉
     layouts:
       application:
+        hello: "ようこそ、%{name}さん"
         update_log: "更新履歴"
     devise:
       click_here: "こちら"
       sessions:
         log_in: "ログイン画面"
-        not_yet_register: "新規登録がお済みでない方は"
+        not_yet_signed_up: "新規登録がお済みでない方は"
       registrations:
-        registration: "新規登録画面"
+        sign_up: "新規登録画面"
         more_than: "%{count}文字以上"
-        already_register: "登録済みの方は"
+        already_signed_up: "登録済みの方は"
     homes:
       top:
         explanation1: "このサイトは日々の日課、学習などのタスクに費やす時間を記録し"
@@ -46,7 +47,7 @@
         use1-4: "④登録したタスクの中から選択すれば、計測を開始できます。計測中もマイページにて、計測中のタスクが表示されているのでクリックしてすぐに計測を止めにいくことも出来ます。"
         use2-heading: "カレンダーを使う"
         use2-1: "①日々の記録の中で、カレンダーをクリックすると、その日のタスクの一覧・編集をすることが出来ます。"
-        use2-2: "②また「カレンダーにタグをつける」ことで、カレンダーに予定を登録することに使えたり、%{use3}で使用したり出来ます。"
+        use2-2: "②また「カレンダーにタグをつける」ことで、カレンダーに予定を登録することに使えたり、%{use3} で使用したり出来ます。"
         use2-3: "③カレンダーには、タスクを行った時間ごとに、色が付きます。色と時間の対応は以下の通りです。"
         time0: "0分"
         time1: "0分～1時間未満"
@@ -59,6 +60,29 @@
         use3-2: "②画面では、集計する日付範囲を指定し、必要ならばタグやタスクの指定をし、集計できます。"
         use3-3: "③タグの指定をすると、指定した範囲の中でさらに、タグの範囲だけを集計することができます。"
         use3-4: "＜例＞1月1日～1月31日を指定し、その中でタグ「繁忙期」（1月12日～14日、1月19日～21日）を指定すると、「繁忙期」期間のみ集計を行うことが出来ます。"
+    users:
+      show:
+        heading: "%{name}さんのマイページ"
+        name: "名前"
+        last_log_in: "前回ログイン日"
+        update_account_info: "アカウント情報変更"
+        add_tasks: "タスクを登録する"
+        view_tasks: "登録タスク一覧へ"
+        measure_tasks: "タスク時間を計測する"
+        aggerate_tasks: "記録済みタスクを調べる"
+        tasks_being_measured: "計測中のタスク"
+        no_tasks_being_measured: "現在計測中のタスクはありません"
+        started_at: "開始時刻"
+        todays_tasks: "今日のタスク"
+        note_for_graph_red: "グラフが上手く表示されない場合は一度ページを再読み込みしてみて下さい"
+        note_for_graph: "＜注意＞単位は『秒』です"
+        no_todays_tasks: "今日のタスクはありません"
+        note_for_calendar: "日付をクリックするとその日のタスク一覧に飛べます"
+        view_todays_tasks: "今日のタスク一覧を見る"
+        tag_the_calendar: "カレンダーにタグ付けする"
+        little_tasks: "タスク少"
+        much_tasks: "タスク多"
+        tag_mark: "タグ付けあり"
 
     #モデルで使う言葉
     activerecord:
