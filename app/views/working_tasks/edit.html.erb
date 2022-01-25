@@ -26,6 +26,8 @@
             <p class = "text-danger"><%= @working_task.errors.full_messages_for(:stopped_at).first %>
           <% end %>
         </div>
+        <!--終了時刻時刻が開始時刻より前に来ていた場合のエラーメッセージ-->
+        <p class = "text-danger"><%= flash[:datetime_range_error] %></p>
         <%= f.submit %>
       <% end %>
     </div>

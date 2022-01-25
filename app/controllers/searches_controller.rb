@@ -27,7 +27,7 @@ class SearchesController < ApplicationController
       @my_tasks = @user.tasks.all
       @my_working_tasks = @user.working_tasks.all
       @my_events = @user.events.all
-      flash[:search_error] = t("flash.search_error")
+      flash.now[:search_error] = t("flash.search_error")
       render 'search'
     else
       # ！！！検索開始！！！

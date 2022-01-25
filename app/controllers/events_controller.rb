@@ -15,8 +15,8 @@ class EventsController < ApplicationController
     # 終了日が開始日より前の日付になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
     @start_date = event_params[:start_date].to_date
     @end_date = event_params[:end_date].to_date
-    if start_end_wrong?
-      flash[:range_error] =  t("flash.range_error")
+    if start_end_wrong?(@start_date, @end_date)
+      flash.now[:date_range_error] =  t("flash.date_range_error")
       @my_events = @user.events.all
       render 'new'
       return
@@ -42,8 +42,8 @@ class EventsController < ApplicationController
     # 終了日が開始日より前の日付になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
     @start_date = event_params[:start_date].to_date
     @end_date = event_params[:end_date].to_date
-    if start_end_wrong?
-      flash[:range_error] =  t("flash.range_error")
+    if start_end_wrong?(@start_date, @end_date)
+      flash.now[:date_range_error] =  t("flash.date_range_error")
       render 'edit'
       return
     end
@@ -67,8 +67,8 @@ class EventsController < ApplicationController
     params.require(:event).permit(:user_id, :name, :start_date, :end_date)
   end
 
-  def start_end_wrong?
+  def start_end_wrong?(start_date, end_date)
     # エラー内容：　きちんと開始日と終了日が送信されているが、「終了日が開始日より前の日付になっている」
-    @start_date.present? && @end_date.present? && @end_date < @start_date
+    start_date.present? && end_date.present? && end_date < start_date
   end
 end

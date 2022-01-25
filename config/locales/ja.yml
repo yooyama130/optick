@@ -12,7 +12,8 @@
     # フラッシュメッセージ
     flash:
         search_error: "日付範囲が正しく指定されていないか、日付範囲が80日間を超えています"
-        range_error: "日付範囲が正しく指定されていません"
+        date_range_error: "日付範囲が正しく指定されていません"
+        datetime_range_error: "終了時刻が開始時刻より前にあります"        
         
     #ビューで使う言葉
     layouts:

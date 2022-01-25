@@ -59,6 +59,14 @@ class WorkingTasksController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @working_task = WorkingTask.find(params[:id])
+    # 終了時刻が開始時刻より前の時刻になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
+    @started_at = working_task_params[:started_at].to_datetime
+    @stopped_at = working_task_params[:stopped_at].to_datetime
+    if start_end_wrong?(@started_at, @stopped_at)
+      flash.now[:datetime_range_error] =  t("flash.datetime_range_error")
+      render 'edit'
+      return
+    end
     if @working_task.update(working_task_params)
       # 経過時間を更新
       @working_task.update(working_time: (@working_task.stopped_at - @working_task.started_at))
@@ -81,5 +89,10 @@ class WorkingTasksController < ApplicationController
 
   def working_task_params
     params.require(:working_task).permit(:started_at, :stopped_at)
+  end
+
+  def start_end_wrong?(started_at, stopped_at)
+    # エラー内容：　きちんと開始時刻と終了時刻が送信されているが、「終了時刻が開始時刻より前の時刻になっている」
+    started_at.present? && stopped_at.present? && stopped_at < started_at
   end
 end

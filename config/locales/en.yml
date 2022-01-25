@@ -43,7 +43,8 @@ en:
     # フラッシュメッセージ
     flash:
         search_error: "The date range is incorrect, or the date range is longer than 80 days."
-        range_error: "The date range is incorrect."
+        date_range_error: "The date range is incorrect."
+        datetime_range_error: "The end time is before the start time."
 
     #ビューで使う言葉
     layouts:
@@ -197,7 +198,7 @@ en:
     #モデルで使う言葉
     activerecord:
       models:
-      
+
         event: Tag
       attributes:
         user:
