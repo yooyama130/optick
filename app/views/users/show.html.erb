@@ -101,7 +101,7 @@
                     <td style = "width: 50%"><%= working_task.task.content %></td>
                     <td style = "width: 50%">
                       <!--2. 4つ目のセルに「タスクごとの経過時間のみを抽出し、合計したもの」をxx:yy:zzという形式で表示-->
-                      <%= Time.at(@todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum).strftime('%X') %>
+                      <%= working_task.int_to_time(@todays_working_tasks.where(task_id: working_task.task_id).pluck(:working_time).sum) %>
                     </td>
                   </tr>
                 </table>

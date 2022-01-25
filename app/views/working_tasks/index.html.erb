@@ -42,7 +42,7 @@
                     <p class = "my-0" style= "font-size: 6px"><%= "（#{working_task.stopped_at.strftime('%Y/%m/%d')}）" if working_task.stopped_at.to_date != @date %></p>
                   </td>
                   <td>
-                    <%= Time.at(working_task.working_time.floor).strftime('%X') %>
+                    <%= working_task.int_to_time(working_task.working_time.floor) %>
                   </td>
                   <td>
                     <%= link_to edit_user_working_task_path(@user, working_task) do %>
