@@ -122,6 +122,8 @@ en:
         note_for_calendar: "Click on a date to jump to the task list for that day"
         view_todays_tasks: "View today's tasks"
         tag_the_calendar: "Tag the calendar"
+        filter_the_task: "Filter the task"
+        filter: "Filter"
         little_tasks: "little"
         much_tasks: "much"
         tag_mark: "Tagged date"
@@ -183,7 +185,7 @@ en:
         search_type1: "View the total time (to a bar graph)"
         search_type2: "View the average time (to a bar graph)"
         search_type3: "View the transition of task time (to a line graph)"
-        search_button: "search"
+        search_button: "Search"
       result:
         heading: "Search Result"
         no_result: "No task datas were found that match your search criteria."

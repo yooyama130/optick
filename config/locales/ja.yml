@@ -13,8 +13,8 @@
     flash:
         search_error: "日付範囲が正しく指定されていないか、日付範囲が80日間を超えています"
         date_range_error: "日付範囲が正しく指定されていません"
-        datetime_range_error: "終了時刻が開始時刻より前にあります"        
-        
+        datetime_range_error: "終了時刻が開始時刻より前にあります"
+
     #ビューで使う言葉
     layouts:
       application:
@@ -91,6 +91,8 @@
         note_for_calendar: "日付をクリックするとその日のタスク一覧に飛べます"
         view_todays_tasks: "今日のタスク一覧を見る"
         tag_the_calendar: "カレンダーにタグ付けする"
+        filter_the_task: "タスクを絞り込む"
+        filter: "絞り込み"        
         little_tasks: "タスク少"
         much_tasks: "タスク多"
         tag_mark: "タグ付けあり"

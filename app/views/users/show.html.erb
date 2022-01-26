@@ -114,10 +114,16 @@
       <div class = "my-2 py-1">
         <p class = "mb-1" style = "font-size: 13px">▼<%= t("users.show.note_for_calendar") %></p>
         <%= link_to user_working_tasks_path(@user, Time.current) do %>
-          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i><%= t("users.show.view_todays_tasks") %></p>
+          <p class = "d-inline-block mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i><%= t("users.show.view_todays_tasks") %></p><br>
         <% end %>
         <%= link_to new_user_event_path(@user) do %>
-          <p class = "mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i><%= t("users.show.tag_the_calendar") %></p>
+          <p class = "d-inline-block  mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i><%= t("users.show.tag_the_calendar") %></p><br>
+        <% end %>
+        <!--タスク絞り込みフォーム-->
+        <%= form_with url: user_path(@user), method: :get, remote: true do |f| %>
+          <p class = "d-inline-block mb-1" style = "font-size: 16px"><%= t("users.show.filter_the_task") %></p>
+          <%= f.select :task_filtered, @my_tasks.pluck(:content) , include_blank: " - " %>
+          <%= f.submit t("users.show.filter") %>
         <% end %>
         <!--カレンダー本体-->
         <div class = "calendar">

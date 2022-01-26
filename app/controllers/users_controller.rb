@@ -15,7 +15,14 @@ class UsersController < ApplicationController
     @working_tasks_measuring = @user.working_tasks.where(being_measured?: true)
 
     # カレンダー用 ここから----------------------------------------------------------------
-    @my_working_tasks = @user.working_tasks.all
+    @my_tasks = @user.tasks.all
+    # タスクのフィルタリングがあれば指定されたものだけ。なければ全て取得
+    if params[:task_filtered].present?
+      task_filtered = Task.find_by(content: params[:task_filtered])
+      @my_working_tasks = @user.working_tasks.where(task_id: task_filtered.id)
+    else
+      @my_working_tasks = @user.working_tasks.all
+    end
     @my_events = @user.events.all
     # カレンダー用 ここまで----------------------------------------------------------------
 
