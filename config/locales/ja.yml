@@ -156,7 +156,7 @@
         task_blank: "（全て）"
         search_type: "検索形式を選択して下さい:　"
         search_type1: "合計時間を見る（棒グラフ）"
-        search_type2: "平均時間を見る（棒グラフ）"
+        search_type2: "一日の平均時間を見る（棒グラフ）"
         search_type3: "時間の推移を見る（折れ線グラフ）"
         search_button: "検索"
       result:

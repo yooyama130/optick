@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @start_date = event_params[:start_date].to_date
     @end_date = event_params[:end_date].to_date
     if start_end_wrong?(@start_date, @end_date)
-      flash.now[:date_range_error] =  t("flash.date_range_error")
+      flash.now[:date_range_error] = t("flash.date_range_error")
       @my_events = @user.events.all
       render 'new'
       return
@@ -43,7 +43,7 @@ class EventsController < ApplicationController
     @start_date = event_params[:start_date].to_date
     @end_date = event_params[:end_date].to_date
     if start_end_wrong?(@start_date, @end_date)
-      flash.now[:date_range_error] =  t("flash.date_range_error")
+      flash.now[:date_range_error] = t("flash.date_range_error")
       render 'edit'
       return
     end

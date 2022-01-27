@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     if !session[:locale].nil?
       # セッション変数ががnilでないときには、クラス変数に代入して都度更新する。
-	    @@locale = session[:locale]
+      @@locale = session[:locale]
     else
       # セッション変数がnilのときには、セッション変数にクラス変数（前回代入されたもの）を入れてあげる。
       session[:locale] = @@locale

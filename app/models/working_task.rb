@@ -14,7 +14,7 @@ class WorkingTask < ApplicationRecord
   # 1桁を2桁にする（stringとして扱う)
   def zero_for_digits(int)
     if int < 10
-      return "0"+ int.to_s
+      return "0" + int.to_s
     end
     int.to_s
   end
@@ -24,12 +24,12 @@ class WorkingTask < ApplicationRecord
     hour = 0
     min = 0
     sec = 0
-    while int >= 3600 do
+    while int >= 3600
       # 1時間 = 3600秒 ---> 3600を引いた回数を時間hourとして出す
       int  -= 3600
       hour += 1
     end
-    while int >= 60 do
+    while int >= 60
       # 1分 = 60秒 ---> 60を引いた回数を分minとして出す
       int  -= 60
       min += 1
@@ -82,7 +82,7 @@ class WorkingTask < ApplicationRecord
       # タスクの種類だけ処理を繰り返す。
       # labels（横軸）は、タスクの名前。data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる。（60で割って、分単位にする。秒も見たいので小数化）
       labels << grouped.task.content
-      data << (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / 60.to_f).round(2)
+      data << (working_tasks.where(task_id: grouped.task_id).sum(:working_time) / 60.to_f).round(2)
     end
   end
 
@@ -95,7 +95,7 @@ class WorkingTask < ApplicationRecord
       # labels（横軸）は、タスクの名前。
       # data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『平均』を入れる。（60で割って、分単位にする。秒も見たいので小数化）
       labels << grouped.task.content
-      data << (working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum / working_tasks.where(task_id: grouped.task_id).pluck(:working_time).length / 60.to_f).round(2)
+      data << (working_tasks.where(task_id: grouped.task_id).average(:working_time) / 60.to_f).round(2)
     end
   end
 
@@ -107,7 +107,7 @@ class WorkingTask < ApplicationRecord
       # タスクの種類だけ処理を繰り返す。
       # labels（データの名前）にはタスクの名前を入れる。data（データの量・割合）にはタスクの種類ごとのworking_timeの『合計』を入れる（秒単位のまま）
       labels << grouped.task.content
-      data << working_tasks.where(task_id: grouped.task_id).pluck(:working_time).sum
+      data << working_tasks.where(task_id: grouped.task_id).sum(:working_time)
     end
   end
 
@@ -121,8 +121,8 @@ class WorkingTask < ApplicationRecord
       # まず、working_timesを定義・初期化する
       working_times = []
       labels.each do |date|
-        # 日付がある分だけ、「その日のタスクの実働時間の合計」を取り出していく（60で割って、分単位にする。秒も見たいので小数化）
-        working_times << (working_tasks.where(task_id: grouped.task_id, started_at: date.all_day).pluck(:working_time).sum / 60.to_f).round(2)
+        # 日付がある分だけ、「その日のタスクの実働時間の合計」を取り出して、配列に入れていく（60で割って、分単位にする。秒も見たいので小数化）
+        working_times << (working_tasks.where(task_id: grouped.task_id, started_at: date.all_day).sum(:working_time) / 60.to_f).round(2)
       end
       # それが終わったら、labelにタスク名を入れる。data（縦軸）にはタスクの種類ごとのworking_timeを計算するための『合計』を入れる
       datasets << { label: grouped.task.content, data: working_times }

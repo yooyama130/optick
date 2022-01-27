@@ -63,7 +63,7 @@ class WorkingTasksController < ApplicationController
     @started_at = working_task_params[:started_at].to_datetime
     @stopped_at = working_task_params[:stopped_at].to_datetime
     if start_end_wrong?(@started_at, @stopped_at)
-      flash.now[:datetime_range_error] =  t("flash.datetime_range_error")
+      flash.now[:datetime_range_error] = t("flash.datetime_range_error")
       render 'edit'
       return
     end

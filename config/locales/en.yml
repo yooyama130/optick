@@ -187,7 +187,7 @@ en:
         task_blank: "（All）"
         search_type: "Select seach type:　"
         search_type1: "View the total time (to a bar graph)"
-        search_type2: "View the average time (to a bar graph)"
+        search_type2: "View the average time per day (to a bar graph)"
         search_type3: "View the transition of task time (to a line graph)"
         search_button: "Search"
       result:
