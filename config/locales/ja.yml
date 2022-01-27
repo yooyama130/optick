@@ -92,7 +92,7 @@
         view_todays_tasks: "今日のタスク一覧を見る"
         tag_the_calendar: "カレンダーにタグ付けする"
         filter_the_task: "タスクを絞り込む"
-        filter: "絞り込み"        
+        filter: "絞り込み"
         little_tasks: "タスク少"
         much_tasks: "タスク多"
         tag_mark: "タグ付けあり"
@@ -107,6 +107,7 @@
         heading: "%{name}さんの登録タスク一覧"
         note: "＜注意＞登録したタスクを削除すると、そのタスクを計測したデータも一緒に削除されます。"
         no_tasks: "登録しているタスクはありません。"
+        search_button: "検索"
         content: "タスク内容"
       edit:
         heading: "タスクの編集"

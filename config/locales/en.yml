@@ -138,6 +138,7 @@ en:
         heading: "%{name}'s task list"
         note: "Note: When you delete a task, the data that measured the task will be deleted as well."
         no_tasks: "No tasks are added."
+        search_button: "Search"
         content: "Task Content"
       edit:
         heading: "Edit the task"

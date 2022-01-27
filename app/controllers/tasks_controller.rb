@@ -5,7 +5,13 @@ class TasksController < ApplicationController
     @user = User.find(params[:user_id])
     # ユーザーが一致しなければ、自分のマイページに戻る
     redirect_to user_path(current_user) unless @user == current_user
-    @my_tasks = @user.tasks.all
+    # 検索キーワードがあれば、あいまい検索で取得してくる
+    keyword = params[:keyword]
+    if keyword.present?
+      @my_tasks = @user.tasks.where("content LIKE ?", "%#{keyword}%")
+    else
+      @my_tasks = @user.tasks.all
+    end
   end
 
   def new
