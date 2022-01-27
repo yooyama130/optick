@@ -25,7 +25,7 @@
             <%= image_tag asset_path("logo.PNG", alt: "logo"), class: "navbar-brand", style: "height: 55px" %>
           <% end %>
           <!--日英切り替え-->
-          <div class = "locale-select mx-3">
+          <div class = "locale-select">
             <% if session[:locale] == "en" || session[:locale].blank? %>
               <%= link_to "/change_language/ja", class: "text-dark text-decoration-none" do %>
                日本語<%= image_tag asset_path("flag_ja.png", alt: "flag_ja"), class: "d-inline-block mx-1", style: "width: 30px;" %>

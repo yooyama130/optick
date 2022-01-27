@@ -51,6 +51,9 @@ en:
       application:
         hello: "Hello! %{name}!"
         update_log: "Update Log"
+    simple_calendar:
+      previous: "Previous"
+      next: "Next"
     devise:
       click_here: "click here"
       sessions:

@@ -20,6 +20,9 @@
       application:
         hello: "ようこそ、%{name}さん"
         update_log: "更新履歴"
+    simple_calendar:
+      previous: "前へ"
+      next: "次へ"
     devise:
       click_here: "こちら"
       sessions:
