@@ -20,12 +20,14 @@
       </p>
       <h2 class = "mt-4"><%= t("homes.top.sub-heading1") %></h2>
       <h2 class = "mt-4"><%= t("homes.top.sub-heading2") %></h2>
-      <%= link_to new_user_session_path do %>
-        <button type="button" class="mt-5 d-block w-75 mx-auto btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i><%= t("homes.top.to_login") %></button>
-      <% end %>
-      <%= link_to new_user_registration_path do %>
-        <button type="button" class="mt-5 d-block w-75 mx-auto btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i><%= t("homes.top.to_register") %></button>
-      <% end %>
+      <div class = "links text-center">
+        <%= link_to new_user_session_path do %>
+          <button type="button" class="mt-5 d-inline-block w-75 btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i><%= t("homes.top.to_login") %></button>
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+          <button type="button" class="mt-5 d-inline-block w-75 btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-right"></i><%= t("homes.top.to_register") %></button>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

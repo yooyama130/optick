@@ -26,12 +26,16 @@
       </div>
       <!--タスク登録・タスク編集画面へ-->
       <div class = "my-2 py-1 text-center">
-        <%= link_to new_user_task_path(current_user) do %>
-          <p style = "font-size: 18px"><i class="fas fa-plus-circle"></i><%= t("users.show.add_tasks") %></p>
-        <% end %>
-        <%= link_to user_tasks_path(current_user) do %>
-          <p style = "font-size: 18px"><i class="fas fa-list-alt"></i><%= t("users.show.view_tasks") %></p>
-        <% end %>
+        <div class = "link mb-3 text-center">
+          <%= link_to new_user_task_path(current_user) do %>
+            <p class = "d-inline" style = "font-size: 18px"><i class="fas fa-plus-circle"></i><%= t("users.show.add_tasks") %></p>
+          <% end %>
+        </div>
+        <div class = "link mb-3 text-center">
+          <%= link_to user_tasks_path(current_user) do %>
+            <p class = "d-inline" style = "font-size: 18px"><i class="fas fa-list-alt"></i><%= t("users.show.view_tasks") %></p>
+          <% end %>
+        </div>
       </div>
       <!--タスク計測画面へ-->
       <div class = "my-2 py-1 text-center">
@@ -64,9 +68,11 @@
               <% else %>
                 <ul>
                   <% @working_tasks_measuring.each do |working_task| %>
-                    <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
-                      <li><%= "#{working_task.task.content}　#{t("users.show.started_at")}: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
-                    <% end %>
+                    <div class = "link mb-3">
+                      <%= link_to user_set_new_working_task_path(@user, working_task.task_id) do %>
+                        <li><%= "#{working_task.task.content}　#{t("users.show.started_at")}: #{working_task.started_at.strftime('%H:%M:%S')}" %></li>
+                      <% end %>
+                    </div>
                   <% end %>
                 </ul>
               <% end %>
@@ -113,15 +119,19 @@
       <!--カレンダー-->
       <div class = "my-2 py-1">
         <p class = "mb-1" style = "font-size: 13px">▼<%= t("users.show.note_for_calendar") %></p>
-        <%= link_to user_working_tasks_path(@user, Time.current) do %>
-          <p class = "d-inline-block mb-1" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i><%= t("users.show.view_todays_tasks") %></p><br>
-        <% end %>
-        <%= link_to new_user_event_path(@user) do %>
-          <p class = "d-inline-block  mb-1" style = "font-size: 16px"><i class="fas fa-wrench"></i><%= t("users.show.tag_the_calendar") %></p><br>
-        <% end %>
+        <div class = "link mb-2">
+          <%= link_to user_working_tasks_path(@user, Time.current) do %>
+            <p class = "d-inline" style = "font-size: 16px"><i class="fas fa-clipboard-list"></i><%= t("users.show.view_todays_tasks") %></p><br>
+          <% end %>
+        </div>
+        <div class = "link mb-2">
+          <%= link_to new_user_event_path(@user), class: "text-center" do %>
+            <p class = "d-inline" style = "font-size: 16px"><i class="fas fa-wrench"></i><%= t("users.show.tag_the_calendar") %></p><br>
+          <% end %>
+        </div>
         <!--タスク絞り込みフォーム-->
         <%= form_with url: user_path(@user), method: :get, remote: true do |f| %>
-          <p class = "d-inline-block mb-1" style = "font-size: 16px"><%= t("users.show.filter_the_task") %></p>
+          <p class = "d-inline-block mb-2" style = "font-size: 16px"><%= t("users.show.filter_the_task") %></p>
           <%= f.select :task_filtered, @my_tasks.pluck(:content) , include_blank: " - " %>
           <%= f.submit t("users.show.filter") %>
         <% end %>
