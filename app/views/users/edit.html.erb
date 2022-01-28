@@ -14,15 +14,6 @@
           <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class: "m-1" %>
           <p class = mb-1><%= link_to t("users.edit.initialize"), user_destroy_image_path(@user), method: :delete  if !(@user.profile_image_id == nil) %></p>
         </div>
-        <!--Eメールアドレス変更-->
-        <div class = "field mb-2">
-          <%= f.label :email %></br>
-          <%= f.text_field :email %>
-          <!--個別エラーメッセージ-->
-          <% if @user.errors.include?(:email) %>
-            <p class = "text-danger"><%= @user.errors.full_messages_for(:email).first %>
-          <% end %>
-        </div>
         <!--名前変更-->
         <div class = "field mb-2">
           <%= f.label :name %><em> (<%= t("limit.maximum_character") % {count: 15} %>)</br>
