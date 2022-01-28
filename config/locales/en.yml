@@ -45,6 +45,10 @@ en:
         search_error: "The date range is incorrect, or the date range is longer than 80 days."
         date_range_error: "The date range is incorrect."
         datetime_range_error: "The end time is before the start time."
+    # 制限用
+    limit:
+        maximum_character: "The maximum is %{count} characters"
+        minimum_character: "At least %{count} characters"
 
     #ビューで使う言葉
     layouts:
@@ -61,7 +65,6 @@ en:
         not_yet_signed_up: "If you haven't yet signed up,"
       registrations:
         sign_up: "Sign up"
-        more_than: "more than %{count} characters"
         already_signed_up: "If you have already signed up,"
     homes:
       top:

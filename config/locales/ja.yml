@@ -14,6 +14,10 @@
         search_error: "日付範囲が正しく指定されていないか、日付範囲が80日間を超えています"
         date_range_error: "日付範囲が正しく指定されていません"
         datetime_range_error: "終了時刻が開始時刻より前にあります"
+    # 制限用
+    limit:
+        maximum_character: "最大%{count}文字まで"
+        minimum_character: "%{count}文字以上"
 
     #ビューで使う言葉
     layouts:
@@ -30,7 +34,6 @@
         not_yet_signed_up: "新規登録がお済みでない方は"
       registrations:
         sign_up: "新規登録画面"
-        more_than: "%{count}文字以上"
         already_signed_up: "登録済みの方は"
     homes:
       top:

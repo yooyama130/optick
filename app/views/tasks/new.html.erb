@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-md-8">
+    <div class = "col-12">
       <p><strong><%= t("tasks.new.note") %></strong></p>
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
       <%= form_with model:[@user, @new_task], local: true do |f| %>
@@ -15,7 +15,7 @@
           <%= f.attachment_field :icon_image %>
         </div>
         <div class = "field mb-2">
-          <%= f.label :content %></br>
+          <%= f.label :content %><em> (<%= t("limit.maximum_character") % {count: 15} %>)</em></br>
           <%= f.text_field :content %>
           <!--個別エラーメッセージ-->
           <% if @new_task.errors.include?(:content) %>

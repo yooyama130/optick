@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   attachment :profile_image
 
-  validates :name, presence: true, length: { minimum: 3 }
+  validates :name, presence: true, length: { maximum: 15 }
 end

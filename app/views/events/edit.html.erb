@@ -5,12 +5,12 @@
     </div>
   </div>
   <div class = "row">
-    <div class = "col-8">
+    <div class = "col-12">
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
       <%= form_with model:[@user, @event], local: true do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <div class = "field mb-2">
-          <%= f.label :name %></br>
+          <%= f.label :name %><em> (<%= t("limit.maximum_character") % {count: 20} %>)</em></br>
           <%= f.text_field :name %>
           <!--個別エラーメッセージ-->
           <% if @event.errors.include?(:name) %>

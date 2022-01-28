@@ -4,5 +4,5 @@ class Task < ApplicationRecord
   attachment :icon_image
 
   # uniqueness: { scope: :user } = 一人のユーザーがタスクの名前に同じものを使えない
-  validates :content, presence: true, uniqueness: { scope: :user }
+  validates :content, presence: true, length: { maximum: 15 }, uniqueness: { scope: :user }
 end

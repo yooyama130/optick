@@ -10,7 +10,7 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <div class="field mb-2">
           <%= f.label :name %>
-          <em>(<%= t("devise.registrations.more_than") % {count: 3} %>)</em><br />
+          <em>(<%= t("limit.maximum_character") % {count: 15} %>)</em><br />
           <%= f.text_field :name, autofocus: true, class:"w-100" %>
           <!--個別エラーメッセージ-->
           <% if resource.errors.include?(:name) %>
@@ -30,7 +30,7 @@
         <div class="field mb-2">
           <%= f.label :password %>
           <% if @minimum_password_length %>
-          <em>(<%= t("devise.registrations.more_than") % {count: @minimum_password_length} %>)</em>
+          <em>(<%= t("limit.minimum_character") % {count: @minimum_password_length} %>)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class:"w-100" %>
           <!--個別エラーメッセージ-->
