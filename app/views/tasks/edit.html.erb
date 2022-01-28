@@ -11,7 +11,7 @@
         <!--画像変更・削除-->
         <div class = "field mb-2">
           <%= f.label :icon_image %></br>
-          <%= f.attachment_field :icon_image %>
+          <%= f.attachment_field :icon_image, class: "w-100" %>
           <%= attachment_image_tag @task, :icon_image, :fill, 50, 50, resize: "120×120", format: "png", class: "m-1" if !(@task.icon_image_id == nil) %>
           <p class = mb-1><%= link_to t("tasks.edit.initialize"), user_task_destroy_icon_path(@user, @task), method: :delete  if !(@task.icon_image_id == nil) %></p>
         </div>

@@ -10,9 +10,9 @@
       <!--ネストしているモデルに対しては、model: [xxx, yyy]と2つ記述する -->
       <%= form_with model:[@user, @new_task], local: true do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
-        <div class = "field mb-2">
+        <div class = "field w-100 mb-2">
           <%= f.label :icon_image %></br>
-          <%= f.attachment_field :icon_image %>
+          <%= f.attachment_field :icon_image, class: "w-100" %>
         </div>
         <div class = "field mb-2">
           <%= f.label :content %><em> (<%= t("limit.maximum_character") % {count: 15} %>)</em></br>

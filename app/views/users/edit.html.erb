@@ -10,7 +10,7 @@
         <!--画像変更・削除-->
         <div class = "field mb-2">
           <%= f.label :profile_image %></br>
-          <%= f.attachment_field :profile_image %>
+          <%= f.attachment_field :profile_image, class: "w-100" %>
           <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, resize: "120×120", fallback: "no_image.jpg", size:'120x120', class: "m-1" %>
           <p class = mb-1><%= link_to t("users.edit.initialize"), user_destroy_image_path(@user), method: :delete  if !(@user.profile_image_id == nil) %></p>
         </div>

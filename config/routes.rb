@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   get "/about", to: "homes#about"
   get "/how_to_use", to: "homes#how_to_use"
   get "/change_language/:language", to: "homes#change_language"
-  devise_for :users, skip: [:passwords]
+  # deviseは特定のルーティングのみ使用する
+  devise_for :users, only: :sessions
+  devise_scope :user do
+    get 'users/sign_up' => 'devise/registrations#new', as: :new_user_registration
+    post 'users' => 'devise/registrations#create', as: :user_registration
+  end
   resources :users, only: [:show, :edit, :update] do
     # ----------task------------------------------------
     resources :tasks, except: [:show]
