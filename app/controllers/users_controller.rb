@@ -55,6 +55,11 @@ class UsersController < ApplicationController
     redirect_to edit_user_path(user)
   end
 
+  # フォーム画面でエラーメッセージが出たときに更新するとエラー出るのを防止（route.rb参照）
+  def back_to_form
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def user_params

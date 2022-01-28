@@ -14,6 +14,11 @@ class TasksController < ApplicationController
     end
   end
 
+  # フォーム画面でエラーメッセージが出たときに更新するとエラー出るのを防止（route.rb参照）
+  def show
+    redirect_back(fallback_location: root_path)
+  end
+
   def new
     @user = User.find(params[:user_id])
     # ユーザーが一致しなければ、自分のマイページに戻る

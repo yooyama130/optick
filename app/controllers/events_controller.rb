@@ -1,6 +1,16 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
 
+  # フォーム画面でエラーメッセージが出たときに更新するとエラー出るのを防止（route.rb参照）
+  def index
+    redirect_back(fallback_location: root_path)
+  end
+
+    # フォーム画面でエラーメッセージが出たときに更新するとエラー出るのを防止（route.rb参照）
+  def show
+    redirect_back(fallback_location: root_path)
+  end
+
   def new
     @user = User.find(params[:user_id])
     # ユーザーが一致しなければ、自分のマイページに戻る

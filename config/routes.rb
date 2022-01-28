@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   devise_for :users, only: :sessions
   devise_scope :user do
     get 'users/sign_up' => 'devise/registrations#new', as: :new_user_registration
+    get 'users' => 'users#back_to_form' # リダイレクト用に使う（usersコントローラ参照）
     post 'users' => 'devise/registrations#create', as: :user_registration
   end
   resources :users, only: [:show, :edit, :update] do
     # ----------task------------------------------------
-    resources :tasks, except: [:show]
+    resources :tasks # showアクションは、表示させないがリダイレクト用に使う（tasksコントローラ参照）
     delete "tasks/:id/destroy_icon", to: "tasks#destroy_icon", as: "task_destroy_icon"
     # ----------working_task------------------------------------
     resources :working_tasks, except: [:index, :show, :create]
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
     get "/search/result", to: "searches#result", as: "search_result"
     # ----------events------------------------------------
     # カレンダータグ付け
-    resources :events, only: [:new, :create, :edit, :update, :destroy]
+    resources :events # index、showアクションは、表示させないがリダイレクト用に使う（eventsコントローラ参照）
   end
   delete "users/:id/destroy_icon", to: "users#destroy_image", as: "user_destroy_image"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
