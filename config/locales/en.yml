@@ -42,6 +42,7 @@ en:
         scrollable: "Note: You can scroll the table."
     # フラッシュメッセージ
     flash:
+        ensure_user: "You will not be able to see or change other users' pages."
         search_error: "The date range is incorrect, or the date range is longer than 80 days."
         date_range_error: "The date range is incorrect."
         datetime_range_error: "The end time is before the start time."

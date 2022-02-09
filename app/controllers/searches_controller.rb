@@ -3,8 +3,8 @@ class SearchesController < ApplicationController
 
   def search
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @my_tasks = @user.tasks.all
     @my_working_tasks = @user.working_tasks.all
     @my_events = @user.events.all
@@ -12,8 +12,8 @@ class SearchesController < ApplicationController
 
   def result
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     # フォームから送られてきた値を使用する（ここから）-----------------------------
     @date_range_start = params[:date_range_start].to_date
     @date_range_end = params[:date_range_end].to_date

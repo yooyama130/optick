@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
+  # ユーザーが一致しなければ、自分のマイページに戻る
+  def ensure_user(user)
+    if !(user == current_user)
+      flash[:ensure_user] = t('flash.ensure_user')
+      redirect_to user_path(current_user)
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

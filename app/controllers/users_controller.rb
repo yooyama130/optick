@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     # 開始日が今日のタスクを全て取得
     today = Time.current
     @todays_working_tasks = @user.working_tasks.where(being_measured?: false, started_at: today.all_day)
@@ -35,12 +35,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
   end
 
   def update
     @user = User.find(params[:id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -50,6 +52,8 @@ class UsersController < ApplicationController
 
   def destroy_image
     user = User.find(params[:id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(user)
     # 画像削除の方法は、画像idに nil を代入する
     user.update(profile_image_id: nil)
     redirect_to edit_user_path(user)

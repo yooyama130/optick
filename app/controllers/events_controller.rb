@@ -13,14 +13,16 @@ class EventsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @event = Event.new
     @my_events = @user.events.all
   end
 
   def create
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @event = Event.new(event_params)
     # 終了日が開始日より前の日付になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
     @start_date = event_params[:start_date].to_date
@@ -41,13 +43,15 @@ class EventsController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @event = Event.find(params[:id])
   end
 
   def update
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @event = Event.find(params[:id])
     # 終了日が開始日より前の日付になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
     @start_date = event_params[:start_date].to_date
@@ -65,7 +69,9 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    user = params[:user_id]
+    user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(user)
     event = Event.find(params[:id])
     event.destroy
     redirect_to new_user_event_path(user)

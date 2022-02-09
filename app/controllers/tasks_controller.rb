@@ -3,8 +3,8 @@ class TasksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     # 検索キーワードがあれば、あいまい検索で取得してくる
     keyword = params[:keyword]
     if keyword.present?
@@ -21,12 +21,15 @@ class TasksController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @new_task = Task.new
   end
 
   def create
+    @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @new_task = Task.new(task_params)
     if @new_task.save
       redirect_to user_tasks_path
@@ -38,12 +41,15 @@ class TasksController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @task = Task.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to user_tasks_path
@@ -54,6 +60,9 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     task = Task.find(params[:id])
     task.destroy
     redirect_to user_tasks_path
@@ -61,6 +70,8 @@ class TasksController < ApplicationController
 
   def destroy_icon
     user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(user)
     task = Task.find(params[:id])
     # 画像削除の方法は、画像idに nil を代入する
     task.update(icon_image_id: nil)

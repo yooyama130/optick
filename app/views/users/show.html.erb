@@ -2,6 +2,7 @@
   <div class = "row">
     <div class = "col-md-12">
       <h2><%= t("users.show.heading") % {name: @user.name} %></h2>
+      <p class = "text-danger my-1"><%= flash[:ensure_user] %></p>
     </div>
   </div>
   <div class = "row">

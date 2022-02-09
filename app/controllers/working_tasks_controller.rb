@@ -3,8 +3,8 @@ class WorkingTasksController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     # その日に行ったタスクを取得
     @date = params[:date].to_date
     @working_tasks = @user.working_tasks.where(being_measured?: false, started_at: @date.all_day).order(started_at: :desc)
@@ -15,16 +15,16 @@ class WorkingTasksController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @my_tasks = Task.where(user_id: current_user.id)
   end
 
   def set
     # ----------------------------------------------ここから----------------------------------------
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
-    redirect_to user_path(current_user) unless @user == current_user
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @my_tasks = Task.where(user_id: current_user.id)
     # ----------------------------------------------ここまでは上のnewと一緒-------------------------
     @selected_task = Task.find(params[:task_id])
@@ -32,6 +32,8 @@ class WorkingTasksController < ApplicationController
 
   def start
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @selected_task = Task.find(params[:task_id])
     # 現在時刻を取得し、開始時間（started_at）に代入
     now = Time.current
@@ -40,6 +42,8 @@ class WorkingTasksController < ApplicationController
 
   def stop
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @selected_task = Task.find(params[:task_id])
     working_task = WorkingTask.find_by(user_id: @user.id, task_id: @selected_task.id, being_measured?: true)
     # 現在時刻を取得し、終了時間（started_at）に代入し、being_measured?（計測中？）をfalseにする
@@ -52,12 +56,15 @@ class WorkingTasksController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
-    # ユーザーが一致しなければ、自分のマイページに戻る
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @working_task = WorkingTask.find(params[:id])
   end
 
   def update
     @user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(@user)
     @working_task = WorkingTask.find(params[:id])
     # 終了時刻が開始時刻より前の時刻になっていれば、render + フラッシュメッセージを出して処理を途中でストップ
     @started_at = working_task_params[:started_at].to_datetime
@@ -79,6 +86,8 @@ class WorkingTasksController < ApplicationController
 
   def destroy
     user = User.find(params[:user_id])
+    # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
+    return if ensure_user(user)
     working_task = WorkingTask.find(params[:id])
     working_task.destroy
     # 削除したタスクのある日付で一覧を表示させる
