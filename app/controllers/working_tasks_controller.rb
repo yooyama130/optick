@@ -52,6 +52,8 @@ class WorkingTasksController < ApplicationController
     # 経過時間を終了時間 - 開始時間 で　出す
     working_time = working_task.stopped_at - working_task.started_at
     working_task.update(working_time: working_time)
+    # 最後にフラッシュメッセージを表示させる
+    flash[:working_time] = t("flash.working_time") % {time: working_task.int_to_time(working_time.round)}
   end
 
   def edit

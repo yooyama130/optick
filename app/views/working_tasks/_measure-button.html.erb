@@ -22,6 +22,10 @@
 <!--計測中（being_measured）がtrueの物が見つからなければ、「選択中」と開始ボタンを表示-->
 <% else %>
   <!--左側（選択中タスク表示）-->
+  <div class = "col-md-12">
+    <!--計測を止めたときにかかった時間を表示させる-->
+    <p class = "text-success text-center my-1"><%= flash[:working_time] %></p>
+  </div>
   <div class = "col-md-6 d-flex align-items-center">
     <div class= "card mr-4 py-2 w-50", style= "text-decoration: none;" >
       <p class = "text-center text-dark mb-2 text-truncate"><%= @selected_task.content %></p>

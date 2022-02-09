@@ -15,6 +15,7 @@
         search_error: "日付範囲が正しく指定されていないか、日付範囲が80日間を超えています"
         date_range_error: "日付範囲が正しく指定されていません"
         datetime_range_error: "終了時刻が開始時刻より前にあります"
+        working_time: "かかった時間: %{time}"
     # 制限用
     limit:
         maximum_character: "最大%{count}文字まで"
