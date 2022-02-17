@@ -45,15 +45,12 @@ class WorkingTasksController < ApplicationController
     # ユーザーが一致しなければ、自分のマイページに戻る（メソッドが実行されれば、その後の処理はさせない）
     return if ensure_user(@user)
     @selected_task = Task.find(params[:task_id])
+    # 計測中のworking_taskを取得する
     working_task = WorkingTask.find_by(user_id: @user.id, task_id: @selected_task.id, being_measured?: true)
-    # 現在時刻を取得し、終了時間（started_at）に代入し、being_measured?（計測中？）をfalseにする
-    now = Time.current
-    working_task.update(stopped_at: now, being_measured?: false)
-    # 経過時間を終了時間 - 開始時間 で　出す
-    working_time = working_task.stopped_at - working_task.started_at
-    working_task.update(working_time: working_time)
+    # 計測を止める（メソッドを使用）
+    working_task.stop_measuring
     # 最後にフラッシュメッセージを表示させる
-    flash[:working_time] = t("flash.working_time") % {time: working_task.int_to_time(working_time.round)}
+    flash[:working_time] = t("flash.working_time") % {time: working_task.int_to_time(working_task.working_time.round)}
   end
 
   def edit
